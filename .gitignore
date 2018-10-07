@@ -1,0 +1,22 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+#  hirehawk-react
+# dependencies
+/hirehawk-react/node_modules
+
+# testing
+/hirehawk-react/coverage
+
+# production
+/hirehawk-react/build
+
+# misc
+hirehawk-react/.DS_Store
+hirehawk-react/.env.local
+hirehawk-react/.env.development.local
+hirehawk-react/.env.test.local
+hirehawk-react/.env.production.local
+
+hirehawk-react/npm-debug.log*
+hirehawk-react/yarn-debug.log*
+hirehawk-react/yarn-error.log*
