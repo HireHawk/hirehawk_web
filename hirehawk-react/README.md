@@ -129,7 +129,7 @@ We are always open to [your feedback](https://github.com/facebook/create-react-a
 
 ## Folder Structure
 
-After creation, your project should look like this:
+After creation,  your project should look like this:
 
 ```
 my-app/
