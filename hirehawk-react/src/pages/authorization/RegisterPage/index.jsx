@@ -1,5 +1,3 @@
-
-
 import React from 'react'
 import SimpleComponent from 'components/SimpleComponent'
 import MenuAppBar from 'components/common/MenuAppBar'
@@ -13,7 +11,6 @@ class WellcomePage extends React.Component{
      for(var i =0;i<10;i++) {
          html.push(<SimpleComponent color={this.simpleComponentColor}>Hello developers!</SimpleComponent>);
        }
-
     return <div><MenuAppBar></MenuAppBar>{html}</div>;
   }
 
