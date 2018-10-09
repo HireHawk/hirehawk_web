@@ -1,0 +1,19 @@
+
+.advertSearch-input{
+  width:98%;
+  left:50%;
+  transform:translate(-50%,0);
+  font-size:200%;
+  padding:5px;
+}
+.advertSearch-input::-webkit-input-placeholder {
+   text-align: center;
+}
+
+.advertSearch-input::-moz-placeholder { /* Firefox 18- */
+   text-align: center;
+ }
+ .advertSearch{
+   position:relative;
+
+ }

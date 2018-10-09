@@ -51,7 +51,7 @@ class MenuAppBar extends React.Component {
     const open = Boolean(anchorEl);
 
     return (
-      <div className={classes.root}>
+      <div className={classes.root} style={this.props.style}>
         <FormGroup>
           <FormControlLabel
             control={
