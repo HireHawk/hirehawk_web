@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import {Link} from 'react-router-dom'
 //internal dependencies
 import BlockLink from 'components/BlockLink'
-import HireHawkLogo from '../../components/HireHawkLogo'
+import OtherSimple from 'components/OtherSimple'
 import LoginButton from 'containers/LoginButton'
 import AdvertSearch from 'containers/AdvertSearch'
 // props and styles
