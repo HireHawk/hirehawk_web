@@ -6,17 +6,29 @@
   transform: translate(-50%, -50%);
 }
 .advertSearch{
-  top:30vh;
+  top:40vh;
   left:50vw;
   width:95%;
   max-width:200vh;
   max-width:30em;
   transform: translate(-50%, -50%);
 }
+.takeThings{
+  border-bottom-left-radius:10vh;
+  border-top-right-radius: 4vh;
+  margin:0;
+
+}
+.giveThings{
+  border-bottom-right-radius:10vh;
+  border-top-left-radius:4vh;
+  margin:0;
+  padding:0;
+}
 .loginButton{
   position:absolute;
   left:50%;
-  top:20%;
+  top:30%;
   transform: translate(-50%, -50%);
   width: 10em;
   padding:1em;
@@ -31,4 +43,12 @@
         -khtml-user-select: none;
         -webkit-user-select: none;
         -o-user-select: none;
+}
+.mainLogo{
+  max-width:120%;
+  width:700px;
+  max-height:18vh;
+  bottom:78%;
+  left:50%;
+  transform:translate(-50%,0);
 }
