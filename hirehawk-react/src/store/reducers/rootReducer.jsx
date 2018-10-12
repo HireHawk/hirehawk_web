@@ -5,6 +5,7 @@ import update from 'immutability-helper'
 const initialState ={
     uselessDummy:{subuselessDummy:1}
   }
+
 const reducer=(state=initialState, action)=>{
 
    switch(action.type){

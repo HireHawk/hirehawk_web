@@ -128,7 +128,22 @@ We commit to keeping the breaking changes minimal so you can upgrade `react-scri
 We are always open to [your feedback](https://github.com/facebook/create-react-app/issues).
 
 ## Folder Structure
-
+```
+my-app/
+  README.md
+  node_modules/
+  package.json
+  public/
+    index.html
+    favicon.ico
+  src/
+    App.css
+    App.js
+    App.test.js
+    index.css
+    index.js
+    logo.svg
+```
 For the project to build, **these files must exist with exact filenames**:
 
 - `public/index.html` is the page template;
