@@ -26,7 +26,7 @@ const styles = {
     marginRight: 20,
   },
 };
-
+// in development
 class MenuAppBar extends React.Component {
   state = {
     auth: true,
@@ -65,7 +65,7 @@ class MenuAppBar extends React.Component {
             <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" color="inherit" className={classes.grow}>
+            <Typography variant="display1" color="inherit" className={classes.grow}>
               HireHawk
             </Typography>
             {auth && (

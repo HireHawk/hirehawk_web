@@ -1,13 +1,13 @@
 import React from 'react'
-import SimpleComponent from 'components/SimpleComponent'
 import MenuAppBar from 'components/common/MenuAppBar'
 import AdvertCard from 'components/AdvertCard'
+import 'styles/positioning.css'
 import './styles.css'
 import {adverts} from 'test/data.jsx'
+
 class WellcomePage extends React.Component{
-   constructor(props){
-     super(props);
-   }
+
+
    render(){
     return (
     <div>
@@ -18,7 +18,7 @@ class WellcomePage extends React.Component{
         <div style={{float:'right',margin:'20px',width:'20%'}}>
           {adverts.map((e)=>{
             return (
-              <AdvertCard data = {e}>
+              <AdvertCard key ={e.name} data = {e}>
               </AdvertCard>
             );
           })}

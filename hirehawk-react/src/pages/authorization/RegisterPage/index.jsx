@@ -1,18 +1,25 @@
 import React from 'react'
-import SimpleComponent from 'components/SimpleComponent'
-import MenuAppBar from 'components/common/MenuAppBar'
-class WellcomePage extends React.Component{
-   constructor(props){
-     super(props);
-     this.simpleComponentColor= 'lightgreen';
-   }
+class RegisterPage extends React.Component{
+
+
    render(){
-     var html=[];
-     for(var i =0;i<10;i++) {
-         html.push(<SimpleComponent color={this.simpleComponentColor}>Hello developers!</SimpleComponent>);
-       }
-    return <div><MenuAppBar></MenuAppBar>{html}</div>;
+     var html=(
+       <div>
+         Now you should register somehow, I guess...<br/>
+
+       here you will enter the email  <br/>
+
+
+     here you will enter your new password <br/>
+
+
+   here you will confirm your new password <br/>
+
+ and here you will press the final button <br/>
+       </div>
+     );
+    return <div>{html}</div>;
   }
 
 };
-export default WellcomePage;
+export default RegisterPage;

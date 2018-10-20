@@ -1,7 +1,7 @@
 import update from 'immutability-helper'
 //https://github.com/kolodny/immutability-helper
 
-//later there might be several reducers
+//later there might be several reducers that will be assembled in this file.
 const initialState ={
     uselessDummy:{subuselessDummy:1}
   }

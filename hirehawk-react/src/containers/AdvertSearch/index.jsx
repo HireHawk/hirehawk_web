@@ -1,8 +1,9 @@
 import React from 'react'
 
-import Input from '@material-ui/core/Input';
+// import Input from '@material-ui/core/Input'; // may be used
 
 import './styles.css'
+import 'styles/positioning.css'
 
 class AdvertSearch extends React.Component{
    constructor(props){

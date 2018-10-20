@@ -8,8 +8,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import LoadingIcon from 'components/common/LoadingIcon'
 
+import LoadingIcon from 'components/common/LoadingIcon'
+import {Link} from 'react-router-dom'
 class LoginButton extends React.Component {
   state = {
     email:undefined,
@@ -23,7 +24,7 @@ class LoginButton extends React.Component {
       open: false,
     }
   };
-   emailRegex= /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  emailRegex= /^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/
   handleClickOpen = () => {
     this.setState({emailDialog:{ open: true }});
   };
@@ -35,7 +36,7 @@ class LoginButton extends React.Component {
     },
     handleLogin: (e) => {
       if(this.state.emailDialog.inputError)
-        alert('enter correct email!');
+        alert('enter a correct email!');
       else{
           this.setState({loading:true,email:this.state.email});
           setTimeout(()=>{
@@ -49,7 +50,6 @@ class LoginButton extends React.Component {
       this.setState({email:undefined,emailDialog:{open: false }});
     },
     handleRegister: () => {
-      alert('for now it is a stub');
       this.setState({emailDialog:{open: false }});
     }
   }
@@ -62,7 +62,7 @@ class LoginButton extends React.Component {
     },
     handleLogin: () => {
       alert('great, at some point server will handle this')
-      this.setState({emailDialog:{open: false },passwordDialog:{open:true}});
+      this.setState({passwordDialog:{open:false}});
     }
   }
 
@@ -95,9 +95,11 @@ class LoginButton extends React.Component {
           </div>:null}
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.emailDialog.handleRegister} color="primary">
-              Register
-            </Button>
+            <Link to="/register" style={{color:'inherit',textDecoration:'inherit'}}>
+              <Button onClick={this.emailDialog.handleRegister} color="primary">
+                Register
+              </Button>
+            </Link>
             <Button onClick={this.emailDialog.handleClose} color="primary">
               Cancel
             </Button>
@@ -133,7 +135,7 @@ class LoginButton extends React.Component {
             <Button onClick={this.passwordDialog.handleClose} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.passwordDialog.handleClose} color="primary">
+            <Button onClick={this.passwordDialog.handleLogin} color="primary">
               Login
             </Button>
           </DialogActions>

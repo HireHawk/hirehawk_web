@@ -1,29 +1,11 @@
-.centered {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  /* bring your own prefixes */
-  transform: translate(-50%, -50%);
-}
-.advertSearch{
-  top:40vh;
-  left:50vw;
-  width:95%;
-  max-width:200vh;
-  max-width:30em;
-  transform: translate(-50%, -50%);
-}
-.takeThings{
-  border-bottom-left-radius:10vh;
-  border-top-right-radius: 4vh;
-  margin:0;
 
-}
-.giveThings{
-  border-bottom-right-radius:10vh;
-  border-top-left-radius:4vh;
-  margin:0;
-  padding:0;
+.mainLogo{
+  max-width:140%;
+  width:700px;
+  max-height:18vh;
+  bottom:78%;
+  left:50%;
+  transform:translate(-50%,0);
 }
 .loginButton{
   position:absolute;
@@ -37,18 +19,34 @@
   font-weight:bold;
   border: 4px solid black;
 }
-.unselectable{
-        user-select: none;
-        -moz-user-select: none;
-        -khtml-user-select: none;
-        -webkit-user-select: none;
-        -o-user-select: none;
+.advertSearch{
+  top:40vh;
+  left:50vw;
+  width:95%;
+  max-width:200vh;
+  max-width:30em;
+  transform: translate(-50%, -50%);
 }
-.mainLogo{
-  max-width:120%;
-  width:700px;
-  max-height:18vh;
-  bottom:78%;
-  left:50%;
-  transform:translate(-50%,0);
+
+.imageLinkContainer{
+  width:100vw;
+  position:absolute;
+  bottom:10vh;
+  height:40vh;
+  display:flex;
+  flex-direction:row;
+  z-index: 10;
+  @media only screen and (max-width: 600px) {
+      flex-direction:column;
+      background:blue;
+  }
+}
+.imageLink{
+  margin:0;
+  width:50vw;
+  height:100%;
+  @media only screen and (max-width: 600px) {
+      width:100vw;
+      height:50%;
+  }
 }

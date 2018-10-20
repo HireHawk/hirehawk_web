@@ -1,25 +1,24 @@
 
 
 import React from 'react'
-import WellcomePage from 'pages/WellcomePage'
+import WellcomePage from 'test/pages/WellcomePage'
 import MainPage from 'pages/MainPage'
 import LoginPage from 'pages/authorization/LoginPage'
 import RegisterPage from 'pages/authorization/RegisterPage'
-import { Link, Route, Switch, BrowserRouter } from 'react-router-dom';
+import {Route, Switch, BrowserRouter } from 'react-router-dom' //use Link to create links
 
 
 class MainRouter extends React.Component{
-   constructor(props){
-     super(props);
-   }
-   render(){
 
+   render(){
     return (
       <BrowserRouter>
         <Switch>
-             <Route exact path="/" component={MainPage}/>
-            {/* <Route exact path="/" component={Search}/> */}
+            <Route exact path="/"   component={MainPage}/>
             <Route path="/wellcome" component={WellcomePage}/>
+            <Route path="/login"    component={LoginPage}/>
+            <Route path="/register" component={RegisterPage}/>
+            {/* <Route exact path="/yourPage" component={YourComponent}/> */}
           </Switch>
       </BrowserRouter>
     )

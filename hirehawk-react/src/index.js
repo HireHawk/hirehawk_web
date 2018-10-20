@@ -2,6 +2,7 @@ import React from 'react'
 import {render} from 'react-dom'
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
+//in-project imports
 import rootReducer from './store/reducers/rootReducer'
 
 import MainRouter from './routers/MainRouter'

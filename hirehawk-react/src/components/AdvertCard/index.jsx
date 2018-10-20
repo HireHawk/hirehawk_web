@@ -16,7 +16,7 @@ const styles = {
     maxWidth: 345,
   },
   media: {
-      height: 100,
+      height: '100%',
     },
   };
 
@@ -32,7 +32,7 @@ const styles = {
               title={this.props.data.description}
               />
             <CardContent>
-              <Typography gutterBottom variant ='inherit' component="h2">
+              <Typography gutterBottom variant='inherit' component="h2">
                 {this.props.data.name}
               </Typography>
               <Typography component="p">
