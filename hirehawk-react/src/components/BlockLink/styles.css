@@ -1,7 +1,8 @@
 
 .blockLink{
+display:block;
 position:relative;
-min-width:15em;
+/* min-width:15em; */
 overflow:hidden;
 border: inset 1px solid black;
 }

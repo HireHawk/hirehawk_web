@@ -1,8 +1,7 @@
-import React from 'react'
 
-//external dependencies
-import Button from '@material-ui/core/Button';
-import {Link} from 'react-router-dom';
+
+//external dependenciess
+import React from 'react'
 //internal dependencies
 import BlockLink from 'components/BlockLink';
 import HireHawkLogo from 'components/HireHawkLogo';
@@ -41,7 +40,6 @@ class MainPage extends React.Component{
         {/*temporary elements (design/etc)*/}
       <div style = {{position:'absolute', top:'60%', left:0, width:'100%', background:'black', height:'40%', zIndex:-1}}/>
       <div style = {{position:'absolute', bottom:0, left:0, width:'100%', textAlign:'center', height:'8%', color:'white', fontSize:'100%'}}>This is a test design with horrible CSS. Do not judge.</div>
-      <Link to='/wellcome'><Button style={{float:'right'}}>Go To Wellcome page!</Button></Link>
     </div>);
   }
 };

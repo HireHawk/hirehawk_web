@@ -19,5 +19,5 @@ hirehawk-react/ - React application base folder, the place to run npm!
   src/routers - contains router components.
   src/store/ - contains REDUX store configuration: reducers.
   src/test/ - contains all components, media,pages that should be used ONLY during tests and not in production.
-
+  src/styles/ - contains all styles that are used in multiple components
   `````

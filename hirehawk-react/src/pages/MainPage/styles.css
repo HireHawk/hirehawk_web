@@ -29,24 +29,29 @@
 }
 
 .imageLinkContainer{
-  width:100vw;
+  width:100%;
   position:absolute;
   bottom:10vh;
   height:40vh;
   display:flex;
   flex-direction:row;
   z-index: 10;
-  @media only screen and (max-width: 600px) {
-      flex-direction:column;
-      background:blue;
-  }
 }
 .imageLink{
   margin:0;
-  width:50vw;
+  width:50%;
   height:100%;
-  @media only screen and (max-width: 600px) {
-      width:100vw;
-      height:50%;
+}
+@media only screen and (max-width: 600px) {
+  .imageLink{
+    width:100vw;
+    height:50%;
   }
+  .imageLinkContainer{
+    flex-direction:column;
+    background:blue;
+  }
+ .advertSearch{
+   
+ }
 }
