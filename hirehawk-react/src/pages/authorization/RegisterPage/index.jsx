@@ -1,17 +1,18 @@
 import React from 'react'
-import Paper from '@material-ui/core/Paper';
 
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import IconButton from '@material-ui/core/IconButton';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
+// import TextField from '@material-ui/core/TextField';
+// import Button from '@material-ui/core/Button';
+// import FormControl from '@material-ui/core/FormControl';
+// import Input from '@material-ui/core/Input';
+// import InputLabel from '@material-ui/core/InputLabel';
+// import IconButton from '@material-ui/core/IconButton';
+// import InputAdornment from '@material-ui/core/InputAdornment';
+// import Visibility from '@material-ui/icons/Visibility';
+// import VisibilityOff from '@material-ui/icons/VisibilityOff';
+
+import MediaQuery from "react-responsive";
 
 
 import 'styles/positioning.css'
@@ -23,7 +24,7 @@ const styles = theme => ({
         ...theme.mixins.gutters(),
         paddingTop: theme.spacing.unit * 2,
         paddingBottom: theme.spacing.unit * 2,
-        maxWidth: '720px',
+        maxWidth: '32em',
     },
     button: {
         margin: theme.spacing.unit,
@@ -80,35 +81,35 @@ const styles = theme => ({
     }
 });
 
-var fields = {
-    login: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    firstName: '',
-    secondName: '',
-    lastName: ''
-}
+
 
 class RegisterPage extends React.Component {
 
     constructor() {
         super();
+        this.fields ={
+            login: '',
+            email: '',
+            password: '',
+            confirmPassword: '',
+            firstName: '',
+            secondName: '',
+            lastName: ''
+        }
         this.state = {
-            step: 1
+            step: 1,
         }
     }
-
     saveValues(field_value) {
         return function () {
             for (let i in field_value) {
-                fields[i] = field_value[i];
+               this.fields[i] = field_value[i];
             }
         }.bind(this)()
     }
 
     sendValues() {
-        console.log("SEND ", fields);
+        console.log("SEND ", this.fields);
     }
 
     nextStep() {
@@ -121,34 +122,37 @@ class RegisterPage extends React.Component {
             step: this.state.step - 1,
         });
     }
-
     content() {
         switch (this.state.step) {
             case 1:
                 return <MainFields
-                    fields={fields}
+                    fields={this.fields}
                     owner={this}
-                    nextStep={this.nextStep}
-                    saveValues={this.saveValues}
+                    nextStep={this.nextStep.bind(this)}
+                    saveValues={this.saveValues.bind(this)}
                     classes={this.props.classes} />;
             case 2:
                 return <ExtraFields
-                    fields={fields}
+                    fields={this.fields}
                     owner={this}
-                    prevStep={this.prevStep}
-                    saveValues={this.saveValues}
-                    sendValues={this.sendValues}
+                    prevStep={this.prevStep.bind(this)}
+                    saveValues={this.saveValues.bind(this)}
+                    sendValues={this.sendValues.bind(this)}
                     classes={this.props.classes} />;
+           default:
+              return 'Error step state';
         }
     }
 
     render() {
 
         var html = (
-            <div className='fullScreen' style={{ background: '#444444' }}>
+            <div className='fullScreen' style={{minHeight:'25em',overflowY:'scroll', background: '#444444' }}>
+              <MediaQuery query='(min-height:35em)'>
                 <div className={this.props.classes.header}>
                     <h1>Registration</h1>
                 </div>
+              </MediaQuery>
                 {this.content()}
             </div>
         );
@@ -156,6 +160,7 @@ class RegisterPage extends React.Component {
     }
 
 };
+
 RegisterPage.propTypes = {
     classes: PropTypes.object.isRequired,
 };

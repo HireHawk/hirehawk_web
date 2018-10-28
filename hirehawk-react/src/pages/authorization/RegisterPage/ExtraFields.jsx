@@ -2,7 +2,6 @@ import React from 'react'
 import Paper from '@material-ui/core/Paper';
 
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
@@ -33,7 +32,6 @@ class ExtraFields extends React.Component {
             lastName: event.target.value,
         });
     }
-
     isEmpty(value) {
         return !value.trim();
     }
@@ -90,7 +88,7 @@ class ExtraFields extends React.Component {
         }
 
         this.props.saveValues(data);
-        this.props.prevStep.bind(this.props.owner)();
+        this.props.prevStep();
     }
 
     submitForm(e) {
@@ -116,7 +114,7 @@ class ExtraFields extends React.Component {
             }
 
             this.props.saveValues(data);
-            this.props.sendValues.bind(this.props.owner)();
+            this.props.sendValues();
         }
     }
 }
