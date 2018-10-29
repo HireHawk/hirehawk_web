@@ -37,7 +37,8 @@ class MainFields extends React.Component {
               login:null,
               password:null,
               confirm:null,
-            }
+            },
+            openChips:0
         }
     }
 
@@ -101,21 +102,39 @@ class MainFields extends React.Component {
     isEmpty(value) {
         return !value.trim();
     }
+    handleInfoChipMaximize(){
+      this.setState({
+        openChips:this.state.openChips+1
+      });
+    }
+    handleInfoChipMinimize(){
+      this.setState({
+        openChips:this.state.openChips-1
+      });
+    }
+
     infoChipRender(errorString,warningString,data){
       return errorString!=null?
                 <InfoChip minimized type='error' squared={data.squared}
                           showAlert={data.alert} info={errorString}
-                          size='2.8em' style={data.style} fullWidth='calc(100vw - 100%)'/>
+                          size='2.8em' style={data.style} fullWidth='calc(100vw - 100% - 2em)'
+                          onMaximize={this.handleInfoChipMaximize.bind(this)}
+                          onMinimize={this.handleInfoChipMinimize.bind(this)}/>
             :warningString!=null?
                 <InfoChip minimized type='warning' squared={data.squared}
                           showAlert={data.alert} info ={warningString}
-                          size='2.8em' style={data.style} fullWidth='calc(100vw - 100%)'/>
+                          size='2.8em' style={data.style} fullWidth='calc(100vw - 100% - 2em)'
+                          onMaximize={this.handleInfoChipMaximize.bind(this)}
+                          onMinimize={this.handleInfoChipMinimize.bind(this)}/>
             :null
     }
-    conditionalRender(paperStyle, textFieldStyle_info, infoChip,bigScreen){
-      
+    conditionalRender(paperClasses, textFieldStyle_info, infoChip,bigScreen){
+      let paperStyle={};
+      if(this.state.openChips!==0){
+        paperStyle={left:0,transform:'translate(0, -50%)'};
+      }
       return(
-        <Paper className={paperStyle} elevation={1} >
+        <Paper className={paperClasses} style={paperStyle} elevation={1} >
           <FormControl
                 className={this.props.classes.textField}
                 margin="normal">
@@ -198,15 +217,15 @@ class MainFields extends React.Component {
       );
     }
     render() {
-        let paperStyle = [this.props.classes.root,'centered'].join(' ');
+        let paperClasses = [this.props.classes.root,'centered'].join(' ');
         return (
           <div className='fullScreen'>
               <MediaQuery query='(min-width:calc(50em + 0.1px)'>
-                {this.conditionalRender.bind(this)(paperStyle,{}, {squared:false, alert:false,style:{position:'absolute',left:'calc(105% + 5px)'}},true)
+                {this.conditionalRender.bind(this)(paperClasses,{}, {squared:false, alert:false,style:{position:'absolute',left:'calc(105% + 5px)'}},true)
                 }
               </MediaQuery>
               <MediaQuery query='(max-width:50em)'>
-                {this.conditionalRender.bind(this)(paperStyle,{width:'calc(100% - 3em - 10px)'}, {squared:true,alert:true,style:{position:'absolute',right:'0px'}},false)
+                {this.conditionalRender.bind(this)(paperClasses,{width:'calc(100% - 3em - 10px)'}, {squared:true,alert:true,style:{position:'absolute',right:'0px'}},false)
                 }
               </MediaQuery>
           </div>

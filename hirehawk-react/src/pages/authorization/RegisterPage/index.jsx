@@ -147,7 +147,7 @@ class RegisterPage extends React.Component {
     render() {
 
         var html = (
-            <div className='fullScreen' style={{minHeight:'25em',overflowY:'scroll', background: '#444444' }}>
+            <div className='fullScreen' style={{minHeight:'25em',overflowY:'auto', background: '#444444' }}>
               <MediaQuery query='(min-height:35em)'>
                 <div className={this.props.classes.header}>
                     <h1>Registration</h1>

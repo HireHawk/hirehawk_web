@@ -11,7 +11,7 @@ const styles = theme => ({
   infoChip:{
     width:'1.2em',
     height:'1.2em',
-    borderRadius:'50%',
+    borderRadius:'0.6em',
     border:'3px solid lightred',
     backgroundColor:'red',
     textAlign:'center',
@@ -32,21 +32,20 @@ class InfoChip extends React.Component{
     if (this.props.showAlert===true){
       alert(this.props.info);
     }else{
+      if(this.props.onMaximize)this.props.onMaximize();
       this.setState({
         minimized:false,
       });
     }
   }
   hideInfo(){
+    if(this.props.onMinimize)this.props.onMinimize();
    this.setState({
      minimized:true,
    });
   }
 
   render(){
-    let color='black';
-    let borderColor='black';
-    let backgroundColor='grey';
     let content ='';
     let classes =[];
     let styles ={color:'black',borderColor:'black',backgroundColor:'grey'};
@@ -83,7 +82,7 @@ class InfoChip extends React.Component{
         content=this.props.info;
         onclick=this.hideInfo.bind(this);
         styles.width=this.props.fullWidth;
-        styles.fontSize='2em'
+        styles.fontSize='1em'
       }
       return (
         <div onClick ={onclick} className={classes.join(' ')} style={Object.assign(styles, this.props.style)}>
