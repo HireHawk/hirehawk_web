@@ -3,7 +3,6 @@ import React from 'react';
 import 'styles/positioning.css'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles';
-import Chip from '@material-ui/core/Chip';
 
 const styles = theme => ({
   root: {
@@ -24,25 +23,20 @@ const styles = theme => ({
 class InfoChip extends React.Component{
   constructor(props){
     super();
-    this.state={
-      minimized:props.minimized,
-    }
   }
   showInfo(){
     if (this.props.showAlert===true){
       alert(this.props.info);
     }else{
       if(this.props.onMaximize)this.props.onMaximize();
-      this.setState({
-        minimized:false,
-      });
     }
   }
   hideInfo(){
-    if(this.props.onMinimize)this.props.onMinimize();
-   this.setState({
-     minimized:true,
-   });
+    if (this.props.showAlert===true){
+      alert(this.props.info);
+    }else{
+      if(this.props.onMinimize)this.props.onMinimize();
+    }
   }
 
   render(){
@@ -73,7 +67,7 @@ class InfoChip extends React.Component{
     classes.push(this.props.classes.infoChip_minimized);
     classes.push(this.props.classes.infoChip);
     if(this.props.squared)classes.push(this.props.classes.infoChip_squared);
-    if(this.state.minimized){
+    if(this.props.minimized){
         classes.push('unselectable');
         styles.width='1.2em';
         onclick=this.showInfo.bind(this);
@@ -81,12 +75,15 @@ class InfoChip extends React.Component{
       }else{
         content=this.props.info;
         onclick=this.hideInfo.bind(this);
+        styles.maxWidth=this.props.fullWidth;
+        styles.fontSize='1em';
+        styles.padding='1em';
         styles.width=this.props.fullWidth;
-        styles.fontSize='1em'
+        styles.display='inline';
       }
       return (
         <div onClick ={onclick} className={classes.join(' ')} style={Object.assign(styles, this.props.style)}>
-         {content}
+          {content}
         </div>
       )
     }

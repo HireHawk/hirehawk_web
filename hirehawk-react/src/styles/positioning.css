@@ -5,6 +5,18 @@
   left:50%;
   transform: translate(-50%, -50%);
 }
+.centeredX {
+  display:inline-block;
+  position: relative;
+  left:50%;
+  transform: translate(-50%, 0);
+}
+.centeredY {
+  display:inline-block;
+  position: relative;
+  top: 50%;
+  transform: translate(0, -50%);
+}
 .fullScreen {
   position: absolute;
   top:0;

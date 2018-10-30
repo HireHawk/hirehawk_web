@@ -41,7 +41,7 @@ class ExtraFields extends React.Component {
         return (
             <Paper className={[this.props.classes.root, 'centered'].join(' ')} elevation={1}>
                 <TextField
-                    label="FirstName"
+                    label="Name"
                     margin="normal"
                     value={this.state.firstName}
                     className={this.props.classes.textField}

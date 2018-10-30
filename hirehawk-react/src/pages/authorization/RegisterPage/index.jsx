@@ -17,7 +17,7 @@ import MediaQuery from "react-responsive";
 
 import 'styles/positioning.css'
 import MainFields from './MainFields'
-import ExtraFields from './ExtraFields';
+import MinFields from './MinFields';
 
 const styles = theme => ({
     root: {
@@ -30,14 +30,6 @@ const styles = theme => ({
         margin: theme.spacing.unit,
         background: '#333333',
         color: 'white'
-    },
-    bottomPanel: {
-        position: 'fixed',
-        height: '20%',
-        width: '100%',
-        bottom: 0,
-        left: 0,
-        background: '#666666'
     },
     container: {
         background: 'blue'
@@ -88,10 +80,10 @@ class RegisterPage extends React.Component {
     constructor() {
         super();
         this.fields ={
-            login: '',
-            email: '',
-            password: '',
-            confirmPassword: '',
+            login: 'SubzeroDesk1873',
+            email: 'some@gmail.com',
+            password: 'otherPass1',
+            confirm: 'otherPass1',
             firstName: '',
             secondName: '',
             lastName: ''
@@ -127,17 +119,15 @@ class RegisterPage extends React.Component {
             case 1:
                 return <MainFields
                     fields={this.fields}
-                    owner={this}
                     nextStep={this.nextStep.bind(this)}
                     saveValues={this.saveValues.bind(this)}
                     classes={this.props.classes} />;
             case 2:
-                return <ExtraFields
+                return <MinFields
                     fields={this.fields}
-                    owner={this}
                     prevStep={this.prevStep.bind(this)}
                     saveValues={this.saveValues.bind(this)}
-                    sendValues={this.sendValues.bind(this)}
+                    nextStep={this.sendValues.bind(this)}
                     classes={this.props.classes} />;
            default:
               return 'Error step state';
@@ -147,7 +137,7 @@ class RegisterPage extends React.Component {
     render() {
 
         var html = (
-            <div className='fullScreen' style={{minHeight:'25em',overflowY:'auto', background: '#444444' }}>
+            <div className='fullScreen' style={{background: '#444444' }}>
               <MediaQuery query='(min-height:35em)'>
                 <div className={this.props.classes.header}>
                     <h1>Registration</h1>
