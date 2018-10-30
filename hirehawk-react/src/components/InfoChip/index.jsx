@@ -11,7 +11,7 @@ const styles = theme => ({
     width:'1.2em',
     height:'1.2em',
     borderRadius:'0.6em',
-    border:'3px solid lightred',
+    border:'10px solid lightred',
     backgroundColor:'red',
     textAlign:'center',
     verticalAlign:'middle',
@@ -50,9 +50,9 @@ class InfoChip extends React.Component{
           styles.backgroundColor='lightgreen';
           content =':)';
           break;
-      case 'attention':
-          styles.borderColor = 'yellow';
-          styles.backgroundColor='white';
+      case 'warning':
+          styles.borderColor = 'black';
+          styles.backgroundColor='yellow';
           content=':|';
           break;
       case 'error':

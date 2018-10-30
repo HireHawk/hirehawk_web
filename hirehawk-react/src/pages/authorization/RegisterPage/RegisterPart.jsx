@@ -57,6 +57,30 @@ class RegisterPart extends React.Component {
     isEmpty(value) {
         return !value.trim();
     }
+    getHandleInfoChipMaximize(inputName){
+      return (()=>{
+        if(this.state.isChipMinimized[inputName]){
+          this.setState({
+            openedChipsCount:(this.state.openedChipsCount+1),
+            isChipMinimized:{
+              ...this.state.isChipMinimized,
+              [inputName]:false
+            }});
+        }
+      });
+    }
+    getHandleInfoChipMinimize(inputName){
+      return (()=>{
+        if(!this.state.isChipMinimized[inputName]){
+          this.setState({
+            openedChipsCount:this.state.openedChipsCount-1,
+            isChipMinimized:{
+              ...this.state.isChipMinimized,
+              [inputName]:true
+            }});
+        }
+        });
+    }
 
     infoChipRender(inputName,data){
       var jsx;
@@ -66,9 +90,9 @@ class RegisterPart extends React.Component {
                   size='2.8em' style={data.style} fullWidth='calc(100vw - 100% - 7em)'
                   onMaximize={this.getHandleInfoChipMaximize.bind(this)(inputName)}
                   onMinimize={this.getHandleInfoChipMinimize.bind(this)(inputName)}/>
-      }else if(this.state.errors[inputName]!=null){
+      }else if(this.state.warnings[inputName]!=null){
         jsx=<InfoChip minimized={data.alert || this.state.isChipMinimized[inputName]} type='warning' squared={data.squared}
-                  showAlert={data.alert} info={this.state.errors[inputName]}
+                  showAlert={data.alert} info={this.state.warnings[inputName]}
                   size='2.8em' style={data.style} fullWidth='calc(100vw - 100% - 7em)'
                   onMaximize={this.getHandleInfoChipMaximize.bind(this)(inputName)}
                   onMinimize={this.getHandleInfoChipMinimize.bind(this)(inputName)}/>

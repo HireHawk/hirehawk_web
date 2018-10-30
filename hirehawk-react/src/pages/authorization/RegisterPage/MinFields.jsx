@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import RegisterPart from './RegisterPart.jsx';
 
 
-class ExtraFields extends RegisterPart {
+class MinFields extends RegisterPart {
     constructor(props){
         super();
         this.state = {
@@ -24,34 +24,12 @@ class ExtraFields extends RegisterPart {
             openedChipsCount:0
         }
     }
-
     handleUserNameChange(event) {
-        this.setState({
-            fields:{
-              ...this.state.fields,
-              userName:event.target.value
-            }
-        });
-    }
-    isEmpty(value) {
-        return !value.trim();
-    }
-    handleFieldChange(fieldName,error,warning,value){
-      if(value.length===0){
-        error =null;
-        warning=null;
+      let warning = null,error = null;
+      if(!(/^[A-Z][a-z]* [A-Z][a-z]*$/).test(event.target.value)){
+          warning ='Full name is the preferred option!';
       }
-      this.setState({
-          [fieldName]: value,
-          errors:{
-            ...this.state.errors,
-            [fieldName]:error
-          },
-          warnings:{
-            ...this.state.warnings,
-            [fieldName]:warning,
-          }
-        });
+      this.handleFieldChange('userName',error,warning,event.target.value);
     }
     conditionalRender(containerClasses, paperClasses, textFieldStyle_info, infoChip,bigScreen){
       let paperStyle=Object.assign(this.defaultPaperStyle(bigScreen,this.state.openedChipsCount),{maxWidth:'100%'});
@@ -66,4 +44,4 @@ class ExtraFields extends RegisterPart {
     }
 }
 
-export default (ExtraFields);
+export default (MinFields);
