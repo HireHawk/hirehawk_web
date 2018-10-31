@@ -39,7 +39,9 @@ class MainPage extends React.Component{
       </div>
         {/*temporary elements (design/etc)*/}
       <div style = {{position:'absolute', top:'60%', left:0, width:'100%', background:'black', height:'40%', zIndex:-1}}/>
-      <div style = {{position:'absolute', bottom:0, left:0, width:'100%', textAlign:'center', height:'8%', color:'white', fontSize:'100%'}}>This is a test design with horrible CSS. Do not judge.</div>
+      <div style = {{position:'absolute', bottom:0, left:0, width:'100%', textAlign:'center', height:'8%', color:'white', fontSize:'100%'}}>
+      This is a test design with horrible CSS. Do not judge. 111
+      </div>
     </div>);
   }
 };
