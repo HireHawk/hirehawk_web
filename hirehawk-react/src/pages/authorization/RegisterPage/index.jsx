@@ -18,7 +18,7 @@ import MediaQuery from "react-responsive";
 import 'styles/positioning.css'
 import MainFields from './MainFields'
 import MinFields from './MinFields';
-
+import UserAPI from 'api/UserAPI.jsx'
 const styles = theme => ({
     root: {
         ...theme.mixins.gutters(),
@@ -101,7 +101,7 @@ class RegisterPage extends React.Component {
     }
 
     sendValues() {
-        console.log("SEND ", this.fields);
+        UserAPI.tryRegister(this.fields);
     }
 
     nextStep() {

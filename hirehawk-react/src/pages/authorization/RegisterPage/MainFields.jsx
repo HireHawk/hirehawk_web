@@ -115,31 +115,6 @@ class MainFields extends RegisterPart {
             showconfirm: !this.state.showconfirm
         });
     }
-    getHandleInfoChipMaximize(inputName){
-      return (()=>{
-        if(this.state.isChipMinimized[inputName]){
-          this.setState({
-            openedChipsCount:(this.state.openedChipsCount+1),
-            isChipMinimized:{
-              ...this.state.isChipMinimized,
-              [inputName]:false
-            }});
-        }
-      });
-    }
-    getHandleInfoChipMinimize(inputName){
-      return (()=>{
-        if(!this.state.isChipMinimized[inputName]){
-          this.setState({
-            openedChipsCount:this.state.openedChipsCount-1,
-            isChipMinimized:{
-              ...this.state.isChipMinimized,
-              [inputName]:true
-            }});
-        }
-        });
-    }
-
 
     conditionalRender(containerClasses, paperClasses, textFieldStyle_info, infoChip,bigScreen){
       let paperStyle=this.defaultPaperStyle(bigScreen,this.state.openedChipsCount);
