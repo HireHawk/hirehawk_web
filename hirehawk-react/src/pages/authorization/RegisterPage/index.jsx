@@ -10,8 +10,8 @@ import 'styles/positioning.css';
 import MainFields from './MainFields';
 import MinFields from './MinFields';
 import UserAPI from 'api/UserAPI.jsx';
-
-const kc = Keycloak('config/keycloak.json');
+import keycloakConfig from 'config/keycloak.json'
+const kc = Keycloak(keycloakConfig);
 const styles = theme => ({
     root: {
         ...theme.mixins.gutters(),
@@ -70,6 +70,7 @@ const styles = theme => ({
 
 class RegisterPage extends React.Component {
 
+
     constructor() {
         super();
         this.fields ={
@@ -86,11 +87,13 @@ class RegisterPage extends React.Component {
             keycloak:null,
             authenticated:null,
         }
+         kc.init({onLoad: 'login-required'}).then(authenticated => {
+                alert('hi');
+                this.setState({ keycloak: kc, authenticated: authenticated })
+          });
     }
     componentDidMount() {
-      kc.init({onLoad: 'login-required'}).then(authenticated => {
-          this.setState({ keycloak: kc, authenticated: authenticated })
-    })
+
     }
     saveValues(field_value) {
         return function () {
@@ -148,9 +151,13 @@ class RegisterPage extends React.Component {
         if (this.state.keycloak) {
             if (this.state.authenticated)return <div>{html}</div>;
             else{
+              alert('ready to login');
+              kc.login();
               return <div>Auth required!...</div>
               }
-        }else return <div> Keycloak error!</div>
+        }else {
+          return <div>Waiting...</div>
+        }
     }
 
 };
