@@ -152,7 +152,8 @@ class RegisterPage extends React.Component {
             if (this.state.authenticated)return <div>{html}</div>;
             else{
               alert('ready to login');
-              kc.login();
+              kc.register();
+              //kc.login();
               return <div>Auth required!...</div>
               }
         }else {
