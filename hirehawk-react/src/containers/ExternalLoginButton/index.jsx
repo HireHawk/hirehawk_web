@@ -36,7 +36,7 @@ class ExternalLoginButton extends React.Component {
       authenticated:null,
     };
     const kc = Keycloak(keycloakConfig);
-    kc.init({onLoad: 'login-required'}).then(authenticated => {
+    kc.init({onload: 'check-sso'}).then(authenticated => {
            this.setState({ keycloak: kc, authenticated: authenticated });
      });
   }
