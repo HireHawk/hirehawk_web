@@ -1,5 +1,5 @@
 
-import Config from './cfg.json'
+import Config from 'config/api.json'
 
 class UserAPI{
   // here all the functions for data retrieval should be.

@@ -1,8 +1,6 @@
 import React from 'react'
 import Paper from '@material-ui/core/Paper';
 
-import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -10,9 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import MediaQuery from 'react-responsive'
-import InfoChip from 'components/InfoChip'
-import {registerPageRestrictions,registerPagePreferences} from './config.jsx'
+import Config from 'config/registration.json'
 import RegisterPart from './RegisterPart.jsx'
 
 import 'styles/positioning.css'
@@ -54,7 +50,7 @@ class MainFields extends RegisterPart {
 
     handleLoginChange(event) {
       let warning = null,error = null;
-      if(event.target.value.length > registerPageRestrictions.loginMaxLength)
+      if(event.target.value.length > Config.registerPageRestrictions.loginMaxLength)
         error ='Can you think of something shorter?';
       else if(!(/^[a-z_A-Z]*$/.test(event.target.value)))
         error ='Only letters and underscores allowed!';
@@ -69,11 +65,11 @@ class MainFields extends RegisterPart {
     }
     handlePasswordChange(event) {
       let error = null,warning = null;
-      if(registerPageRestrictions.passwordMinLength > event.target.value.length){
-         error =  'at list '+registerPageRestrictions.passwordMinLength+' symbols required!';
-      } else if(registerPageRestrictions.passwordCapital && !(/^.*[A-Z].*/).test(event.target.value)){
+      if(Config.registerPageRestrictions.passwordMinLength > event.target.value.length){
+         error =  'at list '+Config.registerPageRestrictions.passwordMinLength+' symbols required!';
+      } else if(Config.registerPageRestrictions.passwordCapital && !(/^.*[A-Z].*/).test(event.target.value)){
           error= 'At least 1 capital letter required!'
-      } else if(registerPageRestrictions.passwordOtherSymbol && !(/^.*[^a-zA-Z].*/).test(event.target.value)){
+      } else if(Config.registerPageRestrictions.passwordOtherSymbol && !(/^.*[^a-zA-Z].*/).test(event.target.value)){
           error= 'At least 1 non-letter character required!'
       }
 

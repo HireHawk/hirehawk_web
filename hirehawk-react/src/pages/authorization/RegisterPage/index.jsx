@@ -2,23 +2,16 @@ import React from 'react'
 
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-// import TextField from '@material-ui/core/TextField';
-// import Button from '@material-ui/core/Button';
-// import FormControl from '@material-ui/core/FormControl';
-// import Input from '@material-ui/core/Input';
-// import InputLabel from '@material-ui/core/InputLabel';
-// import IconButton from '@material-ui/core/IconButton';
-// import InputAdornment from '@material-ui/core/InputAdornment';
-// import Visibility from '@material-ui/icons/Visibility';
-// import VisibilityOff from '@material-ui/icons/VisibilityOff';
-
 import MediaQuery from "react-responsive";
+import Keycloak from 'keycloak-js';
 
 
-import 'styles/positioning.css'
-import MainFields from './MainFields'
+import 'styles/positioning.css';
+import MainFields from './MainFields';
 import MinFields from './MinFields';
-import UserAPI from 'api/UserAPI.jsx'
+import UserAPI from 'api/UserAPI.jsx';
+
+const kc = Keycloak('config/keycloak.json');
 const styles = theme => ({
     root: {
         ...theme.mixins.gutters(),
@@ -90,7 +83,14 @@ class RegisterPage extends React.Component {
         }
         this.state = {
             step: 1,
+            keycloak:null,
+            authenticated:null,
         }
+    }
+    componentDidMount() {
+      kc.init({onLoad: 'login-required'}).then(authenticated => {
+          this.setState({ keycloak: kc, authenticated: authenticated })
+    })
     }
     saveValues(field_value) {
         return function () {
@@ -135,7 +135,6 @@ class RegisterPage extends React.Component {
     }
 
     render() {
-
         var html = (
             <div className='fullScreen' style={{background: '#444444' }}>
               <MediaQuery query='(min-height:35em)'>
@@ -146,7 +145,12 @@ class RegisterPage extends React.Component {
                 {this.content()}
             </div>
         );
-        return <div>{html}</div>;
+        if (this.state.keycloak) {
+            if (this.state.authenticated)return <div>{html}</div>;
+            else{
+              return <div>Auth required!...</div>
+              }
+        }else return <div> Keycloak error!</div>
     }
 
 };
