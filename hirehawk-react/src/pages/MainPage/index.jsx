@@ -14,6 +14,7 @@ import 'styles/positioning.css'
 import Bike from 'test/media/images/bike.jpeg'
 import Hat from 'test/media/images/hat.jpeg'
 import HireHawkLogoImage from 'test/media/images/HireHawkLogoImage.png'
+import keycloakAPI from 'api/KeycloakAPI.jsx'
 
 
 class MainPage extends React.Component{

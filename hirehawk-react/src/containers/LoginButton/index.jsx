@@ -9,12 +9,15 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+import KeycloakAPI from 'api/KeycloakAPI'
+
 import LoadingIcon from 'components/common/LoadingIcon'
 import {Link} from 'react-router-dom'
 
 class LoginButton extends React.Component {
   state = {
     email:undefined,
+    login:undefined,
     password:undefined,
     loading:false,
     emailDialog:{
@@ -32,23 +35,23 @@ class LoginButton extends React.Component {
 
   emailDialog={
     handleInputChange: (e)=>{
-      if(this.emailRegex.test(e.target.value))this.setState({email:e.target.value, emailDialog:{...this.state.emailDialog,inputError:false}});
-      else this.setState({emailDialog:{...this.state.emailDialog,inputError:true}})
+      if(this.emailRegex.test(e.target.value))this.setState({email:e.target.value,login:undefined, emailDialog:{...this.state.emailDialog,inputError:false}});
+      else this.setState({email:undefined,login:e.target.value}) //emailDialog:{...this.state.emailDialog,inputError:true}
     },
     handleLogin: (e) => {
       if(this.state.emailDialog.inputError)
         alert('enter a correct email!');
       else{
-          this.setState({loading:true,email:this.state.email});
+          this.setState({loading:true});
           setTimeout(()=>{
-            if(Math.random()%2)
+          //  if(Math.random()%2)
               this.setState({loading:false,emailDialog:{open: false },passwordDialog:{open:true}});
-            else alert('email is not registered!');
+          //  else alert('email is not registered!');
           }, 1000);
         }
     },
     handleClose: () => {
-      this.setState({email:undefined,emailDialog:{open: false }});
+      this.setState({email:undefined,login:undefined,emailDialog:{open: false }});
     },
     handleRegister: () => {
       this.setState({emailDialog:{open: false }});
@@ -64,6 +67,7 @@ class LoginButton extends React.Component {
     handleLogin: () => {
       alert('great, at some point server will handle this')
       this.setState({passwordDialog:{open:false}});
+      KeycloakAPI.getTokens(this.state.email,this.state.password);
     }
   }
 
