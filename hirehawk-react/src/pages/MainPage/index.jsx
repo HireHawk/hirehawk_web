@@ -6,6 +6,7 @@ import React from 'react'
 import BlockLink from 'components/BlockLink';
 import HireHawkLogo from 'components/HireHawkLogo';
 import LoginButton from 'containers/LoginButton';
+import ExternalLoginButton from 'containers/ExternalLoginButton';
 import AdvertSearch from 'containers/AdvertSearch';
 // props and styles
 import './styles.css'
@@ -32,7 +33,7 @@ class MainPage extends React.Component{
     return (
     <div className='fullScreen'>
       <HireHawkLogo image={HireHawkLogoImage} className='mainLogo'/>
-      <LoginButton button={{style:{}, className:'loginButton'}}/>
+      <ExternalLoginButton button={{style:{}, className:'loginButton'}}/>
       <AdvertSearch className='advertSearch' > </AdvertSearch>
       <div className='imageLinkContainer'>
         <BlockLink name='Give things!' className='imageLink' onClick={this.handleGiveThingsClick} backgroundImage={Bike}/>
