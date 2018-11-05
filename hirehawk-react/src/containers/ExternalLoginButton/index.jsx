@@ -42,9 +42,10 @@ class ExternalLoginButton extends React.Component {
   }
 
  handleLogin =()=>{
+   if(this.state.keycloak)this.state.keycloak.login();
  }
  handleLogout=()=>{
-
+   if(this.state.keycloak)this.state.keycloak.logout();
  }
  handleCheckLogin=()=>{
    if(this.state.keycloak)this.state.keycloak.login({prompt:'none'});
@@ -55,20 +56,20 @@ class ExternalLoginButton extends React.Component {
         if (this.state.authenticated)
           return (
             <div>
-              <button style = {this.props.button.style} className = {this.props.button.className} onClick={this.state.keycloak.logout}>Logout</button>
+              <button style = {this.props.button.style} className = {this.props.button.className} onClick={this.handleLogout.bind(this)}>Logout</button>
               </div>
             );
         else{
           return (
             <div>
-              <button style = {this.props.button.style} className = {this.props.button.className} onClick={this.state.keycloak.login}>Login/Register</button>
+              <button style = {this.props.button.style} className = {this.props.button.className} onClick={this.handleLogin.bind(this)}>Login/Register</button>
             </div>
           );
           }
     }else {
             return (
                   <div>
-                    <button style = {this.props.button.style} className = {this.props.button.className} onClick={this.state.keycloak.login}>Checking user...</button>
+                    <button style = {this.props.button.style} className = {this.props.button.className} onClick={this.handleLogin.bind(this)}>Checking user...</button>
                   </div>
                 );
     }
