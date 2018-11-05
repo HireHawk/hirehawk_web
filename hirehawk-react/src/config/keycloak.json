@@ -7,5 +7,5 @@
   "resource": "hirehawk_web",
   "publicClient": true,
   "confidentialPort": 0,
-  "clientId": "test_hirehawk_web"
+  "clientId": "hirehawk_web"
 }
