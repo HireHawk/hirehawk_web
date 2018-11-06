@@ -22,16 +22,6 @@ class ExternalLoginButton extends React.Component {
     super(props);
     this.state = {
       username:undefined,
-      login:undefined,
-      password:undefined,
-      loading:false,
-      emailDialog:{
-        open: false,
-        inputError: false
-      },
-      passwordDialog:{
-        open: false,
-      },
       keycloak:null,
       authenticated:null,
     };
@@ -53,13 +43,26 @@ class ExternalLoginButton extends React.Component {
 
   render() {
     if (this.state.keycloak) {
-        if (this.state.authenticated)
+        if (this.state.authenticated){
+          if(!this.state.username){
+            this.state.keycloak.loadUserProfile().success(function(profile) {
+                  alert(JSON.stringify(test, null, "  "));
+                  this.setState({username:JSON.stringify(test, null, "  ")});
+                }).error(function() {
+                  alert('Failed to load user profile');
+                  this.setState({username:undefined});
+                });
+          }
           return (
             <div>
-              <button style = {this.props.button.style} className = {this.props.button.className} onClick={this.handleLogout.bind(this)}>Logout</button>
+              <button style = {this.props.button.style} className = {this.props.button.className} onClick={this.handleLogout.bind(this)}>Logout {this.state.username}</button>
               </div>
             );
+          }
         else{
+          if(this.state.username){
+            this.setState({username:undefined});
+          }
           return (
             <div>
               <button style = {this.props.button.style} className = {this.props.button.className} onClick={this.handleLogin.bind(this)}>Login/Register</button>
