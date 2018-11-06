@@ -44,7 +44,7 @@ class ExternalLoginButton extends React.Component {
   render() {
     if (this.state.keycloak) {
         if (this.state.authenticated){
-          if(!this.state.username){
+          if(!this.state.name){
             this.state.keycloak.loadUserProfile().success(((profile)=>{
 
                   this.setState({name:profile.firstName+' '+profile.lastName}).bind(this);
@@ -60,8 +60,8 @@ class ExternalLoginButton extends React.Component {
             );
           }
         else{
-          if(this.state.username){
-            this.setState({username:undefined});
+          if(this.state.name){
+            this.setState({name:undefined});
           }
           return (
             <div>
