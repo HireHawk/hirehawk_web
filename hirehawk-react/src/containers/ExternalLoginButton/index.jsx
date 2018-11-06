@@ -21,7 +21,7 @@ class ExternalLoginButton extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      username:undefined,
+      name:undefined,
       keycloak:null,
       authenticated:null,
     };
@@ -46,16 +46,16 @@ class ExternalLoginButton extends React.Component {
         if (this.state.authenticated){
           if(!this.state.username){
             this.state.keycloak.loadUserProfile().success(((profile)=>{
-                  alert(JSON.stringify(profile, null, "  "));
-                  this.setState({username:profile.username}).bind(this);
+
+                  this.setState({name:profile.firstName+' '+profile.lastName}).bind(this);
                 }).bind(this)).error((()=> {
                   alert('Failed to load user profile');
-                  this.setState({username:undefined}).bind(this);
+                  this.setState({name:undefined}).bind(this);
                 }).bind(this));
           }
           return (
             <div>
-              <button style = {this.props.button.style} className = {this.props.button.className} onClick={this.handleLogout.bind(this)}>Logout {this.state.username}</button>
+              <button style = {this.props.button.style} className = {this.props.button.className} onClick={this.handleLogout.bind(this)}>Logout ({this.state.name})</button>
               </div>
             );
           }
