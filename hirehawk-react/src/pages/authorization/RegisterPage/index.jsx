@@ -3,15 +3,12 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import MediaQuery from "react-responsive";
-import Keycloak from 'keycloak-js';
 
 
 import 'styles/positioning.css';
 import MainFields from './MainFields';
 import MinFields from './MinFields';
 import UserAPI from 'api/UserAPI.jsx';
-import keycloakConfig from 'config/keycloak.json'
-const kc = Keycloak(keycloakConfig);
 const styles = theme => ({
     root: {
         ...theme.mixins.gutters(),
@@ -70,7 +67,6 @@ const styles = theme => ({
 
 class RegisterPage extends React.Component {
 
-
     constructor() {
         super();
         this.fields ={
@@ -83,14 +79,8 @@ class RegisterPage extends React.Component {
             lastName: ''
         }
         this.state = {
-            step: 1,
-            keycloak:null,
-            authenticated:null,
+            step: 1
         }
-         kc.init({onLoad: 'login-required'}).then(authenticated => {
-                alert('hi');
-                this.setState({ keycloak: kc, authenticated: authenticated })
-          });
     }
     componentDidMount() {
 
@@ -148,18 +138,8 @@ class RegisterPage extends React.Component {
                 {this.content()}
             </div>
         );
-        if (this.state.keycloak) {
-            if (this.state.authenticated)return <div>{html}</div>;
-            else{
-              alert('ready to login');
-              kc.register();
-              //kc.login();
-              return <div>Auth required!...</div>
-              }
-        }else {
-          return <div>Waiting...</div>
-        }
-    }
+        return <div>{html}</div>;
+      }
 
 };
 
