@@ -45,13 +45,13 @@ class ExternalLoginButton extends React.Component {
     if (this.state.keycloak) {
         if (this.state.authenticated){
           if(!this.state.username){
-            this.state.keycloak.loadUserProfile().success(function(profile) {
+            this.state.keycloak.loadUserProfile().success(((profile)=>{
                   alert(JSON.stringify(profile, null, "  "));
-                  this.setState({username:JSON.stringify(profile, null, "  ")});
-                }).error(function() {
+                  this.setState({username:profile.username}).bind(this);
+                }).bind(this)).error((()=> {
                   alert('Failed to load user profile');
-                  this.setState({username:undefined});
-                });
+                  this.setState({username:undefined}).bind(this);
+                }).bind(this));
           }
           return (
             <div>
