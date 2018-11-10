@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '@material-ui/core/Button';
 
 // import Input from '@material-ui/core/Input'; // may be used
 
@@ -9,7 +10,7 @@ class AdvertSearch extends React.Component{
    constructor(props){
      super(props);
      this.state={
-       inputPlaceholder:'Search for adverts!'
+       inputPlaceholder:'A   Search for adverts!'
      };
    }
    handleResize(){
@@ -17,7 +18,7 @@ class AdvertSearch extends React.Component{
      if(window.innerWidth < 400){
        this.setState({inputPlaceholder:'Search!'});
      } else {
-        this.setState({inputPlaceholder:'Search for adverts!'});
+        this.setState({inputPlaceholder:'        Search for adverts!'});
      }
    }
    componentWillMount(){
@@ -32,8 +33,9 @@ class AdvertSearch extends React.Component{
    render(){
     return (
 
-    <div style={this.props.style} className ={this.props.className}>
-      <input className='centered advertSearch-input' type='search' placeholder={this.state.inputPlaceholder}/>
+    <div style={this.props.style} className ={this.props.className+' advertSearch'}>
+      <input className='advertSearch-input' type='search' placeholder={this.state.inputPlaceholder}/>
+      <input type='button' className='advertSearch-button' value='search!'/>
     </div>);
   }
 

@@ -1,5 +1,5 @@
 
-.mainLogo{
+.mainPage-mainLogo{
   max-width:140%;
   width:700px;
   max-height:18vh;
@@ -7,7 +7,7 @@
   left:50%;
   transform:translate(-50%,0);
 }
-.loginButton{
+.mainPage-loginButton{
   position:absolute;
   left:50%;
   top:30%;
@@ -19,7 +19,7 @@
   font-weight:bold;
   border: 4px solid black;
 }
-.advertSearch{
+.mainPage-advertSearch{
   top:40vh;
   left:50vw;
   width:95%;
@@ -28,7 +28,7 @@
   transform: translate(-50%, -50%);
 }
 
-.imageLinkContainer{
+.mainPage-imageLinkContainer{
   width:100%;
   position:absolute;
   bottom:10vh;
@@ -37,21 +37,21 @@
   flex-direction:row;
   z-index: 10;
 }
-.imageLink{
+.mainPage-imageLink{
   margin:0;
   width:50%;
   height:100%;
 }
 @media only screen and (max-width: 600px) {
-  .imageLink{
+  .manePage-imageLink{
     width:100vw;
     height:50%;
   }
-  .imageLinkContainer{
+  .mainPage-imageLinkContainer{
     flex-direction:column;
     background:blue;
   }
- .advertSearch{
-   
+ .mainPage-advertSearch{
+
  }
 }

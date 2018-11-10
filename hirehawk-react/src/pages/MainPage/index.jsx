@@ -32,12 +32,12 @@ class MainPage extends React.Component{
    render(){
     return (
     <div className='fullScreen'>
-      <HireHawkLogo image={HireHawkLogoImage} className='mainLogo'/>
-      <ExternalLoginButton button={{style:{}, className:'loginButton'}}/>
-      <AdvertSearch className='advertSearch' > </AdvertSearch>
-      <div className='imageLinkContainer'>
-        <BlockLink name='Give things!' className='imageLink' onClick={this.handleGiveThingsClick} backgroundImage={Bike}/>
-        <BlockLink name='Take things!' className='imageLink' onClick={this.handleGiveThingsClick} backgroundImage={Hat}/>
+      <HireHawkLogo image={HireHawkLogoImage} className='mainPage-mainLogo'/>
+      <ExternalLoginButton button={{style:{}, className:'mainPage-loginButton'}}/>
+      <AdvertSearch className='mainPage-advertSearch' > </AdvertSearch>
+      <div className='mainPage-imageLinkContainer'>
+        <BlockLink name='Give things!' className='mainPage-imageLink' onClick={this.handleGiveThingsClick} backgroundImage={Bike}/>
+        <BlockLink name='Take things!' className='mainPage-imageLink' onClick={this.handleGiveThingsClick} backgroundImage={Hat}/>
       </div>
         {/*temporary elements (design/etc)*/}
       <div style = {{position:'absolute', top:'60%', left:0, width:'100%', background:'black', height:'40%', zIndex:-1}}/>
