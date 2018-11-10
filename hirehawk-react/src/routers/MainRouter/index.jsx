@@ -4,6 +4,7 @@ import React from 'react'
 import WellcomePage from 'test/pages/WellcomePage'
 import MainPage from 'pages/MainPage'
 import LoginPage from 'pages/authorization/LoginPage'
+import SearchPage from 'pages/SearchPage'
 import RegisterPage from 'pages/authorization/RegisterPage'
 import CreateAdvert from 'pages/Adverts/CreateAdvert'
 import {Route, Switch, BrowserRouter } from 'react-router-dom' //use Link to create links
@@ -20,6 +21,7 @@ class MainRouter extends React.Component{
             <Route path="/login"    component={LoginPage}/>
             <Route path="/register" component={RegisterPage}/>
             <Route path="/createAdvert" component={CreateAdvert}/>
+            <Route path='/search'  component={SearchPage}/>
             {/* <Route exact path="/yourPage" component={YourComponent}/> */}
           </Switch>
       </BrowserRouter>
