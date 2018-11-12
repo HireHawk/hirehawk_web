@@ -42,7 +42,7 @@ class AddImage extends React.Component{
     return(
       <Dropzone
         accept="image/*"
-        onDrop={this.props.handleDrop}
+        onDrop={this.props.onDrop}
         className={[this.props.classes.container,this.props.className].join(' ')}
         >
           <img className={this.props.classes.image} alt='tr' src={tranSquare}/>
