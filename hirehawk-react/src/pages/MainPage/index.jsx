@@ -5,7 +5,6 @@ import React from 'react'
 //internal dependencies
 import BlockLink from 'components/BlockLink';
 import HireHawkLogo from 'components/HireHawkLogo';
-import LoginButton from 'containers/LoginButton';
 import ExternalLoginButton from 'containers/ExternalLoginButton';
 import AdvertSearch from 'containers/AdvertSearch';
 // props and styles
@@ -15,8 +14,6 @@ import 'styles/positioning.css'
 import Bike from 'test/media/images/bike.jpeg'
 import Hat from 'test/media/images/hat.jpeg'
 import HireHawkLogoImage from 'test/media/images/HireHawkLogoImage.png'
-import keycloakAPI from 'api/KeycloakAPI.jsx'
-
 
 class MainPage extends React.Component{
    constructor(props){

@@ -1,6 +1,4 @@
 
-import Config from 'config/api.json'
-
 import keycloakConfig from 'config/keycloak.json'
 class KeycloakAPI{
   // your/keycloak/url/auth/realms/master/protocol/openid-connect/token

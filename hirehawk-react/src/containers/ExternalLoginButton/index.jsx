@@ -1,20 +1,8 @@
 
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Input from '@material-ui/core/Input';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-
 import Keycloak from 'keycloak-js';
-import KeycloakAPI from 'api/KeycloakAPI'
 import keycloakConfig from 'config/keycloak.json'
 
-import LoadingIcon from 'components/common/LoadingIcon'
-import {Link} from 'react-router-dom'
 
 class ExternalLoginButton extends React.Component {
 
@@ -48,10 +36,10 @@ class ExternalLoginButton extends React.Component {
             this.state.keycloak.loadUserProfile().success(((profile)=>{
 
                   this.setState({name:profile.firstName+' '+profile.lastName}).bind(this);
-                }).bind(this)).error((()=> {
+                })).error((()=> {
                   alert('Failed to load user profile');
                   this.setState({name:undefined}).bind(this);
-                }).bind(this));
+                }));
           }
           return (
             <div>

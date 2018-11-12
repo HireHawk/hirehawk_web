@@ -15,7 +15,8 @@ class UserAPI{
         const myJson = await response.json(); //extract JSON from the http response
         alert(JSON.stringify(myJson))// do something with myJson
         }
-      }
+          userAction();
+      };
 }
 
 export default UserAPI;
