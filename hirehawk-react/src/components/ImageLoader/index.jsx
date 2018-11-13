@@ -17,7 +17,6 @@ const styles = theme => ({
   root:{
     position:'absolute',
     overflow:'hidden',
-    height:'1000px',
   },
   imageLoader:{
     overflowX:'auto',
@@ -34,11 +33,11 @@ const styles = theme => ({
   },
   container:{
     position:'absolute',
-    top:'10%',
+    top:'2.5%',
     left:'0',
     textAlign:'center',
     maxWidth:'1000%',
-    height:'80%',
+    height:'95%',
     whiteSpace: 'nowrap',
     right:0,
   }
@@ -51,10 +50,10 @@ class ImageLoader extends React.Component{
     //this.props.onRemoved(link) must be defined
     //this.props.imageLinks must be an array with links of already uploaded images.
   }
-  handleDrop(files){
+  handleDrop(accFiles, rejFiles, evt){
+    evt.preventDefault();
     console.log('received images');
-    this.handleImageUpload(files[0]);
-
+    for(let f of accFiles)this.handleImageUpload(f);
   }
   handleRemove(link){
     this.props.onRemoved(link);
@@ -77,12 +76,15 @@ class ImageLoader extends React.Component{
   render(){
     let contents = [];
     for(let i of this.props.imageLinks){
-      contents.push(<Image key={i} className={this.props.classes.image} imageLink={i} onRemoved={this.handleRemove.bind(this)}/> )
+      contents.push(<Image key={i} className={this.props.classes.image}
+        imageLink={i}
+        onRemoved={this.handleRemove.bind(this)}
+        onChosen={this.props.onChosen}
+        chosen={this.props.chosenLink===i?true:false}/> )
     }
     if(contents.length === 0)
          contents.push(<p key='addFirst'>Click or drop files here!</p>)
     else contents.push(<AddImage className={this.props.classes.image} onDrop={this.handleDrop.bind(this)}></AddImage>)
-
     return (
       <div className={this.props.imageLinks.length>0?this.props.classNameOpened:this.props.classNameClosed}>
         <Dropzone

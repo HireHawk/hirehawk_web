@@ -9,10 +9,10 @@ const styles = theme => ({
   container:{
     position:'relative',
     background:'black',
-    height:'500px',
+    height:'99%',
     boxShadow:'inset 0 0 20px 20px white',
     display:'inline-block',
-    padding:'10px',
+    padding:'0',
     whiteSpace: 'nowrap',
     textAlign: 'center',
 },
@@ -36,17 +36,18 @@ class AddImage extends React.Component{
     //this.props.error;
   }
 
-
+  handleDrop(accFiles,rejFiles,evt){
+    evt.stopPropagation();
+    this.props.onDrop(accFiles,rejFiles,evt);
+  }
   render(){
 
     return(
       <Dropzone
         accept="image/*"
-        onDrop={this.props.onDrop}
+        onDrop={this.handleDrop.bind(this)}
         className={[this.props.classes.container,this.props.className].join(' ')}
-        >
-          <img className={this.props.classes.image} alt='tr' src={tranSquare}/>
-      </Dropzone>
+        ><img className={this.props.classes.image} alt='tr' src={tranSquare}/></Dropzone>
     )
   }
 }

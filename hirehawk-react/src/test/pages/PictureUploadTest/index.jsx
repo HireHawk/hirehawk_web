@@ -14,29 +14,49 @@ class PictureUploadTest extends React.Component{
      super(props);
      this.state={
        imageLinks:[],
+       mainLink:undefined
      };
    }
    handleGiveThingsClick(){
 
    }
    handleAddImageLink(link){
+
      this.setState({
-       imageLinks:this.state.imageLinks.concat([link])
+       imageLinks:this.state.imageLinks.concat([link]),
+       mainLink:(this.state.mainLink===undefined?link:this.state.mainLink),
+     });
+   }
+   handleChooseMainImageLink(link){
+     this.setState({
+       mainLink:link
      });
    }
    handleRemoveImageLink(link){
      var index = this.state.imageLinks.indexOf(link);
-     if (index !== -1) this.state.imageLinks.splice(index, 1);
-     alert(this.state.imageLinks+'\n'+link);
+     if (index !== -1){
+       this.state.imageLinks.splice(index, 1);
+       if(link===this.state.mainLink){
+         this.state.mainLink=this.state.imageLinks.length>0?this.state.imageLinks[0]:undefined;
+       }
+     }
      this.forceUpdate();
    }
    render(){
     return (
+      <div>
       <ImageLoader classNameClosed='pictureUploadTest-imageLoader'
                    classNameOpened='pictureUploadTest-imageLoaderOpened'
                    imageLinks={this.state.imageLinks}
+                   chosenLink={this.state.mainLink}
                     onUploaded={this.handleAddImageLink.bind(this)}
-                    onRemoved={this.handleRemoveImageLink.bind(this)}></ImageLoader>
+                    onRemoved={this.handleRemoveImageLink.bind(this)}
+                    onChosen={this.handleChooseMainImageLink.bind(this)}>
+      </ImageLoader>
+      <div>
+        {this.state.imageLinks.map(x=>{return <a style={{display:'block',backgroundColor:x===this.state.mainLink?'lightgreen':'lightgrey',padding:'10px', margin:'5px'}} href={x}>{x}</a>})}
+      </div>
+      </div>
     );
   }
 };
