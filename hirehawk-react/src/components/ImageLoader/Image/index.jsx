@@ -20,6 +20,7 @@ const styles = theme => ({
     borderRadius:'10px',
     display:'block',
     marginLeft:'10px',
+    marginRight:'10px',
     height:'calc(100% - 8px)',
     backgroundImage:'url('+Checkered+')',
     backgroundSize:'cover',
@@ -31,7 +32,7 @@ const styles = theme => ({
     top:0,
     left:0,
     borderBottomRightRadius:'10px',
-    boxShadow:'5px 5px 2px 2px',
+    boxShadow:'2px 2px 2px 2px rgba(0,0,0,0.5)',
     textAlign:'center',
     verticalAlign:'middle',
     background: 'red',
@@ -91,8 +92,8 @@ class Image extends React.Component{
     this.state={
       fsEnabled:false
     }
-    this.fsImage=<div className={this.props.classes.fullscreen}>
-                  <img alt={this.props.imageLink} src={this.props.imageLink} className={this.props.classes.fullscreenImage} onClick={(()=>this.setState({fsEnabled:false})).bind(this)}/>
+    this.fsImage=<div className={this.props.classes.fullscreen} onClick={(()=>this.setState({fsEnabled:false})).bind(this)}>
+                  <img alt={this.props.imageLink} src={this.props.imageLink} className={this.props.classes.fullscreenImage} />
                 </div>
   }
 

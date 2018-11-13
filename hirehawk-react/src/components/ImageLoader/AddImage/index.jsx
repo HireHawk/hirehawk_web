@@ -9,8 +9,8 @@ const styles = theme => ({
   container:{
     position:'relative',
     background:'black',
-    height:'99%',
-    boxShadow:'inset 0 0 20px 20px white',
+    height:'100%',
+    borderRadius:'10%',
     display:'inline-block',
     padding:'0',
     whiteSpace: 'nowrap',
@@ -18,8 +18,9 @@ const styles = theme => ({
 },
 image:{
   display:'block',
-  height:'100%',
-  maxWidth:'100%',
+  height:'80%',
+  maxWidth:'80%',
+  padding:'10%',
 },
 text:{
     position:'absolute',
