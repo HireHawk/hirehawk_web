@@ -45,15 +45,17 @@ class PictureUploadTest extends React.Component{
    render(){
     return (
       <div className='pictureUploadTest-root'>
-      <ImageLoader classNameClosed='pictureUploadTest-imageLoaderСlosed'
+      <div  className='pictureUploadTest-imageLoaderContainer'>
+        <ImageLoader classNameClosed='pictureUploadTest-imageLoaderСlosed'
                    classNameOpened='pictureUploadTest-imageLoaderOpened'
-                   className='pictureUploadTest-imageLoader centered'
+                   className='pictureUploadTest-imageLoader'
                    imageLinks={this.state.imageLinks}
                    chosenLink={this.state.mainLink}
                     onUploaded={this.handleAddImageLink.bind(this)}
                     onRemoved={this.handleRemoveImageLink.bind(this)}
                     onChosen={this.handleChooseMainImageLink.bind(this)}>
-      </ImageLoader>
+                  </ImageLoader>
+      </div>
       <h1 className='pictureUploadTest-linksName'>Passed Links</h1>
       <div className='pictureUploadTest-links'>
         {this.state.imageLinks.map(x=>{return <a style={{display:'block',backgroundColor:x===this.state.mainLink?'lightgreen':'lightgrey',padding:'10px', margin:'5px'}} href={x}>{x}</a>})}

@@ -72,10 +72,10 @@ const styles = theme => ({
     bottom:'0',
     right:'0',
     background:'rgba(0,0,0,0.6)',
+    verticalAlign:'middle',
   },
   fullscreenImage:{
-    display:'block',
-    position:'fixed',
+    position:'absolute',
     maxWidth:'90vw',
     maxHeight:'90vh',
     borderRadius:'10px',
