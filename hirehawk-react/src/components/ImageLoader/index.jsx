@@ -15,7 +15,6 @@ const CLOUDINARY_UPLOAD_URL='https://api.cloudinary.com/v1_1/yreppils/upload'
 
 const styles = theme => ({
   root:{
-    position:'absolute',
     overflow:'hidden',
   },
   imageLoader:{
@@ -84,9 +83,10 @@ class ImageLoader extends React.Component{
     }
     if(contents.length === 0)
          contents.push(<p key='addFirst'>Click or drop files here!</p>)
-    else contents.push(<AddImage className={this.props.classes.image} onDrop={this.handleDrop.bind(this)}></AddImage>)
+    else contents.push(<AddImage className={this.props.classes.image} onDrop={this.handleDrop.bind(this)}></AddImage>);
+
     return (
-      <div className={this.props.imageLinks.length>0?this.props.classNameOpened:this.props.classNameClosed}>
+      <div className={[this.props.className,((this.props.imageLinks.length>0)?this.props.classNameOpened:this.props.classNameClosed)].join(' ')}>
         <Dropzone
           disableClick = {this.props.imageLinks.length>0}
           accept="image/*"
