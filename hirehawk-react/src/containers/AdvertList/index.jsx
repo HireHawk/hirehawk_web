@@ -9,8 +9,9 @@ import './styles.css'
     render(){
       var adverts=[];
       return (
-          <div className={this.props.className}>
-              hello {adverts}
+          <div className={['advertList',this.props.className].join(' ')}>
+               dummyAdvert
+                {adverts}
           </div>
       );
     }

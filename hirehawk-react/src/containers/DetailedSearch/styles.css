@@ -1,0 +1,48 @@
+
+.detailedSearch{
+  border-bottom:1px solid grey;
+  box-shadow:0px 3px 2px 2px rgba(0,0,0,0.4)
+}
+
+.detailedSearch-part{
+  padding:5px;
+  border-top:2px dashed grey;
+  background:lightgrey;
+  width:100%;
+}
+#detailedSearch-main{
+    background:rgb(240,255,255);
+}
+#detailedSearch-category{
+  background:rgb(220,255,220);
+  border-right:2px dashed grey;
+}
+#detailedSearch-location{
+  background:rgb(255,220,220);
+}
+#detailedSearch-priceTime{
+  background:rgb(230,230,255);
+}
+#detailedSearch-categorySpecific{
+  background:rgb(255,255,220);
+}
+#detailedSearch-categoryLocationContainer{
+  display:flex;
+  flex-direction:row;
+}
+.detailedSearch-categoryRow{
+}
+
+@media only screen and (max-width: 600px) {
+  #detailedSearch-category{
+      width:100vw;
+      border-right:none;
+   }
+#detailedSearch-location{
+    width:100vw;
+  }
+#detailedSearch-categoryLocationContainer{
+    flex-direction:column;
+    background:black;
+  }
+}

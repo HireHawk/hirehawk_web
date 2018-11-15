@@ -4,13 +4,12 @@ import React from 'react'
 import './styles.css'
 import 'styles/positioning.css'
 import qs from 'qs'
-class AdvertSearch extends React.Component{
+class SearchBar extends React.Component{
    constructor(props){
      super(props);
      this.state={
        inputPlaceholder:'A   Search for adverts!'
      };
-     this.inputRef = React.createRef();
    }
    handleResize(){
 
@@ -41,11 +40,10 @@ class AdvertSearch extends React.Component{
    render(){
     return (
 
-    <div style={this.props.style} className ={this.props.className+' advertSearch'}>
-      <input ref={this.inputRef} className='advertSearch-input' type='search' placeholder={this.state.inputPlaceholder}/>
-      <input type='button' className='advertSearch-button' value='search!' onClick={this.handleSearch.bind(this)}/>
+    <div style={this.props.style} className ={this.props.className+' searchBar'}>
+      <input ref={this.props.inputRef} className='searchBar-input' type='search' placeholder={this.state.inputPlaceholder}/>
     </div>);
   }
 
 };
-export default AdvertSearch;
+export default SearchBar;

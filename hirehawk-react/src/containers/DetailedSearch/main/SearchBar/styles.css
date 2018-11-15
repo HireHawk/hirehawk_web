@@ -1,0 +1,22 @@
+
+.searchBar-input{
+  width:calc(100% - 1.5em);
+  font-size: 1.2em;
+  left:0;
+  font-size:100%;
+  height:2em;
+  padding:1em;
+  margin:0.5em;
+  border-radius:10px;
+  top:0;
+}
+.searchBar-input::-webkit-input-placeholder {
+   text-align: center;
+}
+.searchBar-input::-moz-placeholder { /* Firefox 18- */
+   text-align: center;
+ }
+ .searchBar{
+   position:relative;
+
+ }

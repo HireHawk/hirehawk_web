@@ -39,17 +39,18 @@
 }
 .mainPage-imageLink{
   margin:0;
-  width:50%;
+  width:100%;
   height:100%;
 }
 @media only screen and (max-width: 600px) {
-  .manePage-imageLink{
+  .mainPage-imageLink{
     width:100vw;
     height:50%;
+    background:white;
   }
   .mainPage-imageLinkContainer{
     flex-direction:column;
-    background:blue;
+    background:black;
   }
  .mainPage-advertSearch{
 

@@ -31,7 +31,7 @@ class MainPage extends React.Component{
     <div className='fullScreen'>
       <HireHawkLogo image={HireHawkLogoImage} className='mainPage-mainLogo'/>
       <ExternalLoginButton button={{style:{}, className:'mainPage-loginButton'}}/>
-      <AdvertSearch className='mainPage-advertSearch' > </AdvertSearch>
+      <AdvertSearch className='mainPage-advertSearch' history={this.props.history} > </AdvertSearch>
       <div className='mainPage-imageLinkContainer'>
         <BlockLink name='Give things!' className='mainPage-imageLink' onClick={this.handleGiveThingsClick} backgroundImage={Bike}/>
         <BlockLink name='Take things!' className='mainPage-imageLink' onClick={this.handleGiveThingsClick} backgroundImage={Hat}/>
