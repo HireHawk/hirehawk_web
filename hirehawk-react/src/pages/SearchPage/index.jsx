@@ -16,20 +16,40 @@ import DetailedSearch from 'containers/DetailedSearch'
 class SearchPage extends React.Component{
    constructor(props){
      super(props);
-     this.state={};
+     let link = qs.parse(this.props.location.search, { ignoreQueryPrefix: true });
+     this.state={
+       searchParams:{
+         query:link.query,
+         minPrice:{
+           price:undefined,
+           period:'day',
+           currency:'uah',
+         },
+         maxPrice:{
+           price:undefined,
+           period:'day',
+           currency:'uah',
+         }
+       }
+     };
    }
    handleSearch(searchParams){
      return 'working on it';
+   }
+   handleSearchParamsChange(searchParams){
+     this.setState({
+       searchParams:searchParams,
+     });
    }
    render(){
     return (
     <div className='fullScreen'>
       <DetailedSearch onSearch={this.handleSearch.bind(this)}
-                      startingData={this.props.startingData}
+                      onChange={this.handleSearchParamsChange.bind(this)}
+                      searchParams={this.state.searchParams}
                       className='searchPage-detailedSearch'
               />
       <AdvertList className='searchPage-advertList'></AdvertList>
-      {JSON.stringify(qs.parse(this.props.location.search, { ignoreQueryPrefix: true }))}
     </div>);
   }
 };

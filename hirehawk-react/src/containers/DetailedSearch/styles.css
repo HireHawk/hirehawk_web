@@ -26,9 +26,17 @@
 #detailedSearch-categorySpecific{
   background:rgb(255,255,220);
 }
-#detailedSearch-categoryLocationContainer{
+#detailedSearch-2partsContainer{
   display:flex;
   flex-direction:row;
+}
+.detailedSearch-minPrice{
+  display:inline-block;
+  margin:5px;
+}
+.detailedSearch-maxPrice{
+  display:inline-block;
+  margin:5px;
 }
 .detailedSearch-categoryRow{
 }
@@ -41,7 +49,7 @@
 #detailedSearch-location{
     width:100vw;
   }
-#detailedSearch-categoryLocationContainer{
+#detailedSearch-2partsContainer{
     flex-direction:column;
     background:black;
   }

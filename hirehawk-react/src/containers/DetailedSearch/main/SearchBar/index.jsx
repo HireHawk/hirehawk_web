@@ -12,7 +12,6 @@ class SearchBar extends React.Component{
      };
    }
    handleResize(){
-
      if(window.innerWidth < 400){
        this.setState({inputPlaceholder:'Search!'});
      } else {
@@ -30,18 +29,20 @@ class SearchBar extends React.Component{
   }
   handleSearch(){
    let params=qs.stringify({query:this.inputRef.current.value})
-
     this.props.history.push({
       pathname: '/search',
       search: params,
-      state: { detail:'somedetail' }
+      state: { detail:'somedetail'}
     });
+  }
+  handleSearchChange(evt){
+    this.props.onChange(evt.target.value);
   }
    render(){
     return (
 
     <div style={this.props.style} className ={this.props.className+' searchBar'}>
-      <input ref={this.props.inputRef} className='searchBar-input' type='search' placeholder={this.state.inputPlaceholder}/>
+      <input className='searchBar-input' type='search' placeholder={this.state.inputPlaceholder} value={this.props.value} onChange={this.handleSearchChange.bind(this)}/>
     </div>);
   }
 
