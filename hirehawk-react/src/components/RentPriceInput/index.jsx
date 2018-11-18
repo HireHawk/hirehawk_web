@@ -4,6 +4,7 @@ import './styles.css'
 import 'styles/positioning.css';
 import Input from '@material-ui/core/Input'
 import Button from '@material-ui/core/Button'
+import PropTypes from 'prop-types'
 import SimpleDropdown  from 'components/SimpleDropdown';
 class RentPriceInput extends React.Component{
   constructor(props){
@@ -51,14 +52,22 @@ class RentPriceInput extends React.Component{
       <span className={'rentPrice '+this.props.className}  style={{...this.props.style}}>
         {this.props.name+': '}
           <Input type='text' className='rentPrice-priceInput' onChange={this.onPriceChanged.bind(this)} value={this.props.value.price?this.props.value.price:''}/>
-          <span onMouseEnter={(()=>this.setState({showDetails:true})).bind(this)} onMouseLeave={(()=>this.setState({showDetails:false})).bind(this)}>
+          <span onMouseEnter={(()=>this.setState({showDetails:true})).bind(this)}
+                onMouseLeave={(()=>this.setState({showDetails:false})).bind(this)}
+                >
             {details}
           </span>
       </span>
     )
   }
 }
+RentPriceInput.propTypes = {
+    value: PropTypes.shape({
+    price: PropTypes.string,
+    period: PropTypes.string,
+    currency: PropTypes.string,
+  }).isRequired,
+  onChange: PropTypes.func.isRequired,//onChange accepts the object of type value
+}
 
-//propTypes: this.props.value {price, period}
-//            this.props.onChange(this.props.value)
 export default RentPriceInput;

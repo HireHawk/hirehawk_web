@@ -19,7 +19,7 @@ class SimpleDropdown extends React.Component {
 
   render() {
     const { anchorEl } = this.state;
-    let menuItems = this.props.options.map((option)=><MenuItem onClick={(()=>this.handleSelect(option)).bind(this)}>{option}</MenuItem>);
+    let menuItems = this.props.options.map((option)=><MenuItem key={option} onClick={(()=>this.handleSelect(option)).bind(this)}>{option}</MenuItem>);
     return (
       <div className={this.props.className}>
         <Button

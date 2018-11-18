@@ -30,11 +30,11 @@
   display:flex;
   flex-direction:row;
 }
-.detailedSearch-minPrice{
+.detailedSearch-price{
   display:inline-block;
   margin:5px;
 }
-.detailedSearch-maxPrice{
+.detailedSearch-minDuration{
   display:inline-block;
   margin:5px;
 }

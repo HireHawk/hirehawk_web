@@ -29,6 +29,11 @@ class SearchPage extends React.Component{
            price:undefined,
            period:'day',
            currency:'uah',
+         },
+         minDuration:{
+           month:undefined,
+           days:undefined,
+           hours:undefined,
          }
        }
      };
@@ -48,6 +53,7 @@ class SearchPage extends React.Component{
                       onChange={this.handleSearchParamsChange.bind(this)}
                       searchParams={this.state.searchParams}
                       className='searchPage-detailedSearch'
+                      adverts={undefined}
               />
       <AdvertList className='searchPage-advertList'></AdvertList>
     </div>);

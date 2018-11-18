@@ -19,7 +19,6 @@ import './styles.css'
 
     AdvertList.propTypes = {
       adverts: PropTypes.object.isRequired,
-      classes: PropTypes.object.isRequired,
     };
 
     export default (AdvertList);

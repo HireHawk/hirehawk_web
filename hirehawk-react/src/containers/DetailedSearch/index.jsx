@@ -6,6 +6,7 @@ import 'styles/positioning.css'
 import SearchBar from './main/SearchBar'
 import CategoryRow from './main/CategoryRow'
 import RentPriceInput from 'components/RentPriceInput'
+import DurationInput from 'components/DurationInput'
 
 class AdvertSearch extends React.Component{
    constructor(props){
@@ -41,6 +42,12 @@ class AdvertSearch extends React.Component{
       maxPrice:newPrice
     })
   }
+  handleMinDurationUpdate(newMinDuration){
+    this.props.onChange({
+      ...this.props.searchParams,
+      minDuration:newMinDuration
+    })
+  }
    render(){
     return (
     <div style={this.props.style} className ={this.props.className+' detailedSearch'}>
@@ -59,8 +66,10 @@ class AdvertSearch extends React.Component{
         </div>
         <div className ='detailedSearch-part' id ='detailedSearch-priceTime'>
           <div>
-            <RentPriceInput name='Min. Price' className='detailedSearch-minPrice' onChange={this.handleMinPriceUpdate.bind(this)} value={this.props.searchParams.minPrice}/><br/>
-            <RentPriceInput name='Max. Price' className='detailedSearch-maxPrice' onChange={this.handleMaxPriceUpdate.bind(this)} value={this.props.searchParams.maxPrice}/>
+            <RentPriceInput name='Min. Price' className='detailedSearch-price' onChange={this.handleMinPriceUpdate.bind(this)} value={this.props.searchParams.minPrice}/><br/>
+            <RentPriceInput name='Max. Price' className='detailedSearch-price' onChange={this.handleMaxPriceUpdate.bind(this)} value={this.props.searchParams.maxPrice}/><br/>
+            <DurationInput name='Min. Renting Time' className='detailedSearch-minDuration' onChange={this.handleMinDurationUpdate.bind(this)} value={this.props.searchParams.minDuration}/>
+
           </div>
           here goes price specification, minimum time to rent, desired renting time period specification specification
         </div>

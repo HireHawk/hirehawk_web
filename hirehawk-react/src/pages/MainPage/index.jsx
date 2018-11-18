@@ -2,11 +2,13 @@
 
 //external dependenciess
 import React from 'react'
+import Button from '@material-ui/core/Button';
 //internal dependencies
 import BlockLink from 'components/BlockLink';
 import HireHawkLogo from 'components/HireHawkLogo';
 import ExternalLoginButton from 'containers/ExternalLoginButton';
 import AdvertSearch from 'containers/AdvertSearch';
+import keycloakAPI from 'api/KeycloakAPI'
 // props and styles
 import './styles.css'
 import 'styles/positioning.css'
@@ -26,9 +28,15 @@ class MainPage extends React.Component{
    handleLoginPopup(){
      alert('aa');
    }
+   TEST_handleGetToken(){
+     let login =prompt("Please enter your login", "standoe");
+     let password =prompt("Please enter your password", "undefined");
+     alert(JSON.stringify(keycloakAPI.getTokens(login,password)));
+   }
    render(){
     return (
     <div className='fullScreen'>
+      <Button onClick={this.TEST_handleGetToken}>MagicButton</Button>
       <HireHawkLogo image={HireHawkLogoImage} className='mainPage-mainLogo'/>
       <ExternalLoginButton button={{style:{}, className:'mainPage-loginButton'}}/>
       <AdvertSearch className='mainPage-advertSearch' history={this.props.history} > </AdvertSearch>
