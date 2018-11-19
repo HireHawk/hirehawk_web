@@ -19,7 +19,7 @@ class AdvertAPI {
 
     static createAdvert(advert) {
         request
-            .get('http://' + Config.advertapi.uri + '/' + Config.advertapi.endPoints.createAdvert)
+            .post('http://' + Config.advertapi.uri + '/' + Config.advertapi.endPoints.createAdvert)
             .send(advert)
             .set('Content-Type', 'application/json')
             .on('error', err => {
