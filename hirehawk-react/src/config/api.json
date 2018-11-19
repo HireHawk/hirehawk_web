@@ -7,7 +7,7 @@
     }
   },
   "advertapi":{
-    "uri":"192.168.1.1:8201",
+    "uri":"176.37.65.30:8201",
     "endPoints":{
       "getAdvert":"manageAdverts/get"
     }
