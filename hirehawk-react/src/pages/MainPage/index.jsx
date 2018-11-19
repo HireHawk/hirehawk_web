@@ -36,7 +36,7 @@ class MainPage extends React.Component{
    }
    TEST_handleGetAdverts(){
      var id = '5bdf297bb244a92360687382';
-     JSON.stringify(AdvertAPI.getAdvertById(id));
+     AdvertAPI.getAdvertById(id);
    }
    render(){
     return (

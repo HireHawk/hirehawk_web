@@ -10,7 +10,7 @@ class AdvertAPI{
       })
       .set('Content-Type', 'application/json')
       .then(res => {
-        alert('yay got ' + JSON.stringify(res.body));
+        alert('got JSON advert: ' + JSON.stringify(res.body));
       });
     }
 }
