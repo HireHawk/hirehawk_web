@@ -4,15 +4,19 @@ import request from 'superagent'
 class AdvertAPI{
   // your/keycloak/url/auth/realms/master/protocol/openid-connect/token
   static getAdvertById(id){
+    alert(Config.advertapi.uri);
     request
-      .get(Config.advertapi.uri+'/'+Config.advertapi.getAdvert+'/'+id)
+      .get('http://'+Config.advertapi.uri+'/'+Config.advertapi.endPoints.getAdvert+'/'+id)
       .send({
       })
       .set('Content-Type', 'application/json')
-      .then(res => {
+      .on('error', err => {
+          alert('error');
+      })
+      .then((res)=> {
         alert('got JSON advert: ' + JSON.stringify(res.body));
-      });
-    }
+      })
+    };
 }
 
 export default AdvertAPI;

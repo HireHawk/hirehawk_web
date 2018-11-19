@@ -35,7 +35,7 @@ class MainPage extends React.Component{
      alert(JSON.stringify(keycloakAPI.getTokens(login,password)));
    }
    TEST_handleGetAdverts(){
-     var id = '5bdf297bb244a92360687382';
+     var id = prompt("Enter advert id",'5bdf297bb244a92360687382');
      AdvertAPI.getAdvertById(id);
    }
    render(){

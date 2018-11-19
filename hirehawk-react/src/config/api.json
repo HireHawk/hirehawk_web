@@ -1,16 +1,15 @@
 {
   "userapi":{
-    "ip":"192.168.1.1",
+    "uri":"192.168.1.1:8200",
     "port":"8080",
     "endPoints":{
       "register":"register"
     }
   },
   "advertapi":{
-    "ip":"192.168.1.1",
-    "port":"8201",
+    "uri":"192.168.1.1:8201",
     "endPoints":{
-      "getAdvert:'manageAdverts/get'
+      "getAdvert":"manageAdverts/get"
     }
   }
 }
