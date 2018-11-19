@@ -29,10 +29,10 @@ class MainPage extends React.Component{
    handleLoginPopup(){
      alert('aa');
    }
-   TEST_handleGetToken(){
+   TEST_handleGetTokensByPassword(){
      let login =prompt("Please enter your login", "standoe");
      let password =prompt("Please enter your password", "undefined");
-     alert(JSON.stringify(keycloakAPI.getTokens(login,password)));
+     alert(JSON.stringify(keycloakAPI.getTokensByPassword(login,password)));
    }
    TEST_handleGetAdverts(){
      var id = prompt("Enter advert id",'5bdf297bb244a92360687382');
@@ -41,7 +41,8 @@ class MainPage extends React.Component{
    render(){
     return (
     <div className='fullScreen'>
-      <Button onClick={this.TEST_handleGetAdverts}>MagicButton</Button>
+      <Button onClick={this.TEST_handleGetAdverts}>AdvertButton</Button>
+      <Button onClick={this.TEST_handleGetTokensByPassword}>LoginButton</Button>
       <HireHawkLogo image={HireHawkLogoImage} className='mainPage-mainLogo'/>
       <ExternalLoginButton button={{style:{}, className:'mainPage-loginButton'}}/>
       <AdvertSearch className='mainPage-advertSearch' history={this.props.history} > </AdvertSearch>

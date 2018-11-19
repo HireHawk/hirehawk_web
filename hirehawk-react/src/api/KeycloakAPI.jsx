@@ -3,7 +3,7 @@ import keycloakConfig from 'config/keycloak.json'
 import request from 'superagent'
 class KeycloakAPI{
   // your/keycloak/url/auth/realms/master/protocol/openid-connect/token
-  static getTokens(username, password){
+  static getTokensByPassword(username, password){
     request
       .post(keycloakConfig.authServerUrl+'/realms/'+keycloakConfig.realm+'/protocol/openid-connect/token')
       .send({
@@ -17,6 +17,10 @@ class KeycloakAPI{
         alert('yay got ' + JSON.stringify(res.body));
       });
     }
+  static getToken(){
+
+
+  }
 }
 
 export default KeycloakAPI;

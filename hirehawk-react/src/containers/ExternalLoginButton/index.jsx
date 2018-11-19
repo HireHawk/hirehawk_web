@@ -28,6 +28,9 @@ class ExternalLoginButton extends React.Component {
  handleCheckLogin=()=>{
    if(this.state.keycloak)this.state.keycloak.login({prompt:'none'});
  }
+ getToken=()=>{
+   alert(this.state.keycloak.token);
+ }
 
   render() {
     if (this.state.keycloak) {
@@ -44,6 +47,7 @@ class ExternalLoginButton extends React.Component {
           return (
             <div>
               <button style = {this.props.button.style} className = {this.props.button.className} onClick={this.handleLogout.bind(this)}>Logout ({this.state.name})</button>
+              <button style = {this.props.button.tokenStyle} className = {this.props.button.tokenClassName} onClick={this.getToken.bind(this)}>Get Token</button>
               </div>
             );
           }
