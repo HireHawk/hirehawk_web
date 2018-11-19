@@ -9,6 +9,7 @@ import HireHawkLogo from 'components/HireHawkLogo';
 import ExternalLoginButton from 'containers/ExternalLoginButton';
 import AdvertSearch from 'containers/AdvertSearch';
 import keycloakAPI from 'api/KeycloakAPI'
+import AdvertAPI from 'api/AdvertAPI'
 // props and styles
 import './styles.css'
 import 'styles/positioning.css'
@@ -33,10 +34,14 @@ class MainPage extends React.Component{
      let password =prompt("Please enter your password", "undefined");
      alert(JSON.stringify(keycloakAPI.getTokens(login,password)));
    }
+   TEST_handleGetAdverts(){
+     var id = '5bdf297bb244a92360687382';
+     JSON.stringify(AdvertAPI.getAdvertById(id));
+   }
    render(){
     return (
     <div className='fullScreen'>
-      <Button onClick={this.TEST_handleGetToken}>MagicButton</Button>
+      <Button onClick={this.TEST_handleGetAdverts}>MagicButton</Button>
       <HireHawkLogo image={HireHawkLogoImage} className='mainPage-mainLogo'/>
       <ExternalLoginButton button={{style:{}, className:'mainPage-loginButton'}}/>
       <AdvertSearch className='mainPage-advertSearch' history={this.props.history} > </AdvertSearch>
