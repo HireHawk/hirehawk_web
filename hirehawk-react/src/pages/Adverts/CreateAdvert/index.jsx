@@ -130,6 +130,7 @@ class CreateAdvert extends React.Component{
 
     sendValues() {
         console.log("SEND ", this.state);
+        AdvertAPI.createAdvert(this.state);
     }
 
     render() {
