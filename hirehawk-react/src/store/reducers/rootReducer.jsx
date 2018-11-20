@@ -6,19 +6,34 @@ import keycloakConfig from 'config/keycloak.json'
 //later there might be several reducers that will be assembled in this file.
 const initialState ={
     uselessDummy:{subuselessDummy:1},
-    keycloak:Keycloak(keycloakConfig)
+    security:{
+      keycloak:Keycloak(keycloakConfig),
+      authenticated:false,
+      initialized:false,
+    }
+
   }
 
-const reducer=(state=initialState, action)=>{
-
+const rootReducer=(state=initialState, action)=>{
    switch(action.type){
-     case 'CH_CURR_CONF':
+    case 'SEC_CH_AUTHENTICATED':
        return update(state, {
-        currentConfig:{$set:action.payload}});
-
-     default:
+          security:{
+            authenticated:{$set:action.payload.authenticated}
+          }
+       });
+    case 'SEC_CH_INITIALIZED':
+          return update(state, {
+           security:{
+             initialized:{$set:action.payload.initialized}
+           }
+         });
+    case '@@INIT':
+           return state;
+    default:
+        console.log('invalid reducer call! action: '+action.type);
         return state;
    }
 
 }
-export default reducer;
+export default rootReducer;

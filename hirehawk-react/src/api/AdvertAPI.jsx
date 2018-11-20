@@ -2,24 +2,22 @@ import Config from 'config/api.json'
 import request from 'superagent'
 
 class AdvertAPI {
-    // your/keycloak/url/auth/realms/master/protocol/openid-connect/token
-    static getAdvertById(id) {
-        alert(Config.advertapi.uri);
-        request
+    static getAdvertById(id,token) {
+      return  request
             .get('http://' + Config.advertapi.uri + '/' + Config.advertapi.endPoints.getAdvert + '/' + id)
-            .send({})
-            .set('Content-Type', 'application/json')
+            .set('Authorization', 'Bearer '+token)
             .on('error', err => {
                 alert('error');
             })
             .then((res) => {
-                alert('got JSON advert: ' + JSON.stringify(res.body));
+              console.log('got JSON advert: ' + JSON.stringify(res.body));
             })
     };
 
-    static createAdvert(advert) {
+    static createAdvert(advert,token) {
         request
             .post('http://' + Config.advertapi.uri + '/' + Config.advertapi.endPoints.createAdvert)
+            .set('Authorization', 'Bearer '+token)
             .send(advert)
             .set('Content-Type', 'application/json')
             .on('error', err => {

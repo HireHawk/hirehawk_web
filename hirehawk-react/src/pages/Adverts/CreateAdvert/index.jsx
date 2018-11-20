@@ -12,7 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-
+import {connect} from 'react-redux'
 
 import 'styles/positioning.css'
 import AdvertAPI from "../../../api/AdvertAPI";
@@ -131,7 +131,9 @@ class CreateAdvert extends React.Component{
 
     sendValues() {
         console.log("SEND ", this.state);
-        AdvertAPI.createAdvert(this.state);
+        if(this.props.keycloak.authenticated)AdvertAPI.createAdvert(this.state,this.props.keycloak.token);
+        else if(this.props.keycloak.authenticated)console.log('create advert failed. You should login first!');
+        else console.log('wait for keycloak initialization...');
     }
 
     render() {
@@ -217,5 +219,12 @@ class CreateAdvert extends React.Component{
     }
 
 }
+const mapStateToProps = (state)=>{
+  return {
+    keycloak:state.security.keycloak,
+    kcAuthenticated:state.security.authenticated,
+    kcInitialized:state.security.initialized
+  }
+}
 
-export default withStyles(styles)(CreateAdvert);
+export default connect(mapStateToProps) (withStyles(styles)(CreateAdvert));

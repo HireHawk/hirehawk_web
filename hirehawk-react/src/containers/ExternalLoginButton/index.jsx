@@ -3,52 +3,49 @@ import React from 'react';
 import Keycloak from 'keycloak-js';
 import keycloakConfig from 'config/keycloak.json'
 
-
+import {connect} from 'react-redux'
 class ExternalLoginButton extends React.Component {
 
   constructor(props){
     super(props);
     this.state = {
       name:undefined,
-      keycloak:null,
-      authenticated:null,
     };
-    const kc = Keycloak(keycloakConfig);
-    kc.init({onload: 'check-sso'}).then(authenticated => {
-           this.setState({ keycloak: kc, authenticated: authenticated });
-     });
   }
 
  handleLogin =()=>{
-   if(this.state.keycloak)this.state.keycloak.login();
+   if(this.props.kcInitialized){
+      this.props.keycloak.login();
+    }
  }
  handleLogout=()=>{
-   if(this.state.keycloak)this.state.keycloak.logout();
+   if(this.props.kcAuthenticated)this.props.keycloak.logout();
  }
  handleCheckLogin=()=>{
-   if(this.state.keycloak)this.state.keycloak.login({prompt:'none'});
+   if(this.props.kcInitialized)this.props.keycloak.login({prompt:'none'});
  }
  getToken=()=>{
-   alert(this.state.keycloak.token);
+   //let Copied = this.props.keycloak.token.createTextRange();
+   //Copied.execCommand("Copy");
+   alert(this.props.keycloak.token);
  }
 
   render() {
-    if (this.state.keycloak) {
-        if (this.state.authenticated){
+    if (this.props.keycloak) {
+        if (this.props.kcAuthenticated){
           if(!this.state.name){
-            this.state.keycloak.loadUserProfile().success(((profile)=>{
-
-                  this.setState({name:profile.firstName+' '+profile.lastName}).bind(this);
+            this.props.keycloak.loadUserProfile().success(((profile)=>{
+                  this.setState.bind(this)({name:profile.firstName+' '+profile.lastName});
                 })).error((()=> {
                   alert('Failed to load user profile');
-                  this.setState({name:undefined}).bind(this);
+                  this.setState.bind(this)({name:undefined});
                 }));
           }
           return (
             <div>
               <button style = {this.props.button.style} className = {this.props.button.className} onClick={this.handleLogout.bind(this)}>Logout ({this.state.name})</button>
-              <button style = {this.props.button.tokenStyle} className = {this.props.button.tokenClassName} onClick={this.getToken.bind(this)}>Get Token</button>
-              </div>
+              <button style = {this.props.button.tokenStyle} className = {this.props.button.tokenClassName} onClick={this.getToken.bind(this)}>click to get token</button>
+            </div>
             );
           }
         else{
@@ -70,4 +67,31 @@ class ExternalLoginButton extends React.Component {
     }
   };
 }
-export default ExternalLoginButton;
+
+const mapStateToProps = (state)=>{
+  return {
+    keycloak:state.security.keycloak,
+    kcAuthenticated:state.security.authenticated,
+    kcInitialized:state.security.initialized
+  }
+}
+const mapDispachToProps = (dispach)=>{
+  return {
+    changeSecAuthenticated:(value)=>dispach(
+      {
+        type:'SEC_CH_AUTHENTICATED',
+        payload:
+          {authenticated:value,
+          }
+      }),
+      changeSecInitialized:(value)=>dispach(
+        {
+          type:'SEC_CH_INITIALIZED',
+          payload:
+            {initialized:value,
+            }
+        })
+  };
+}
+
+export default  connect(mapStateToProps, mapDispachToProps) (ExternalLoginButton);
