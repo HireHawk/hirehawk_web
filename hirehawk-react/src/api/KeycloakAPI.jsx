@@ -18,8 +18,6 @@ class KeycloakAPI{
       });
     }
   static getToken(){
-
-
   }
 }
 

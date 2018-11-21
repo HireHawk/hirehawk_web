@@ -131,8 +131,15 @@ class CreateAdvert extends React.Component{
 
     sendValues() {
         console.log("SEND ", this.state);
-        if(this.props.keycloak.authenticated)AdvertAPI.createAdvert(this.state,this.props.keycloak.token);
-        else if(this.props.keycloak.authenticated)console.log('create advert failed. You should login first!');
+        if(this.props.keycloak.authenticated)
+          this.props.keycloak.updateToken(30).success((()=>{
+              AdvertAPI.createAdvert(this.state,this.props.keycloak.token);
+            })).error(function() {
+              alert('Failed to refresh token');
+            }
+          );
+
+        else if(this.props.kcInitialized)console.log('create advert failed. You should login first!');
         else console.log('wait for keycloak initialization...');
     }
 

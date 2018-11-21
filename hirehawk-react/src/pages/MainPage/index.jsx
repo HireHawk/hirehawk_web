@@ -28,20 +28,25 @@ class MainPage extends React.Component{
    handleLoginPopup(){
      alert('aa');
    }
-   TEST_handleGetTokensByPassword(){
+   TEST_handleCreateAdvertPage(){
      let login =prompt("Please enter your login", "standoe");
      let password =prompt("Please enter your password", "undefined");
      alert(JSON.stringify(keycloakAPI.getTokensByPassword(login,password)));
    }
    TEST_handleGetAdverts(){
      var id = prompt("Enter advert id",'5bdf297bb244a92360687382');
-     AdvertAPI.getAdvertById(id);
+     this.props.keycloak.updateToken(30).success((()=>{
+         AdvertAPI.getAdvertById(id,this.props.keycloak.token);
+       })).error(function() {
+         alert('Failed to refresh token');
+       });
+
    }
    render(){
     return (
     <div className='fullScreen'>
       <Button onClick={this.TEST_handleGetAdverts}>AdvertButton</Button>
-      <Button onClick={this.TEST_handleGetTokensByPassword}>LoginButton</Button>
+      <Button onClick={this.TEST_handleCreateAdvertPage}>Create advert page!</Button>
       <HireHawkLogo image={HireHawkLogoImage} className='mainPage-mainLogo'/>
       <ExternalLoginButton button={{style:{}, className:'mainPage-loginButton'}}/>
       <AdvertSearch className='mainPage-advertSearch' history={this.props.history} > </AdvertSearch>
