@@ -32,6 +32,13 @@
   height:100vh;
   overflow:hidden;
 }
+.overflowXHidden{
+  position: absolute;
+  top:0;
+  width:100vw;
+  left:0;
+  overflw-x:hidden;
+}
 .unselectable{
         user-select: none;
         -moz-user-select: none;

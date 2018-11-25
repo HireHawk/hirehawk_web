@@ -22,14 +22,14 @@ class DurationInput extends React.Component{
     if(evt.target.value===''){
       this.props.onChange({
         ...this.props.value,
-        month:undefined
+        weeks:undefined
       });
     }
     let x = this.getNumber(evt.target.value);
     if(x){
       this.props.onChange({
         ...this.props.value,
-        month:x
+        weeks:x
       });
     }
   }
@@ -70,11 +70,11 @@ class DurationInput extends React.Component{
     if(this.state.showDetails)
       details =(
       <span>
-        month:<Input type='text' className='durationInput-input'  value={this.props.value.month} onChange={this.onMonthChanged.bind(this)}/>
+        weeks:<Input type='text' className='durationInput-input'  value={this.props.value.weeks} onChange={this.onMonthChanged.bind(this)}/>
       days:<Input type='text' className='durationInput-input'  value={this.props.value.days} onChange={this.onDaysChanged.bind(this)}/>
     hours:<Input type='text' className='durationInput-input'  value={this.props.value.hours} onChange={this.onHoursChanged.bind(this)}/>
       </span>);
-    else details=(this.props.value.month?(this.props.value.month+' month '):'')+
+    else details=(this.props.value.weeks?(this.props.value.weeks+' weeks '):'')+
       (this.props.value.days?(this.props.value.days+' days, '):'')+
       (this.props.value.hours?(this.props.value.hours+'hours'):'');
       if(details==='')details='select';
@@ -91,8 +91,6 @@ class DurationInput extends React.Component{
 
 DurationInput.propTypes = {
     value: PropTypes.shape({
-      month: PropTypes.number,
-      days: PropTypes.number,
       hours: PropTypes.number,
       }).isRequired,
     onChange: PropTypes.func.isRequired,//onChange accepts the object of type value

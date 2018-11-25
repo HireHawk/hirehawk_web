@@ -28,7 +28,7 @@ class NestedDropdown extends React.Component {
 
   handleDropdownToggle = () => {
     let nextState = !this.state.showDropdown;
-
+    if(nextState === false)this.handleDropdownClose();
     this.setState({
       showDropdown: nextState,
       selectedIds: []
@@ -36,10 +36,7 @@ class NestedDropdown extends React.Component {
   };
 
   handleDropdownClose = () => {
-    this.setState({
-      showDropdown: false,
-      selectedIds: []
-    });
+    this.props.onSelect(this.state.selectedIds);
   };
 
   handleSelectedId = (selected, depthLevel) => {
@@ -48,6 +45,15 @@ class NestedDropdown extends React.Component {
 
       updatedArray[depthLevel] = selected;
 
+      this.setState({
+        selectedIds: updatedArray
+      });
+    };
+  };
+  handleSelectedIdOut = (selected, depthLevel) => {
+    return () => {
+      const updatedArray = this.state.selectedIds.slice(0);
+      updatedArray.pop();
       this.setState({
         selectedIds: updatedArray
       });
@@ -105,6 +111,7 @@ class NestedDropdown extends React.Component {
         <li
           key={ option.id }
           onMouseEnter={ this.handleSelectedId(option.id, depthLevel) }
+          onMouseLeave={ this.handleSelectedIdOut(option.id, depthLevel)}
           className ={partClasses.join(' ')}
         >
           { display }

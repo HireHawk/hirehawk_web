@@ -7,7 +7,9 @@ import SearchBar from './main/SearchBar'
 import CategoryRow from './main/CategoryRow'
 import RentPriceInput from 'components/RentPriceInput'
 import DurationInput from 'components/DurationInput'
-
+import Button from '@material-ui/core/Button';
+import LocationInput from 'components/LocationInput'
+import qs from 'qs'
 class AdvertSearch extends React.Component{
    constructor(props){
      super(props);
@@ -19,9 +21,11 @@ class AdvertSearch extends React.Component{
        searchBarRef:React.createRef(),
      }
    }
-  onCategoryUpdate(newCategoryId){
-    alert('new category ID:'+newCategoryId);
-    //todo
+  onCategoryUpdate(newCategory){
+    this.props.onChange({
+      ...this.props.searchParams,
+      category:newCategory,
+    })
   }
   onQueryUpdate(newQuery){
     this.props.onChange({
@@ -29,6 +33,12 @@ class AdvertSearch extends React.Component{
       query:newQuery,
     })
    //todo
+  }
+  handleLocationUpdate(newLocation){
+    this.props.onChange({
+      ...this.props.searchParams,
+      location:newLocation
+    })
   }
   handleMinPriceUpdate(newPrice){
     this.props.onChange({
@@ -48,20 +58,32 @@ class AdvertSearch extends React.Component{
       minDuration:newMinDuration
     })
   }
+  onSearchClicked(evt){
+    let params=qs.stringify(this.props.searchParams);
+    this.props.history.push({
+      pathname: '/search',
+      search: params,
+      state: { detail:'somedetail' }
+    });
+    this.props.onSearch(this.props.searchParams);
+  }
    render(){
     return (
     <div style={this.props.style} className ={this.props.className+' detailedSearch'}>
       <div id='detailedSearch-2partsContainer'>
         <div className ='detailedSearch-part' id ='detailedSearch-main'>
           <SearchBar value={this.props.searchParams.query} onChange={this.onQueryUpdate.bind(this)}/>
+          <Button onClick={this.onSearchClicked.bind(this)}>Search!</Button>
+
           ... and some search params like full-text search option ...
         </div>
         <div className ='detailedSearch-part' id ='detailedSearch-category'>
-          <CategoryRow onCategoryUpdate={this.onCategoryUpdate.bind(this)} className='detailedSearch-categoryRow'/>
+          <CategoryRow value = {this.props.searchParams.category} onCategoryUpdate={this.onCategoryUpdate.bind(this)} className='detailedSearch-categoryRow'/>
         </div>
       </div>
       <div id='detailedSearch-2partsContainer'>
         <div className ='detailedSearch-part' id ='detailedSearch-location'>
+          <LocationInput value ={this.props.searchParams.location} onChange={this.handleLocationUpdate.bind(this)}></LocationInput>
           here goes location specification
         </div>
         <div className ='detailedSearch-part' id ='detailedSearch-priceTime'>

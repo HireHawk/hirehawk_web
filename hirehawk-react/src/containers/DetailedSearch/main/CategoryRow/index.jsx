@@ -16,37 +16,39 @@ class CategorySelect extends React.Component{
           id:'hats',
           message:'Headwear',
           options:[
-            {id:'101',
+            {id:'paper_hats',
               message:'paper hats',
               options:{}
             },
-            {id:'123',
+            {id:'metal_helmets',
               message:'metal helmets',
               options:{}
             }
           ]
         },
-        {   id:'Footwear',
+        {   id:'footwear',
             message:'footwear',
             options:[
               {id:'sandals',
                 message:'sandals',
                 options:{}
               },
-              {id:'boot',
+              {id:'boots',
                 message:'boots',
                 options:{}
               }
             ]
           }
       ];
+
     return (
         <div style={this.props.style} className ={this.props.className}>
             <NestedDropdown openDirection='left'
                           name='Category'
-                          displayText='Select the category'
+                          displayText={this.props.value[0]!==undefined?this.props.value.join('/'):'Select the category'}
                           hasCaret={true}
                           options={options}
+                          onSelect={this.props.onCategoryUpdate}
                            />
         </div>
       );

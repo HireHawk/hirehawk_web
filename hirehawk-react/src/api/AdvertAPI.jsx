@@ -2,10 +2,9 @@ import Config from 'config/api.json'
 import request from 'superagent'
 
 class AdvertAPI {
-    static getAdvertById(id,token) {
+    static getAdvertById(id) {
       return  request
             .get('http://' + Config.advertapi.uri + '/' + Config.advertapi.endPoints.getAdvert + '/' + id)
-            .set('Authorization', 'Bearer '+token)
             .on('error', err => {
                 alert('error');
             })

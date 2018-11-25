@@ -24,7 +24,7 @@ const styles = {
     render(){
       var {classes} = this.props;
       return (
-        <Card className={classes.card} style={{margin:'15px'}}>
+        <Card className={classes.card} style={{...{margin:'15px'}, ...this.props.style}}>
           <CardActionArea>
             <CardMedia
               className={classes.media}
