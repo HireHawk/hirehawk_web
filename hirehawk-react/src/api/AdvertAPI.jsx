@@ -11,6 +11,7 @@ class AdvertAPI {
             })
             .then((res) => {
               console.log('got JSON advert: ' + JSON.stringify(res.body));
+              return res.body;
             })
     };
 

@@ -28,6 +28,7 @@ class ExternalLoginButton extends React.Component {
  getToken=()=>{
    //let Copied = this.props.keycloak.token.createTextRange();
    //Copied.execCommand("Copy");
+
    alert(this.props.keycloak.token);
    this.setState({
      clickToken:this.props.keycloak.token
@@ -47,9 +48,9 @@ class ExternalLoginButton extends React.Component {
           }
           return (
             <div>
-              <button style = {this.props.button.style} className = {this.props.button.className} onClick={this.handleLogout.bind(this)}>Logout ({this.state.name})</button>
-              <button style = {this.props.button.tokenStyle} className = {this.props.button.tokenClassName} onClick={this.getToken.bind(this)}>Click to get token</button>
-              {this.state.clickToken?<input type='text' value={this.state.clickToken}/>:' '}
+              <button style = {this.props.button.style}       className = {this.props.button.className} onClick={this.handleLogout.bind(this)}>Logout ({this.state.name})</button>
+              <button style = {this.props.button.tokenStyle}  className = {this.props.button.tokenClassName} onClick={this.getToken.bind(this)}>Click to get token</button>
+              {this.state.clickToken?<input type='text' style={{zIndex:100}} value={this.state.clickToken}/>:' '}
             </div>
             );
           }

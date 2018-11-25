@@ -2,6 +2,7 @@
 //external dependenciess
 import React from 'react'
 import Button from '@material-ui/core/Button';
+import {connect} from 'react-redux'
 //internal dependencies
 import BlockLink from 'components/BlockLink';
 import HireHawkLogo from 'components/HireHawkLogo';
@@ -29,14 +30,16 @@ class MainPage extends React.Component{
      alert('aa');
    }
    TEST_handleCreateAdvertPage(){
-     let login =prompt("Please enter your login", "standoe");
-     let password =prompt("Please enter your password", "undefined");
-     alert(JSON.stringify(keycloakAPI.getTokensByPassword(login,password)));
+     this.props.history.push({
+       pathname: '/createAdvert'
+     });
    }
    TEST_handleGetAdverts(){
      var id = prompt("Enter advert id",'5bdf297bb244a92360687382');
      this.props.keycloak.updateToken(30).success((()=>{
-         AdvertAPI.getAdvertById(id,this.props.keycloak.token);
+        AdvertAPI.getAdvertById(id,this.props.keycloak.token).then(result =>{
+          alert(JSON.stringify(result));
+        });
        })).error(function() {
          alert('Failed to refresh token');
        });
@@ -45,21 +48,29 @@ class MainPage extends React.Component{
    render(){
     return (
     <div className='fullScreen'>
-      <Button onClick={this.TEST_handleGetAdverts}>AdvertButton</Button>
-      <Button onClick={this.TEST_handleCreateAdvertPage}>Create advert page!</Button>
+      <Button onClick={this.TEST_handleGetAdverts.bind(this)}>AdvertButton</Button>
+      <Button onClick={this.TEST_handleCreateAdvertPage.bind(this)}>Create advert page!</Button>
       <HireHawkLogo image={HireHawkLogoImage} className='mainPage-mainLogo'/>
-      <ExternalLoginButton button={{style:{}, className:'mainPage-loginButton'}}/>
+      <ExternalLoginButton button={{style:{}, className:'mainPage-loginButton'}} style={{zIndex:100}} tokenStyle={{zIndex:100}}/>
       <AdvertSearch className='mainPage-advertSearch' history={this.props.history} > </AdvertSearch>
       <div className='mainPage-imageLinkContainer'>
         <BlockLink name='Give things!' className='mainPage-imageLink' onClick={this.handleGiveThingsClick} backgroundImage={Bike}/>
         <BlockLink name='Take things!' className='mainPage-imageLink' onClick={this.handleGiveThingsClick} backgroundImage={Hat}/>
       </div>
         {/*temporary elements (design/etc)*/}
-      <div style = {{position:'absolute', top:'60%', left:0, width:'100%', background:'black', height:'40%', zIndex:-1}}/>
+      {/*<div style = {{position:'absolute', top:'60%', left:0, width:'100%', background:'black', height:'40%', zIndex:-1}}/>
       <div style = {{position:'absolute', bottom:0, left:0, width:'100%', textAlign:'center', height:'8%', color:'white', fontSize:'100%'}}>
       This is a test design with horrible CSS. Do not judge. 13
-      </div>
+    </div>*/}
     </div>);
   }
 };
-export default MainPage;
+
+const mapStateToProps = (state)=>{
+  return {
+    keycloak:state.security.keycloak,
+    kcAuthenticated:state.security.authenticated,
+    kcInitialized:state.security.initialized
+  }
+}
+export default connect(mapStateToProps)(MainPage);
