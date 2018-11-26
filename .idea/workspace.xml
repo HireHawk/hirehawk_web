@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="774b90b9-56d2-49bf-b476-3f92703028c9" name="Default Changelist" comment="one more2">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hirehawk-react/package-lock.json" afterPath="$PROJECT_DIR$/hirehawk-react/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hirehawk-react/src/components/DurationInput/index.jsx" afterPath="$PROJECT_DIR$/hirehawk-react/src/components/DurationInput/index.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hirehawk-react/src/pages/Adverts/CreateAdvert/index.jsx" afterPath="$PROJECT_DIR$/hirehawk-react/src/pages/Adverts/CreateAdvert/index.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -42,7 +40,7 @@
         <entry file="file://$PROJECT_DIR$/hirehawk-react/src/components/DurationInput/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="383">
-              <caret line="71" column="12" lean-forward="true" selection-start-line="71" selection-start-column="12" selection-end-line="71" selection-end-column="12" />
+              <caret line="71" column="12" lean-forward="false" selection-start-line="71" selection-start-column="12" selection-end-line="71" selection-end-column="12" />
               <folding>
                 <element signature="e#1#27#0" expanded="true" />
               </folding>
@@ -54,7 +52,7 @@
         <entry file="file://$PROJECT_DIR$/hirehawk-react/src/pages/MainPage/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="273">
-              <caret line="40" column="40" lean-forward="true" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="40" />
+              <caret line="40" column="40" lean-forward="false" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -127,7 +125,7 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/hirehawk-react/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="y" value="15" />
     <option name="width" value="1080" />
     <option name="height" value="970" />
@@ -432,7 +430,7 @@
       <workItem from="1542749270943" duration="1549000" />
       <workItem from="1542828659481" duration="1618000" />
       <workItem from="1543173069456" duration="1999000" />
-      <workItem from="1543176963022" duration="15278000" />
+      <workItem from="1543176963022" duration="15763000" />
     </task>
     <task id="LOCAL-00001" summary="Test create advert">
       <created>1542664255317</created>
@@ -466,7 +464,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54036000" />
+    <option name="totallyTimeSpent" value="54521000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -478,7 +476,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1050" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -580,7 +578,7 @@
         <state relative-caret-position="210">
           <caret line="16" column="16" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
           <folding>
-            <marker date="1542392248222" expanded="true" signature="883:903" ph="&lt;Switch/&gt;" />
+            <marker date="1543249266602" expanded="true" signature="976:996" ph="&lt;Switch/&gt;" />
           </folding>
         </state>
       </provider>
@@ -667,7 +665,7 @@
         <state relative-caret-position="210">
           <caret line="16" column="16" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
           <folding>
-            <marker date="1542392248222" expanded="true" signature="883:903" ph="&lt;Switch/&gt;" />
+            <marker date="1543249266602" expanded="true" signature="976:996" ph="&lt;Switch/&gt;" />
           </folding>
         </state>
       </provider>
@@ -829,7 +827,7 @@
     <entry file="file://$PROJECT_DIR$/hirehawk-react/src/pages/MainPage/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
-          <caret line="40" column="40" lean-forward="true" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="40" />
+          <caret line="40" column="40" lean-forward="false" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="40" />
           <folding />
         </state>
       </provider>
@@ -847,7 +845,7 @@
     <entry file="file://$PROJECT_DIR$/hirehawk-react/src/components/DurationInput/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="383">
-          <caret line="71" column="12" lean-forward="true" selection-start-line="71" selection-start-column="12" selection-end-line="71" selection-end-column="12" />
+          <caret line="71" column="12" lean-forward="false" selection-start-line="71" selection-start-column="12" selection-end-line="71" selection-end-column="12" />
           <folding>
             <element signature="e#1#27#0" expanded="true" />
           </folding>
