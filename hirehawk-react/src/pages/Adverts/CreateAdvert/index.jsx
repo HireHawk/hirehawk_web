@@ -5,13 +5,11 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import DurationInput from '../../../components/DurationInput'
 import {connect} from 'react-redux'
 
 import 'styles/positioning.css'
@@ -85,6 +83,7 @@ class CreateAdvert extends React.Component{
         super();
         this.state = {
             name: '',
+            min_duration: {},
             category: '',
             info: '',
             location: '',
@@ -92,6 +91,22 @@ class CreateAdvert extends React.Component{
             numb_of_hours: '',
             errors: []
         }
+    }
+    handleMinDurationChange(minTime){
+        this.setState({
+            min_duration: minTime,
+        });
+
+        this.changeNumbOfHours()
+        alert(JSON.stringify(this.state.numb_of_hours));
+    }
+
+    changeNumbOfHours() {
+        this.setState({
+            numb_of_hours : (this.state.min_duration.weeks ? this.state.min_duration.weeks*7*24 : 0) +
+            (this.state.min_duration.days ? this.state.min_duration.days*24 : 0) +
+            (this.state.min_duration.hours ? this.state.min_duration.hours : 0)
+        })
     }
 
     handleNameChange(event) {
@@ -176,9 +191,6 @@ class CreateAdvert extends React.Component{
                         onChange={this.handlePriceChange.bind(this)}
                         type="number"
                         className={this.props.classes.textField}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
                         margin="normal"
                     />
                     <TextField
@@ -190,6 +202,7 @@ class CreateAdvert extends React.Component{
                         multiline
                         rowsMax="4"
                     />
+                    <DurationInput value={this.state.min_duration} onChange={this.handleMinDurationChange.bind(this)}/>
                     {this.state.errors.map((error, i) => {
                         return (<div className="error">{error}</div>);
                     })}
