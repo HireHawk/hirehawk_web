@@ -8,7 +8,8 @@ import RegisterPage from 'pages/authorization/RegisterPage'
 import CreateAdvert from 'pages/Adverts/CreateAdvert'
 import {Route, Switch, BrowserRouter } from 'react-router-dom' //use Link to create links
 import TestRouter from 'routers/TestRouter'
-import ChatPage from 'pages/ChatPage'
+import ChatPage from 'pages/chat/ChatPage'
+import ChatListPage from 'pages/chat/ChatListPage'
 
 class MainRouter extends React.Component{
 
@@ -22,6 +23,7 @@ class MainRouter extends React.Component{
             <Route path='/search'  component={SearchPage}/>
             <Route path="/tests"   component={TestRouter}/>
             <Route path="/chat" component={ChatPage}/>
+            <Route path="/chatlist" component={ChatListPage}/>
             <Route path="/"   component={MainPage}/>
 
 

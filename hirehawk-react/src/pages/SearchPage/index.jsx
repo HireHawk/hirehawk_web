@@ -39,7 +39,7 @@ class SearchPage extends React.Component{
    }
    handleSearch(searchParams){
      //getLinks (search API)
-     let ids= ['5bdf297bb244a92360687382','5bdf2dc9b244a90ee0ee4c91'];
+     let ids= ['5bfc3a497144446e33c4add1','5bdf2dc9b244a90ee0ee4c91'];
      this.setState({
        advertIDs:ids,
        adverts:[]

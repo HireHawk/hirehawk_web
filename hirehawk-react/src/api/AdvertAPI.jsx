@@ -13,6 +13,28 @@ class AdvertAPI {
               return res.body;
             })
     };
+    static getAllAdverts(id) {
+      return  request
+            .get('http://' + Config.advertapi.uri + '/' + Config.advertapi.endPoints.getAdvert + '/' + id)
+            .on('error', err => {
+                alert('error');
+            })
+            .then((res) => {
+              console.log('got JSON advert: ' + JSON.stringify(res.body));
+              return res.body;
+            })
+    };
+    static getAdvertsByIdList(ids) {
+      return  request
+            .get('http://' + Config.advertapi.uri + '/' + Config.advertapi.endPoints.getAdvert + '/' + ids)
+            .on('error', err => {
+                alert('error');
+            })
+            .then((res) => {
+              console.log('got JSON advert: ' + JSON.stringify(res.body));
+              return res.body;
+            })
+    };
 
     static createAdvert(advert,token) {
         request

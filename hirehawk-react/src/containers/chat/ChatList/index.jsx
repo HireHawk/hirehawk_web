@@ -1,7 +1,7 @@
 import React from 'react'
 import 'react-chat-elements/dist/main.css';
 import { ChatList} from 'react-chat-elements'
-
+import qs from 'qs'
 //https://devarchy.com/react/library/react-chat-elements
 class CustomChatList extends React.Component{
   constructor(props){
@@ -9,15 +9,6 @@ class CustomChatList extends React.Component{
     this.inputRef=React.createRef();
     this.state={
 
-      messages:[
-          {
-              position: 'right',
-              type: 'text',
-              text: 'Example message',
-              date: new Date(),
-          },
-      ],
-      inputValue:''
     }
   }
   handleInputChange(evt){
@@ -39,29 +30,21 @@ class CustomChatList extends React.Component{
       });
     }
   }
+  handleChooseChat(chat){
+
+    let params=qs.stringify({chatid:chat.id})
+       this.props.history.push({
+         pathname: '/chat',
+         search: params,
+         state: {},
+       });
+  }
   render(){
     let content = <div>
         <ChatList
           className='chat-list'
-          dataSource={[
-            {
-              avatar: 'https://facebook.github.io/react/img/logo.svg',
-              alt: 'Reactjs',
-              title: 'Facebook',
-              subtitle: 'What are you doing?',
-              date: new Date(),
-              unread: 0,
-            },
-            {
-              avatar: 'https://facebook.github.io/react/img/logo.svg',
-              alt: 'usver',
-              title: 'Buyer',
-              subtitle: 'here is my last message',
-              date: new Date(),
-              unread: 1,
-              
-            },
-          ]} />
+          dataSource={this.props.chats}
+          onClick={this.handleChooseChat.bind(this)} />
         </div>
     return content;
       //this.refs.input.clear();

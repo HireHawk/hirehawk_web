@@ -17,18 +17,16 @@ import {adverts} from 'test/data.jsx'
 import AdvertAPI from 'api/AdvertAPI'
 import {connect} from 'react-redux'
 import SearchUtils from 'classes/data/SearchUtils'
-import MessageList from 'containers/chat/MessageList'
-import ChatList from 'containers/chat/ChatList'
+import ChatComponent from 'containers/chat/ChatComponent'
 
 class ChatPage extends React.Component{
+
    constructor(props){
      super(props);
      let link = qs.parse(this.props.location.search, { ignoreQueryPrefix: true });
      this.state={
-       interlocutor:link.interlocutor,
-       loadedMessages:[],
+       chatId:link.chatid
      };
-     this.getLastMessages(20);
    }
    getLastMessages(messageNum){
 
@@ -42,11 +40,9 @@ class ChatPage extends React.Component{
    render(){
     return (
     <div className='overflowXHidden'>
-      <div style={{postion:'absolute', height:'60vh',width:'40vw',border:'1px solid black'}}>
-        <MessageList/>
-      </div>
-      <div style={{position:'absolute', left:'50vw',top:'0',height:'60vh',width:'40vw',border:'1px solid black',float:'right'}}>
-        <ChatList/>
+      <h1 style={{margin:'0 auto', padding:'30px', display:'block', width:'10em'}}>Chat id: {this.state.chatId}</h1>
+      <div style={{postion:'absolute',margin:'0 auto', padding:'30px', height:'60vh',width:'60vw', maxWidth:'800px'}}>
+        <ChatComponent chatId={this.state.chatId}/>
       </div>
 
     </div>);

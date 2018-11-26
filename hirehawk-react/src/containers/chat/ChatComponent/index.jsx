@@ -9,9 +9,8 @@ import './styles.css'
 class CustomMessageList extends React.Component{
   constructor(props){
     super(props);
-    this.inputRef=React.createRef();
+    //this.props.chatId
     this.state={
-
       messages:[
           {
               position: 'right',
@@ -27,35 +26,38 @@ class CustomMessageList extends React.Component{
     this.setState({
       inputValue:evt.target.value
     })
-
   }
   handleInputKeyPress(evt){
     if(evt.key==='Enter'){
-      this.state.messages.push({
-        position:'right',
-        type: 'text',
-        text:evt.target.value,
-        date:new Date(),
-      });
-      this.setState({
-        inputValue:''
-      });
+      this.handleSendMessage(evt.target.value);
     }
   }
+  handleSendMessage(text){
+    this.state.messages.push({
+      position:'right',
+      type: 'text',
+      text:text,
+      date:new Date(),
+    });
+    this.setState({
+      inputValue:''
+    });
+  }
+  /*<Dropdown
+      buttonProps={{
+          text: 'Choose chat',
+      }}
+      items={[
+          'merhaba',
+          'lorem',
+          'ipsum',
+          'dolor',
+          'sit',
+          'amet',
+      ]}/>*/
   render(){
     let content = <div>
-<Dropdown
-    buttonProps={{
-        text: 'Dropdown',
-    }}
-    items={[
-        'merhaba',
-        'lorem',
-        'ipsum',
-        'dolor',
-        'sit',
-        'amet',
-    ]}/>
+      
     <MessageList
         className='message-list'
         lockable={true}
