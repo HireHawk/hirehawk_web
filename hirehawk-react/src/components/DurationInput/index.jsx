@@ -10,6 +10,12 @@ class DurationInput extends React.Component{
     this.state={
       showDetails:false,
     }
+    this.props.onChange({
+      ...this.props.value,
+      weeks:this.getNumber(this.props.value.weeks),
+      days:this.getNumber(this.props.value.days),
+      days:this.getNumber(this.props.value.hours),
+    })
   }
   getNumber(string){
     if(/^[0-9]*$/.test(string))
@@ -17,7 +23,7 @@ class DurationInput extends React.Component{
     else
       return undefined;
   }
-  onMonthChanged(evt){
+  onWeeksChanged(evt){
     evt.preventDefault();
     if(evt.target.value===''){
       this.props.onChange({
@@ -70,7 +76,7 @@ class DurationInput extends React.Component{
     if(this.state.showDetails)
       details =(
       <span>
-        weeks:<Input type='text' className='durationInput-input'  value={this.props.value.weeks} onChange={this.onMonthChanged.bind(this)}/>
+        weeks:<Input type='text' className='durationInput-input'  value={this.props.value.weeks} onChange={this.onWeeksChanged.bind(this)}/>
       days:<Input type='text' className='durationInput-input'  value={this.props.value.days} onChange={this.onDaysChanged.bind(this)}/>
     hours:<Input type='text' className='durationInput-input'  value={this.props.value.hours} onChange={this.onHoursChanged.bind(this)}/>
       </span>);

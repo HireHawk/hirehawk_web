@@ -93,20 +93,20 @@ class CreateAdvert extends React.Component{
         }
     }
     handleMinDurationChange(minTime){
-        this.setState({
+        this.setState(
+          {
             min_duration: minTime,
-        });
+            numb_of_hours:this.toHours(minTime)
+          },
+          ()=>alert(JSON.stringify(this.state.numb_of_hours)));
 
-        this.changeNumbOfHours()
-        alert(JSON.stringify(this.state.numb_of_hours));
+
     }
 
-    changeNumbOfHours() {
-        this.setState({
-            numb_of_hours : (this.state.min_duration.weeks ? this.state.min_duration.weeks*7*24 : 0) +
-            (this.state.min_duration.days ? this.state.min_duration.days*24 : 0) +
-            (this.state.min_duration.hours ? this.state.min_duration.hours : 0)
-        })
+    toHours(timePeriod) {
+     return (timePeriod.weeks ? timePeriod.weeks*7*24 :0) +
+            (timePeriod.days ? timePeriod.days*24 : 0)     +
+            (timePeriod.hours ? timePeriod.hours : 0)       ;
     }
 
     handleNameChange(event) {
