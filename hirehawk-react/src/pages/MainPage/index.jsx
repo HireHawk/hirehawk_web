@@ -36,13 +36,9 @@ class MainPage extends React.Component{
    }
    TEST_handleGetAdverts(){
      var id = prompt("Enter advert id",'5bdf297bb244a92360687382');
-     this.props.keycloak.updateToken(30).success((()=>{
         AdvertAPI.getAdvertById(id,this.props.keycloak.token).then(result =>{
           alert(JSON.stringify(result));
         });
-       })).error(function() {
-         alert('Failed to refresh token');
-       });
 
    }
    render(){
