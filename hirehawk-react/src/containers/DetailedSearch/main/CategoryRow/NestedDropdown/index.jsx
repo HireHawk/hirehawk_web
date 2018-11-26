@@ -133,7 +133,7 @@ class NestedDropdown extends React.Component {
         className='nestedDropdown'
         onClick={ this.handleDropdownToggle }
       >
-        {this.props.name}: { this.renderDisplay(this.state.showDropdown) }
+        {this.props.name?this.props.name+':':''} { this.renderDisplay(this.state.showDropdown) }
         { this.renderSubMenu(this.props.options) }
       </div>
     );

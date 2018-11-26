@@ -16,42 +16,23 @@ import DetailedSearch from 'containers/DetailedSearch'
 import {adverts} from 'test/data.jsx'
 import AdvertAPI from 'api/AdvertAPI'
 import {connect} from 'react-redux'
+import SearchUtils from 'classes/data/SearchUtils'
 class SearchPage extends React.Component{
    constructor(props){
      super(props);
      let link = qs.parse(this.props.location.search, { ignoreQueryPrefix: true });
      this.state={
-       searchParams:{
-         query:link.query,
-         category:link.category?link.category:[],
-         location:link.location,
-         minPrice:{
-           price:link.minPrice?link.minPrice.price:undefined,
-           period:link.minPrice?(link.minPrice.period?link.minPrice.period:'day'):'day',
-           currency:link.minPrice?(link.minPrice.currency?link.minPrice.currency:'uah'):'uah',
-         },
-         maxPrice:{
-           price:link.maxPrice?link.maxPrice.price:undefined,
-           period:link.maxPrice?(link.maxPrice.period?link.maxPrice.period:'day'):'day',
-           currency:link.maxPrice?(link.maxPrice.currency?link.maxPrice.currency:'uah'):'uah',
-         },
-         minDuration:{
-           month:link.minDuration?link.minDuration.weeks:undefined,
-           days:link.minDuration?link.minDuration.days:undefined,
-           hours:link.minDuration?link.minDuration.hours:undefined,
-         }
-       },
+       searchParams:SearchUtils.toSearchParams(link),
        advertIDs:[],
        adverts:[],
      };
      this.handleSearch(this.state.searchParams);
    }
    getAdvertsByIDs(ids){
-     let adverts=[];
           for(let id of ids){
               AdvertAPI.getAdvertById(id).then(result =>{
                 this.state.adverts.push(result);
-                alert(JSON.stringify(result));
+
                 this.forceUpdate();
               });
             }
@@ -59,10 +40,11 @@ class SearchPage extends React.Component{
    handleSearch(searchParams){
      //getLinks (search API)
      let ids= ['5bdf297bb244a92360687382','5bdf2dc9b244a90ee0ee4c91'];
-     this.getAdvertsByIDs(ids);
      this.setState({
        advertIDs:ids,
+       adverts:[]
      });
+      this.getAdvertsByIDs(ids);
    }
    handleSearchParamsChange(searchParams){
      this.setState({

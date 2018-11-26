@@ -44,7 +44,7 @@ class CategorySelect extends React.Component{
     return (
         <div style={this.props.style} className ={this.props.className}>
             <NestedDropdown openDirection='left'
-                          name='Category'
+                          name={this.props.name}
                           displayText={this.props.value[0]!==undefined?this.props.value.join('/'):'Select the category'}
                           hasCaret={true}
                           options={options}

@@ -79,9 +79,10 @@ class DurationInput extends React.Component{
       (this.props.value.hours?(this.props.value.hours+'hours'):'');
       if(details==='')details='select';
     return(
-      <span className={'rentPrice '+this.props.className}  style={{...this.props.style}}>
+      <span className={'rentPrice '+this.props.className}  style={{...this.props.style}}
+        onMouseEnter={(()=>this.setState({showDetails:true}))} onMouseLeave={(()=>this.setState({showDetails:false}))}>
         {this.props.name+': '}
-          <span onMouseEnter={(()=>this.setState({showDetails:true}))} onMouseLeave={(()=>this.setState({showDetails:false}))}>
+          <span >
             {details}
           </span>
       </span>
@@ -91,6 +92,8 @@ class DurationInput extends React.Component{
 
 DurationInput.propTypes = {
     value: PropTypes.shape({
+      weeks: PropTypes.number,
+      days: PropTypes.number,
       hours: PropTypes.number,
       }).isRequired,
     onChange: PropTypes.func.isRequired,//onChange accepts the object of type value
