@@ -18,5 +18,28 @@
     "endPoints":{
       "findAdverts":"findAverts"
     }
+  },
+  "chatapi":{
+    "uri":"",
+    "endPoints":{
+      "update":{
+        "getAllUnreadMessages": "updateChat/getAllUnreadMessages",
+        "getAllUserConversations": "updateChat/getAllUserConversations",
+        "getAllUserConversationMessages": "updateChat/getAllUserConversationMessages",
+      },
+      "admin": {
+        "addChat": "adminChat/addChat",
+        "setDialog": "adminChat/setDialog",
+        "addChatUser": "adminChat/addChatUser",
+        "removeChatUser": "adminChat/removeChatUser",
+        "deleteChat": "adminChat/deleteChat"
+      },
+      "chat": {
+        "addMessage": "addMessage",
+        "getChatById": "getChatById",
+        "getMessageById": "getMessageById",
+        "setMessagesAsReaded": "setMessagesAsReaded"
+      }
+    }
   }
 }
