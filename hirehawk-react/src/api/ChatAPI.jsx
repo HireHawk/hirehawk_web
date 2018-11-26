@@ -32,7 +32,7 @@ class ChatAPI {
 
     static getAllUnreadMessages(userId) {
       return  request
-            .get(createStartURL(Config.chatapi.endPoints.getAllUnreadMessages) + '/' + userId)
+            .get(ChatAPI.createStartURL(Config.chatapi.endPoints.getAllUnreadMessages) + '/' + userId)
             .on('error', err => {
                 alert('error');
             })
@@ -42,11 +42,10 @@ class ChatAPI {
             })
     };
 
-    static getAllUserConversations(userId) {
+    static getAllUserConversations(userId,token) {
         request
-            .post('http://' + Config.advertapi.uri + '/' + Config.advertapi.endPoints.getAllUserConversations)
+            .get('http://' + Config.advertapi.uri + '/' + Config.advertapi.endPoints.getAllUserConversations)
             .set('Authorization', 'Bearer '+token)
-            .send(advert)
             .set('Content-Type', 'application/json')
             .on('error', err => {
                 alert('error');

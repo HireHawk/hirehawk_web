@@ -27,7 +27,7 @@
       "update":{
         "getAllUnreadMessages": "updateChat/getAllUnreadMessages",
         "getAllUserConversations": "updateChat/getAllUserConversations",
-        "getAllUserConversationMessages": "updateChat/getAllUserConversationMessages",
+        "getAllUserConversationMessages": "updateChat/getAllUserConversationMessages"
       },
       "admin": {
         "addChat": "adminChat/addChat",
