@@ -5,7 +5,10 @@ import SearchUtils from 'classes/data/SearchUtils'
 class SearchAPI {
     static searchAdverts(params) {
       let newParams={};
-      let req = request.get('http://' + Config.searchapi.uri + '/' + Config.searchapi.endPoints.findAdverts);
+      let req = request
+                  .get('http://' + Config.searchapi.uri + '/' + Config.searchapi.endPoints.findAdverts)
+                  .set('Authorization','Basic '+btoa(Config.searchapi.auth.username+":"+Config.searchapi.auth.password));
+
       //searchValue(String, optional), category(String, optional), info(boolean, option$
       let num_of_hours =SearchUtils.getHoursDuration(params);
       let minPricePerDay =SearchUtils.priceToACP_Day(params.minPrice);
@@ -14,7 +17,7 @@ class SearchAPI {
         req.set('searchValue', params.query);
         console.log('added query to search: '+params.query);
       }
-      if(params.category!==[]){
+      if(params.category.length){
         req.set('category', SearchUtils.categoryToString(params.category));
         console.log('added category to search: '+SearchUtils.categoryToString(params.category));
       }
@@ -23,6 +26,7 @@ class SearchAPI {
       if(maxPricePerDay)req.set('maxPrice', maxPricePerDay);
       if(num_of_hours)req.set('num_of_hours', params.query);
 
+      alert("sending to searchAPI: \n"+JSON.stringify(req));
           req.on('error', err => {
                 console.log('error obtaining search results');
             })

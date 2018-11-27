@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import LocationInput from 'components/LocationInput'
 import qs from 'qs'
 import TextCheckBox from 'components/TextCheckBox'
+import Media from 'react-media'
 class AdvertSearch extends React.Component{
    constructor(props){
      super(props);
@@ -80,6 +81,13 @@ class AdvertSearch extends React.Component{
     <div style={this.props.style} className ={this.props.className+' detailedSearch'}>
       <div id='detailedSearch-2partsContainer1'>
         <div className ='detailedSearch-part' id ='detailedSearch-main'>
+          <Media query="(min-width: 721px)">
+            <TextCheckBox style={{display:'inline-block'}}
+                          className='detailedSearch-FullText'
+                          value={this.props.searchParams.fullText}
+                          text={'full text search'}
+                          onChange={this.handleFullTextSwitch.bind(this)}/>
+          </Media>
           <SearchBar className='detailedSearch-SearchBar'
                      inputClassName='detailedSearch-SearchBarInput'
                      value={this.props.searchParams.query}
@@ -87,18 +95,17 @@ class AdvertSearch extends React.Component{
 
         </div>
         <div className ='detailedSearch-part' id ='detailedSearch-location'>
-          <TextCheckBox style={{display:'inline-block'}}
-                        className='detailedSearch-FullText'
-                        value={this.props.searchParams.fullText}
-                        text={<span>full text<br/>search</span>}
-                        onChange={this.handleFullTextSwitch.bind(this)}/>
+          <Media query="(max-width: 720px)">
+            <TextCheckBox style={{display:'inline-block'}}
+                          className='detailedSearch-FullText'
+                          value={this.props.searchParams.fullText}
+                          text={'full text search'}
+                          onChange={this.handleFullTextSwitch.bind(this)}/>
+          </Media>
           <LocationInput className='detailedSearch-locationInput' value ={this.props.searchParams.location} onChange={this.handleLocationUpdate.bind(this)}></LocationInput>
         </div>
       </div>
       <div id='detailedSearch-2partsContainer2'>
-        <div className ='detailedSearch-part' id ='detailedSearch-category'>
-          <CategoryRow value = {this.props.searchParams.category} onCategoryUpdate={this.onCategoryUpdate.bind(this)} className='detailedSearch-categoryRow'/>
-        </div>
         <div className ='detailedSearch-part' id ='detailedSearch-priceTime'>
           <div>
             <RentPriceInput name='Min. Price' className='detailedSearch-price' onChange={this.handleMinPriceUpdate.bind(this)} value={this.props.searchParams.minPrice}/><br/>
@@ -106,6 +113,9 @@ class AdvertSearch extends React.Component{
             <DurationInput name='Min. Renting Time' className='detailedSearch-minDuration' onChange={this.handleMinDurationUpdate.bind(this)} value={this.props.searchParams.minDuration}/>
 
           </div>
+        </div>
+        <div className ='detailedSearch-part' id ='detailedSearch-category'>
+          <CategoryRow value = {this.props.searchParams.category} onCategoryUpdate={this.onCategoryUpdate.bind(this)} className='detailedSearch-categoryRow'/>
         </div>
       </div>
       <div className ='detailedSearch-part' id ='detailedSearch-categorySpecific'>

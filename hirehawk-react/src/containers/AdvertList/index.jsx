@@ -15,14 +15,14 @@ import AdvertCard from 'components/AdvertCard'
                    </AdvertCard>
                  );}
                )}
-            
+
           </div>
       );
     }
   }
 
     AdvertList.propTypes = {
-      adverts: PropTypes.object.isRequired,
+      adverts: PropTypes.arrayOf(PropTypes.object) //.isRequired,
     };
 
     export default (AdvertList);

@@ -63,7 +63,7 @@ class RentPriceInput extends React.Component{
 }
 RentPriceInput.propTypes = {
     value: PropTypes.shape({
-    price: PropTypes.string,
+    price: PropTypes.number,
     period: PropTypes.string,
     currency: PropTypes.string,
   }).isRequired,

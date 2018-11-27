@@ -1,7 +1,8 @@
 
 .detailedSearch{
   border-bottom:1px solid grey;
-  box-shadow:0px 3px 2px 2px rgba(0,0,0,0.4)
+  overflow:hidden;
+  box-shadow:0px 3px 2px 2px rgba(0,0,0,0.4);
 }
 .detailedSearch-part{
   padding:5px;
@@ -9,13 +10,14 @@
   background:#EEEEEE;
 }
 #detailedSearch-main{
-  width:200%;
+  width:80%;
   /* background:rgb(240,255,255);*/
 }
 #detailedSearch-category{
 /*  background:rgb(220,255,220);*/
 }
 #detailedSearch-location{
+  width:20%;
 /*  background:rgb(255,220,220);*/
 }
 #detailedSearch-priceTime{
@@ -25,11 +27,10 @@
 /*  background:rgb(255,255,220);*/
 }
 #detailedSearch-2partsContainer1{
+  width:100%;
   padding-top:10px;
   display:flex;
   flex-direction:row;
-
-
 }
 #detailedSearch-2partsContainer2{
   display:flex;
@@ -47,17 +48,18 @@
 }
 .detailedSearch-locationInput{
   display:inline;
-  float:right;
-  width:calc(100% - 8em);
+  width:100%;
   box-shadow: inset 0px 2px 5px 1px rgba(0,0,0,0.5);
   border:none;
-  margin-top:9px;
-  padding:8px;
+  margin-top:10px;
+  margin-right:5px;
   border-radius:5px;
+  height:2.7em;
+  font-size:1.1em;
 }
 .detailedSearch-categoryRow{
   display:inline-block;
-  width:60%;
+  width:100%;
   vertical-align:text-top;
 }
 .detailedSearch-SearchButton{
@@ -73,29 +75,65 @@
   box-shadow:  inset 0px 2px 5px 1px rgba(0,0,0,0.5);
 }
 .detailedSearch-SearchBar{
-  width:calc(100% - 6em);
-  margin-left:6em;
+  width:calc(100% - 8em);
+  float:right;
+  margin-top:10px;
 }
 .detailedSearch-SearchBarInput{
   border:none;
   display:block;
-  padding:100px;
+  height:2em;
+  font-size:1.5em;
   box-shadow: inset 0px 2px 5px 1px rgba(0,0,0,0.5);
 }
 .detailedSearch-FullText{
-
+  display:inline-block;
+  width:5em;
+  margin-top:10px;
+  margin-left:20px;
+  vertical-align:middle;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 720px) {
   #detailedSearch-category{
-      width:100vw;
+      width:100%;
       border-right:none;
    }
 #detailedSearch-location{
-    width:100vw;
+    width:100%;
+    pading:0;
+    margin:0;
+
   }
-#detailedSearch-2partsContainer{
+  .detailedSearch-SearchBar{
+    display:inline-block;
+    width:calc(100% - 2em);
+    margin:1em;
+    left:1000px;
+    float:none;
+  }
+  .detailedSearch-locationInput{
+    display:block;
+    width:calc(100% - 8em);
+    margin-right:1em;
+    margin-top:0;
+    float:right;
+  }
+  .detailedSearch-FullText{
+    margin-top: 0;
+
+  }
+  #detailedSearch-main{
+      width:100%;
+      padding:0;
+      margin:0;
+    }
+#detailedSearch-2partsContainer1{
     flex-direction:column;
     background:black;
   }
+  #detailedSearch-2partsContainer2{
+      flex-direction:column;
+      background:black;
+    }
 }

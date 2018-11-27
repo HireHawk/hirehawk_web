@@ -40,7 +40,10 @@ class NestedDropdown extends React.Component {
   };
 
   handleSelectedId = (selected, depthLevel) => {
-    return () => {
+
+    return (evt) => {
+      evt.preventDefault();
+      evt.stopPropagation();
       const updatedArray = this.state.selectedIds.slice(0);
 
       updatedArray[depthLevel] = selected;
@@ -90,7 +93,13 @@ class NestedDropdown extends React.Component {
     const menuOptions = options.map(option => {
       const display   = (option.link
               ? <a href={ option.link }>{ option.message }</a>
-              : <span>{ option.message }</span>
+              : <span>{ option.message }
+                <input type='button'
+                       value='choose!'
+                       style={{float:'right', background:'rgba(0,0,0,0.02)',borderRadius:'5px',border:'none'}}
+                       onClick={this.handleDropdownToggle}
+                       >
+                </input></span>
             ),
             hasOptions = (option.options
               && option.options.length > 0
@@ -113,6 +122,7 @@ class NestedDropdown extends React.Component {
           onMouseEnter={ this.handleSelectedId(option.id, depthLevel) }
           onMouseLeave={ this.handleSelectedIdOut(option.id, depthLevel)}
           className ={partClasses.join(' ')}
+
         >
           { display }
           { subMenu }
@@ -128,13 +138,15 @@ class NestedDropdown extends React.Component {
   }
 
   render() {
+    //
     return (
       <div
         className='nestedDropdown'
         onClick={ this.handleDropdownToggle }
       >
-        {this.props.name?this.props.name+':':''} { this.renderDisplay(this.state.showDropdown) }
-        { this.renderSubMenu(this.props.options) }
+        {this.props.name?this.props.name+':':''}
+        { (!this.state.showDropdown)?this.renderDisplay(this.state.showDropdown):'' }
+        { (this.state.showDropdown)?(<div className='nestedDropdown-dropdownMenu'>{this.renderSubMenu(this.props.options)}</div>):''}
       </div>
     );
   }

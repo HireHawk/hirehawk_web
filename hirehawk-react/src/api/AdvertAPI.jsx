@@ -6,7 +6,7 @@ class AdvertAPI {
       return  request
             .get('http://' + Config.advertapi.uri + '/' + Config.advertapi.endPoints.getAdvert + '/' + id)
             .on('error', err => {
-                alert('error');
+                console.log('getAdvertById encountered error');
             })
             .then((res) => {
               console.log('got JSON advert: ' + JSON.stringify(res.body));
@@ -17,7 +17,7 @@ class AdvertAPI {
       return  request
             .get('http://' + Config.advertapi.uri + '/' + Config.advertapi.endPoints.getAllAdverts + '/' + id)
             .on('error', err => {
-                alert('error');
+                console.log('getAllAdverts encountere error');
             })
             .then((res) => {
               console.log('got JSON advert: ' + JSON.stringify(res.body));
@@ -28,7 +28,7 @@ class AdvertAPI {
       return  request
             .get('http://' + Config.advertapi.uri + '/' + Config.advertapi.endPoints.getAdverts + '/' + ids.join(','))
             .on('error', err => {
-                alert('error');
+                console.log('getAdvertsByList encountered error');
             })
             .then((res) => {
               console.log('got JSON advert: ' + JSON.stringify(res.body));
@@ -43,7 +43,7 @@ class AdvertAPI {
             .send(advert)
             .set('Content-Type', 'application/json')
             .on('error', err => {
-                alert('error');
+                console.log('createAdvert encountered error');
             })
             .then((res) => {
                 alert('got JSON advert: ' + JSON.stringify(res.body));
