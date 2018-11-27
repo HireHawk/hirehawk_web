@@ -21,7 +21,6 @@ cursor:pointer;
   padding:5px;
   border-radius:5px;
   list-style-type: none;
-  border:1px dashed red;
   text-align:center;
   margin:4px;
 }
@@ -29,13 +28,15 @@ cursor:pointer;
       background:white;
 }
 .nestedDropdown-part--odd{
-    background:rgb(220,255,220);
+    background:rgb(240,240,240);
+    color:black;
+    font-weight: bolder;
 }
 .nestedDropdown-dropdown_display{
   background:white;
   width:auto;
   display:inline-block;
-  padding:5px;
+  padding:15px;
   border-radius: 5px;
   margin:5px;
 }

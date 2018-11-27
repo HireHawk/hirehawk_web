@@ -1,4 +1,10 @@
 
+.searchPage{
+  background:#444444;
+  min-height: 100vh;
+  padding:0;
+  margin:0;
+}
 .searchPage-mainLogo{
   max-width:140%;
   width:700px;

@@ -8,7 +8,12 @@ class LocationInput extends React.Component{
     }
    render(){
     return (
-      <input type='text' placeholder='desired location' value={this.props.value?this.props.value:''} onChange={this.onChange.bind(this)}/>
+      <input style={this.props.style}
+        className={this.props.className}
+        type='text'
+        placeholder='desired location'
+         value={this.props.value?this.props.value:''}
+          onChange={this.onChange.bind(this)}/>
     );
   }
 

@@ -6,25 +6,23 @@
 
 .detailedSearch-part{
   padding:5px;
-  border-top:2px dashed grey;
-  background:lightgrey;
-  width:100%;
+  width:calc(100% - 10px);
+  background:#EEEEEE;
 }
 #detailedSearch-main{
-    background:rgb(240,255,255);
+  /*  background:rgb(240,255,255);*/
 }
 #detailedSearch-category{
-  background:rgb(220,255,220);
-  border-right:2px dashed grey;
+/*  background:rgb(220,255,220);*/
 }
 #detailedSearch-location{
-  background:rgb(255,220,220);
+/*  background:rgb(255,220,220);*/
 }
 #detailedSearch-priceTime{
-  background:rgb(230,230,255);
+/*  background:rgb(230,230,255);*/
 }
 #detailedSearch-categorySpecific{
-  background:rgb(255,255,220);
+/*  background:rgb(255,255,220);*/
 }
 #detailedSearch-2partsContainer{
   display:flex;
@@ -33,18 +31,48 @@
 .detailedSearch-price{
   display:inline-block;
   margin:5px;
+  box-shadow: inset 0px 2px 5px 1px rgba(0,0,0,0.5);
 }
 .detailedSearch-minDuration{
   display:inline-block;
   margin:5px;
+  box-shadow: inset 0px 2px 5px 1px rgba(0,0,0,0.5);
+}
+.detailedSearch-locationInput{
+  display:inline;
+  float:right;
+  width:calc(100% - 8em);
+  box-shadow: inset 0px 2px 5px 1px rgba(0,0,0,0.5);
+  border:none;
+  margin-top:9px;
+  padding:8px;
+  border-radius:5px;
 }
 .detailedSearch-categoryRow{
   display:inline-block;
   width:60%;
   vertical-align:text-top;
 }
+.detailedSearch-SearchButton{
+  display:block;
+  background:rgb(240,255,240);
+  border:none;
+  margin:10px auto;
+  box-shadow:  0px 2px 5px 1px rgba(0,0,0,0.5);
+  padding:10px;
+  border-radius:5px;
+}
+.detailedSearch-SearchButton:active{
+  box-shadow:  inset 0px 2px 5px 1px rgba(0,0,0,0.5);
+}
 .detailedSearch-SearchBar{
-  width:calc(100% - 6em);
+  width:calc(100%);
+}
+.detailedSearch-SearchBarInput{
+  border:none;
+  display:block;
+  padding:100px;
+  box-shadow: inset 0px 2px 5px 1px rgba(0,0,0,0.5);
 }
 .detailedSearch-FullText{
 

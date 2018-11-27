@@ -8,14 +8,14 @@ class SearchBar extends React.Component{
    constructor(props){
      super(props);
      this.state={
-       inputPlaceholder:'A   Search for adverts!'
+       inputPlaceholder:'        Enter your query!'
      };
    }
    handleResize(){
      if(window.innerWidth < 400){
        this.setState({inputPlaceholder:'Search!'});
      } else {
-        this.setState({inputPlaceholder:'        Search for adverts!'});
+        this.setState({inputPlaceholder:'        Enter your query!'});
      }
    }
    componentWillMount(){
@@ -40,9 +40,8 @@ class SearchBar extends React.Component{
   }
    render(){
     return (
-
     <div style={this.props.style} className ={this.props.className+' searchBar'}>
-      <input className='searchBar-input' type='search' placeholder={this.state.inputPlaceholder} value={this.props.value} onChange={this.handleSearchChange.bind(this)}/>
+      <input className={(this.props.inputClassName?this.props.inputClassName:'')+ ' searchBar-input'} type='search' placeholder={this.state.inputPlaceholder} value={this.props.value} onChange={this.handleSearchChange.bind(this)}/>
     </div>);
   }
 

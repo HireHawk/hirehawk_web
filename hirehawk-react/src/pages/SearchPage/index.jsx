@@ -56,7 +56,7 @@ class SearchPage extends React.Component{
    }
    render(){
     return (
-    <div className='overflowXHidden'>
+    <div className='overflowXHidden searchPage'>
       <DetailedSearch onSearch={this.handleSearch.bind(this)}
                       onChange={this.handleSearchParamsChange.bind(this)}
                       searchParams={this.state.searchParams}
