@@ -16,7 +16,7 @@
     }
   },
   "searchapi":{
-    "uri":"localhost:8213",
+    "uri":"176.37.65.30:8213",
     "endPoints":{
       "findAdverts":"advertSearch/findAdvert"
     }

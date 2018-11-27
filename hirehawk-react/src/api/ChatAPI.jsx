@@ -24,7 +24,7 @@ class ChatAPI {
 
     static getAllUserConversations(userId, token) {
         request
-            .get(createStartURL(Config.chatapi.endPoints.getAllUserConversations) + '/' + userId)
+            .get(ChatAPI.createStartURL(Config.chatapi.endPoints.getAllUserConversations) + '/' + userId)
             .set('Authorization', 'Bearer '+token)
             .set('Content-Type', 'application/json')
             .on('error', err => {
@@ -37,7 +37,7 @@ class ChatAPI {
 
     static getAllUserConversationMessages(userId, chatId, token) {
         request
-            .get(createStartURL(Config.chatapi.endPoints.getAllUserConversationMessages) + '/' + userId + '/' + chatId)
+            .get(ChatAPI.createStartURL(Config.chatapi.endPoints.getAllUserConversationMessages) + '/' + userId + '/' + chatId)
             .set('Authorization', 'Bearer '+token)
             .set('Content-Type', 'application/json')
             .on('error', err => {
@@ -52,7 +52,7 @@ class ChatAPI {
 
     static addChat(name, token) {
         request
-            .put(createStartURL(Config.chatapi.endPoints.addChat) + '/' + name + '/' + -1 + '/' + '')
+            .put(ChatAPI.createStartURL(Config.chatapi.endPoints.addChat) + '/' + name + '/' + -1 + '/' + '')
             .set('Authorization', 'Bearer '+token)
             .set('Content-Type', 'application/json')
             .on('error', err => {
@@ -65,7 +65,7 @@ class ChatAPI {
 
     static setDialog(firstId, secondId, token) {
         request
-            .put(createStartURL(Config.chatapi.endPoints.setDialog) + '/' + firstId + '/' + secondId)
+            .put(ChatAPI.createStartURL(Config.chatapi.endPoints.setDialog) + '/' + firstId + '/' + secondId)
             .set('Authorization', 'Bearer '+token)
             .set('Content-Type', 'application/json')
             .on('error', err => {
@@ -78,7 +78,7 @@ class ChatAPI {
 
     static addChatUser(chatId, userId, token) {
         request
-            .put(createStartURL(Config.chatapi.endPoints.addChatUser) + '/' + chatId + '/' + userId)
+            .put(ChatAPI.createStartURL(Config.chatapi.endPoints.addChatUser) + '/' + chatId + '/' + userId)
             .set('Authorization', 'Bearer '+token)
             .set('Content-Type', 'application/json')
             .on('error', err => {
@@ -91,7 +91,7 @@ class ChatAPI {
 
     static removeChatUser(chatId, userId, token) {
         request
-            .put(createStartURL(Config.chatapi.endPoints.removeChatUser) + '/' + chatId + '/' + userId)
+            .put(ChatAPI.createStartURL(Config.chatapi.endPoints.removeChatUser) + '/' + chatId + '/' + userId)
             .set('Authorization', 'Bearer '+token)
             .set('Content-Type', 'application/json')
             .on('error', err => {
@@ -104,7 +104,7 @@ class ChatAPI {
 
     static deleteChat(chatId, token) {
         request
-            .put(createStartURL(Config.chatapi.endPoints.deleteChat) + '/' + chatId)
+            .put(ChatAPI.createStartURL(Config.chatapi.endPoints.deleteChat) + '/' + chatId)
             .set('Authorization', 'Bearer '+token)
             .set('Content-Type', 'application/json')
             .on('error', err => {
