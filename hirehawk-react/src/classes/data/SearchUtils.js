@@ -29,6 +29,35 @@ class SearchUtils {
     };
     return converted;
   }
+  static getHoursDuration(someClass){
+    if((!someClass)||(!someClass.minDuration))return undefined;
+    let timePeriod = someClass.minDuration;
+    return (timePeriod.weeks ? timePeriod.weeks*7*24 :0) +
+           (timePeriod.days ? timePeriod.days*24 : 0)     +
+           (timePeriod.hours ? timePeriod.hours : 0)       ;
+  }
+  static getMinPricePerDay(someClass){
+    if((!someClass)||(!someClass.minDuration))return undefined;
+    let timePeriod = someClass.minDuration;
+    return (timePeriod.weeks ? timePeriod.weeks*7*24 :0) +
+           (timePeriod.days ? timePeriod.days*24 : 0)     +
+           (timePeriod.hours ? timePeriod.hours : 0)       ;
+  }
+  static categoryToString(category){
+    return category.join('/');
+  }
+  static priceToACP_Day(rentPrice){
+    if(!rentPrice)return undefined;
+    let res = rentPrice.price;
+    if(rentPrice.period ==='week')res/=7;
+    else if(rentPrice.period ==='hour')res*=24;
+
+    if(rentPrice.currency ==='usd') res /=(28*8.75);
+    else if(rentPrice.currency ==='uah') res /=8.75;
+    else if(rentPrice.currency ==='rub') res /=(3*8.75)
+    return res;
+
+  }
 
 }
 export default SearchUtils;

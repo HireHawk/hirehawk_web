@@ -78,7 +78,7 @@ class AdvertSearch extends React.Component{
    render(){
     return (
     <div style={this.props.style} className ={this.props.className+' detailedSearch'}>
-      <div id='detailedSearch-2partsContainer'>
+      <div id='detailedSearch-2partsContainer1'>
         <div className ='detailedSearch-part' id ='detailedSearch-main'>
           <SearchBar className='detailedSearch-SearchBar'
                      inputClassName='detailedSearch-SearchBarInput'
@@ -95,7 +95,7 @@ class AdvertSearch extends React.Component{
           <LocationInput className='detailedSearch-locationInput' value ={this.props.searchParams.location} onChange={this.handleLocationUpdate.bind(this)}></LocationInput>
         </div>
       </div>
-      <div id='detailedSearch-2partsContainer'>
+      <div id='detailedSearch-2partsContainer2'>
         <div className ='detailedSearch-part' id ='detailedSearch-category'>
           <CategoryRow value = {this.props.searchParams.category} onCategoryUpdate={this.onCategoryUpdate.bind(this)} className='detailedSearch-categoryRow'/>
         </div>

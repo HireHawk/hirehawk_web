@@ -15,8 +15,10 @@ import Button from '@material-ui/core/Button';
 import DetailedSearch from 'containers/DetailedSearch'
 import {adverts} from 'test/data.jsx'
 import AdvertAPI from 'api/AdvertAPI'
+import SearchAPI from 'api/SearchAPI'
 import {connect} from 'react-redux'
 import SearchUtils from 'classes/data/SearchUtils'
+import Background from 'media/background.png'
 class SearchPage extends React.Component{
    constructor(props){
      super(props);
@@ -29,21 +31,27 @@ class SearchPage extends React.Component{
      this.handleSearch(this.state.searchParams);
    }
    getAdvertsByIDs(ids){
-          for(let id of ids){
-              AdvertAPI.getAdvertById(id).then(result =>{
-                this.state.adverts.push(result);
-
-                this.forceUpdate();
-              });
-            }
+     for(let id of ids){
+       AdvertAPI.getAdvertById(id).then(result =>{
+         this.state.adverts.push(result);
+         this.forceUpdate();
+       })
+     }/*
+     AdvertAPI.getAdvertsByIdList(ids).then(result =>{
+                this.setState({
+                  adverts:result,
+                });
+            });*/
    }
    handleSearch(searchParams){
      //getLinks (search API)
      let ids= ['5bfc3a497144446e33c4add1','5bdf2dc9b244a90ee0ee4c91'];
+     SearchAPI.searchAdverts(this.state.searchParams);
      this.setState({
        advertIDs:ids,
        adverts:[]
      });
+
       this.getAdvertsByIDs(ids);
    }
    handleSearchParamsChange(searchParams){
@@ -56,7 +64,7 @@ class SearchPage extends React.Component{
    }
    render(){
     return (
-    <div className='overflowXHidden searchPage'>
+    <div className='overflowXHidden searchPage' style={{background:`url(${Background})`}}>
       <DetailedSearch onSearch={this.handleSearch.bind(this)}
                       onChange={this.handleSearchParamsChange.bind(this)}
                       searchParams={this.state.searchParams}

@@ -16,9 +16,9 @@
     }
   },
   "searchapi":{
-    "uri":"176.37.65.30:8213",
+    "uri":"localhost:8213",
     "endPoints":{
-      "findAdverts":"findAverts"
+      "findAdverts":"advertSearch/findAdvert"
     }
   },
   "chatapi":{

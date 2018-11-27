@@ -15,7 +15,7 @@ class AdvertAPI {
     };
     static getAllAdverts(id) {
       return  request
-            .get('http://' + Config.advertapi.uri + '/' + Config.advertapi.endPoints.getAdvert + '/' + id)
+            .get('http://' + Config.advertapi.uri + '/' + Config.advertapi.endPoints.getAllAdverts + '/' + id)
             .on('error', err => {
                 alert('error');
             })
@@ -26,7 +26,7 @@ class AdvertAPI {
     };
     static getAdvertsByIdList(ids) {
       return  request
-            .get('http://' + Config.advertapi.uri + '/' + Config.advertapi.endPoints.getAdvert + '/' + ids)
+            .get('http://' + Config.advertapi.uri + '/' + Config.advertapi.endPoints.getAdverts + '/' + ids.join(','))
             .on('error', err => {
                 alert('error');
             })
