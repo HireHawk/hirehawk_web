@@ -7,24 +7,24 @@ class SearchAPI {
       let newParams={};
       let req = request
                   .get('http://' + Config.searchapi.uri + '/' + Config.searchapi.endPoints.findAdverts)
-                  .set('Authorization','Basic '+btoa(Config.searchapi.auth.username+":"+Config.searchapi.auth.password));
+                  .set('Authorization','Basic '+'YXBpOlZhYw==');//btoa(Config.searchapi.auth.username+":"+Config.searchapi.auth.password));
 
       //searchValue(String, optional), category(String, optional), info(boolean, option$
       let num_of_hours =SearchUtils.getHoursDuration(params);
       let minPricePerDay =SearchUtils.priceToACP_Day(params.minPrice);
       let maxPricePerDay =SearchUtils.priceToACP_Day(params.maxPrice);
       if(params.query){
-        req.set('searchValue', params.query);
+        req.query({searchValue:params.query});
         console.log('added query to search: '+params.query);
       }
       if(params.category.length){
-        req.set('category', SearchUtils.categoryToString(params.category));
+        req.query({category:SearchUtils.categoryToString(params.category)});
         console.log('added category to search: '+SearchUtils.categoryToString(params.category));
       }
       //if(params.info)req.set('info', params.query);
-      if(minPricePerDay)req.set('minPrice', minPricePerDay);
-      if(maxPricePerDay)req.set('maxPrice', maxPricePerDay);
-      if(num_of_hours)req.set('num_of_hours', params.query);
+      if(minPricePerDay)req.query({minPrice: minPricePerDay});
+      if(maxPricePerDay)req.query({maxPrice:maxPricePerDay});
+      if(num_of_hours)req.query({num_of_hours:num_of_hours});
 
       alert("sending to searchAPI: \n"+JSON.stringify(req));
           req.on('error', err => {

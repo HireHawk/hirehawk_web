@@ -1,0 +1,167 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardHeader from '@material-ui/core/CardHeader';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import StarRatingComponent from 'components/StarRatingComponent'
+import Media from 'react-media'
+const styles = {
+  card: {
+    maxWidth: '100%',
+  },
+  stars:{
+    fontSize:'1.8em',
+  },
+  starsContainer:{
+    height:'100%',
+    padding:'10px',
+    paddingLeft:'30px',
+    verticalAlign:'middle',
+  },
+  rentedField:{
+    color:'darkblue',
+    fontWeight:'bold',
+    fontSize:'0.8em'
+  },
+  ups:{
+    padding:'10px',
+    marginLeft:'auto'
+  },
+  media: {
+      height: '100%',
+    },
+  };
+
+  class Feedback extends React.Component{
+      constructor(props){
+        super(props);
+        this.upped=this.props.data.isLiked;
+        this.liked=this.props.data.likes;
+      }
+    renderBottomLine(){
+    return <p className={this.props.classes.rentedField}>
+            {(this.props.data.rentedItem)?(
+               <span>
+                  About <span style={{color:'green'}}>{this.props.data.rentedItem+' '}</span>
+                  {(this.props.data.rentedFrom && this.props.data.rentedTo)?(
+                    <span>
+                      (Rented from <span style={{color:'green'}}> {this.props.data.rentedFrom} </span>
+                      to <span style={{color:'green'}}> {this.props.data.rentedTo}</span>)
+                    </span>):''
+                  }
+                </span>):(
+                <span>
+                  {(this.props.data.recepient)?(
+                     <span>About <span style={{color:'green'}}> {this.props.data.rentedFrom}</span></span>):(
+                     <span>Lost Feeback!</span>)
+                  }
+                </span>)
+            }
+          </p>
+    }
+    render(){
+
+      var {classes} = this.props;
+      let stars = (
+        <StarRatingComponent
+          className={this.props.classes.stars}
+          name={'review rating'} /* name of the radio input, it is required */
+          value={this.props.data.mark} /* number of selected icon (`0` - none, `1` - first) */
+          starCount={5} /* number of icons in rating, default `5` */
+          starColor={'#ffb400'} /* color of selected icons, default `#ffb400` */
+          emptyStarColor={'#333'} /* color of non-selected icons, default `#333` */
+          editing={false} /* is component available for editing, default `true` */
+          />
+      );
+      let ups = (
+        <IconButton
+            className={this.props.classes.ups}
+            onClick={(()=>{
+              this.upped=!this.upped;
+              this.forceUpdate()
+              if(this.upped)this.liked+=1;
+              else this.liked-=1;
+            }).bind(this)}
+            >
+          <ThumbUpIcon color={this.upped?'primary':'disabled'}/>
+          <span style={{color:(this.upped?'darkblue':'darkgrey')}}>{this.liked}</span>
+        </IconButton>
+      );
+      return (
+        <Card className={classes.card} style={{...{margin:'15px'}, ...this.props.style}}>
+
+          <CardActionArea style={{width:'100%'}}>
+            <CardHeader style={{marginBottom:'0px',paddingBottom:'0px'}}
+                avatar={
+                   <Media query="(min-width: 721px)">
+                     <Avatar aria-label="Recipe" className={classes.avatar}>
+                       {this.props.data.author[0]}
+                     </Avatar>
+                   </Media>
+                }
+                action={
+                  <Media query="(min-width: 351px)">
+                    <div className={this.props.classes.starsContainer}>
+                      {stars}
+                    </div>
+                  </Media>
+                }
+                title={this.props.data.author}
+                subheader=<div>
+                  <Media query="(max-width: 350px)">
+                    {stars}
+                  </Media>
+                  <Media query="(min-width: 351px)">
+                    <span>{this.props.data.dateTime}</span>
+                  </Media>
+                </div>
+                />
+              <CardContent >
+              <Typography gutterBottom variant='inherit' component="h2">
+                {''}
+              </Typography>
+              <Typography component="p">
+                {this.props.data.comment}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+          <CardActions
+            style={{marginTop:'0px',paddingTop:'0px'}}
+            >
+            {this.renderBottomLine.bind(this)()}
+            {ups}
+          </CardActions>
+        </Card>
+      );
+    }
+  }
+
+    Feedback.propTypes = {
+      classes: PropTypes.object.isRequired,
+    };
+/*
+this.props.data={
+  author:
+  comment:
+  mark:
+  dateTime:
+
+  rentedFrom:
+  rentedTo:
+  rentedItem:
+
+  recepient:
+
+}
+
+*/
+    export default withStyles(styles)(Feedback);

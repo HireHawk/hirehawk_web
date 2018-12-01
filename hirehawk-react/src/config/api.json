@@ -1,9 +1,17 @@
 {
   "userapi":{
-    "uri":"192.168.1.1:8200",
-    "port":"8080",
+    "uri":"localhost:8200",
     "endPoints":{
       "register":"register"
+    }
+  },
+  "feedbackapi":{
+    "uri":"176.37.65.30:8205",
+    "endPoints":{
+      "getAdvert":"?",
+      "getAdverts":"manageAdverts/getChosen",
+      "getAllAdverts":"manageAdverts/getAll",
+      "createAdvert":"manageAdverts/create"
     }
   },
   "advertapi":{
@@ -16,7 +24,7 @@
     }
   },
   "searchapi":{
-    "uri":"localhost:8213",
+    "uri":"176.37.65.30:8213",
     "auth":{
       "login":"api",
       "password":"Vac"
