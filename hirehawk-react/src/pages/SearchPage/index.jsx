@@ -42,15 +42,15 @@ class SearchPage extends React.Component{
             });*/
    }
    handleSearch(searchParams){
-     //getLinks (search API)
-     let ids= ['5bfc3a497144446e33c4add1','5bdf2dc9b244a90ee0ee4c91'];
-     SearchAPI.searchAdverts(this.state.searchParams);
-     this.setState({
-       advertIDs:ids,
-       adverts:[]
-     });
-
-      this.getAdvertsByIDs(ids);
+     //getLinks (search API);
+     SearchAPI.searchAdverts(this.state.searchParams).then((ids)=>{
+       this.setState({
+         advertIDs:ids,
+         adverts:[]
+       });
+       alert(JSON.stringify(ids));
+    this.getAdvertsByIDs(ids);
+    });
    }
    handleSearchParamsChange(searchParams){
      this.setState({

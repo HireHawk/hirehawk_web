@@ -114,7 +114,7 @@ const styles = {
               minimum renting time: {this.state.advert.num_of_hours}
             </div>
             <div>
-              creation date: {this.state.advert.date}
+              creation date: {(new Date(this.state.advert.date)).toLocaleString()}
             </div>
             <p style={{color:'red',backgrondColor:'black'}}>Also advert creation date is somehow null</p>
             <AdvertFeedback

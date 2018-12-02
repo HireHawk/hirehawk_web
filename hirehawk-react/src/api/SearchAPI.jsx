@@ -25,14 +25,14 @@ class SearchAPI {
       if(minPricePerDay)req.query({minPrice: minPricePerDay});
       if(maxPricePerDay)req.query({maxPrice:maxPricePerDay});
       if(num_of_hours)req.query({num_of_hours:num_of_hours});
-          req.on('error', err => {
+      req = req.on('error', err => {
                 console.log('error obtaining search results');
             })
             .then((res) => {
               console.log('got Search results: ' + JSON.stringify(res.body));
               return res.body;
             })
-      return
+      return req;
     };
 }
 
