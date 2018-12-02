@@ -88,7 +88,7 @@ const styles = {
         */
         this.state={
           mark:3,
-          comment:'',
+          comment:'someText',
         }
       }
     handleStarsClicked(next, prev, name){
@@ -99,7 +99,13 @@ const styles = {
     handleCommentDivFocus(evt){/*
       evt.target.findElementsByClassName(this.props.classes.editableP)[0].focus();*/
     }
+    handleCommentChange(evt){
+      this.setState({
+        comment:evt.target.innerText,
+      })
+    }
     handleSubmit(evt){
+
       this.props.onSubmit(this.state);
     }
     render(){
@@ -125,7 +131,11 @@ const styles = {
           </div>
           <div className={this.props.classes.commentContainer}>
             <div className={this.props.classes.editableDiv} onFocus={this.handleCommentDivFocus.bind(this)}>
-                <p className={this.props.classes.editableP} autofocus onFocus={(evt)=>evt.stopPropagation()}contentEditable="true">someText</p>
+                <p className={this.props.classes.editableP}
+                  autofocus onFocus={(evt)=>evt.stopPropagation()}
+                  contentEditable="true"
+                  onInput={this.handleCommentChange.bind(this)}
+                  ><br/></p>
             </div>
           </div>
           <div className={this.props.classes.buttonContainer}>

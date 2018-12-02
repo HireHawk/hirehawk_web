@@ -4,12 +4,10 @@
 import React from 'react'
 import qs from 'qs'
 //internal dependencies
-import HireHawkLogo from 'components/HireHawkLogo';
 import AdvertSearch from 'containers/AdvertSearch';
 import './styles.css'
 import 'styles/positioning.css'
 // test data
-import HireHawkLogoImage from 'test/media/images/HireHawkLogoImage.png'
 import AdvertList from 'containers/AdvertList'
 import Button from '@material-ui/core/Button';
 import DetailedSearch from 'containers/DetailedSearch'
@@ -59,9 +57,6 @@ class SearchPage extends React.Component{
        searchParams:searchParams,
      });
    }
-   componentDidMount(){
-
-   }
    render(){
     return (
     <div className='overflowXHidden searchPage' style={{background:`url(${Background})`}}>
@@ -72,7 +67,9 @@ class SearchPage extends React.Component{
                       adverts={undefined}
                       history={this.props.history}
               />
-            <AdvertList className='searchPage-advertList' adverts ={this.state.adverts}></AdvertList>
+            <AdvertList className='searchPage-advertList'
+              adverts ={this.state.adverts}
+              history={this.props.history}></AdvertList>
     </div>);
   }
 };

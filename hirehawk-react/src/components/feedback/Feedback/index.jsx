@@ -5,12 +5,10 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import StarRatingComponent from 'components/StarRatingComponent'
 import Media from 'react-media'
@@ -90,7 +88,7 @@ const styles = {
               this.forceUpdate()
               if(this.upped)this.liked+=1;
               else this.liked-=1;
-            }).bind(this)}
+            })}
             >
           <ThumbUpIcon color={this.upped?'primary':'disabled'}/>
           <span style={{color:(this.upped?'darkblue':'darkgrey')}}>{this.liked}</span>

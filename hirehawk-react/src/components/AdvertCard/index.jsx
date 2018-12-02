@@ -10,6 +10,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import './styles.css'
+import qs from 'qs'
 
 const styles = {
   card: {
@@ -19,8 +20,15 @@ const styles = {
       height: '100%',
     },
   };
-
   class AdvertCard extends React.Component{
+    handleAdvertDetailsClicked(evt){
+      let params=qs.stringify({id:this.props.data.id})
+       this.props.history.push({
+         pathname: '/advert',
+         search: params,
+         state: {}
+       });
+    }
     render(){
       var {classes} = this.props;
       return (
@@ -29,14 +37,14 @@ const styles = {
             <CardMedia
               className={classes.media}
               image={this.props.data.picture}
-              title={this.props.data.description}
+              title={this.props.data.info}
               />
             <CardContent>
               <Typography gutterBottom variant='inherit' component="h2">
                 {this.props.data.name}
               </Typography>
               <Typography component="p">
-                {this.props.data.desctiption}
+                {this.props.data.info}
               </Typography>
             </CardContent>
           </CardActionArea>
@@ -44,7 +52,7 @@ const styles = {
             <Button size="small" color="primary">
               I am interested!
             </Button>
-            <Button size="small" color="primary">
+            <Button size="small" color="primary" onClick = {this.handleAdvertDetailsClicked.bind(this)}>
               Details
             </Button>
             <Button size="small" variant="outlined" className={classes.button}>

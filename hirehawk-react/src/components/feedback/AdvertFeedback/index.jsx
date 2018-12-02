@@ -18,12 +18,31 @@ import Feedback from 'components/feedback/Feedback'
 import FeedbackList from 'components/feedback/FeedbackList'
 import FeedbackInput from 'components/feedback/FeedbackInput'
 import FeedbackUtils from 'classes/data/FeedbackUtils'
+import 'styles/positioning.css'
 const styles = {
     root:{
       height:'90%'
     },
     flist:{
       height:'60%'
+    },
+    caption:{
+      position:'absolute',
+      display:'inline-block',
+      margin:'0 auto',
+      paddingRight:'15px',
+      paddingLeft:'15px',
+      paddingBottom:'5px',
+      paddingTop:'0',
+      fontSize:'1.5em',
+      background:'rgba(0,0,0,0.5)',
+      borderTop:'2px solid #444',
+      color:'#000',
+      fontWeight:'bold',
+      textShadow: '#DFD 0 0 5px',
+      borderBottomLeftRadius:'1em',
+      borderBottomRightRadius:'1em',
+      zIndex:'10',
     }
   };
 
@@ -52,7 +71,10 @@ const styles = {
     render(){
       return (
         <div className={this.props.classes.root+' '+this.props.className} style={this.props.style}>
-          <FeedbackList className={this.props.classes.flist} feedbacks = {this.state.feedbacks}>
+          {this.props.caption?<div className={this.props.classes.caption+' centeredX'}>
+            {this.props.caption}
+          </div>:''}
+          <FeedbackList className={this.props.classes.flist+ ' '+ this.props.listClassName} feedbacks = {this.state.feedbacks}>
           </FeedbackList>
           <FeedbackInput
             onSubmit={this.handleInputSubmitted.bind(this)}

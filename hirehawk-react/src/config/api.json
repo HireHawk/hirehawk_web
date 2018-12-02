@@ -1,8 +1,14 @@
 {
   "userapi":{
-    "uri":"localhost:8200",
+    "uri":"176.37.65.30:8200",
     "endPoints":{
-      "register":"register"
+      "get":"public/get"
+    }
+  },
+  "keycloakmicroserviceapi":{
+    "uri":"176.37.65.30:8220",
+    "endPoints":{
+      "get":"public/get"
     }
   },
   "feedbackapi":{

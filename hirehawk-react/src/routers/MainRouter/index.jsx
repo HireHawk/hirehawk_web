@@ -10,6 +10,7 @@ import {Route, Switch, BrowserRouter } from 'react-router-dom' //use Link to cre
 import TestRouter from 'routers/TestRouter'
 import ChatPage from 'pages/chat/ChatPage'
 import ChatListPage from 'pages/chat/ChatListPage'
+import ViewAdvert from 'pages/Adverts/ViewAdvert'
 
 class MainRouter extends React.Component{
 
@@ -20,6 +21,7 @@ class MainRouter extends React.Component{
             <Route path="/login"    component={LoginPage}/>
             <Route path="/register" component={RegisterPage}/>
             <Route path="/createAdvert" component={CreateAdvert}/>
+            <Route path="/advert" component={ViewAdvert}/>
             <Route path='/search'  component={SearchPage}/>
             <Route path="/tests"   component={TestRouter}/>
             <Route path="/chat" component={ChatPage}/>

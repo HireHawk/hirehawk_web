@@ -11,7 +11,11 @@ import AdvertCard from 'components/AdvertCard'
           <div className={['advertList',this.props.className].join(' ')}>
                {this.props.adverts.map((e)=>{
                  return (
-                   <AdvertCard style={{display:'inline-block',width:'100vw', margin:'15px'}} key ={e.name} data = {e}>
+                   <AdvertCard
+                      style={{display:'inline-block',width:'100vw', margin:'15px'}}
+                       key ={e.name}
+                       data = {e}
+                       history={this.props.history}>
                    </AdvertCard>
                  );}
                )}

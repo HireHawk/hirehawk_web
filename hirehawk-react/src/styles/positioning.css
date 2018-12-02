@@ -14,13 +14,13 @@
 }
 .centeredX {
   display:inline-block;
-  position: relative;
+  /*position:relative;*/
   left:50%;
   transform: translate(-50%, 0);
 }
 .centeredY {
   display:inline-block;
-  position: relative;
+    /*position:relative;*/
   top: 50%;
   transform: translate(0, -50%);
 }

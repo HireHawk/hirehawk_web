@@ -17,7 +17,6 @@ import Media from 'react-media'
 import Feedback from 'components/feedback/Feedback'
 const styles = {
     list:{
-      background:'white',
       padding:'1px',
       maxHeight:'60%',
       overflowY:'auto'
@@ -33,11 +32,9 @@ const styles = {
                           (feedback)=>{
                               return <Feedback key={feedback.author} data={feedback}/>
                             }):'';
-      alert(advertList);
       advertList.reverse();
-      alert(advertList);
       return(
-        <div className={this.props.classes.list}>
+        <div className={this.props.classes.list+' '+this.props.className}>
           {advertList}
         </div>
       );
