@@ -48,7 +48,6 @@ class SearchPage extends React.Component{
          advertIDs:ids,
          adverts:[]
        });
-       alert(JSON.stringify(ids));
     this.getAdvertsByIDs(ids);
     });
    }
