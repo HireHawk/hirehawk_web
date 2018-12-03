@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import FeedbackList from 'components/feedback/FeedbackList'
 import FeedbackInput from 'components/feedback/FeedbackInput'
 import FeedbackUtils from 'classes/data/FeedbackUtils'
+import FeedbackAPI from 'api/FeedbackAPI'
 import 'styles/positioning.css'
 const styles = {
     root:{
@@ -38,17 +39,21 @@ const styles = {
       constructor(props){
         super(props);
         this.state={
-          feedbacks:FeedbackUtils.getTestFeedbacks(),
+          feedbacks:[],
           inputComment:[],
           inputMark:[],
         }
+        this.updateFeedbackList();
       }
-
+    updateFeedbackList(){
+      FeedbackAPI.getForAdvert(this.props.advertId, 10).then((adverts)=>{
+        this.setState({
+          feedbacks:adverts.map((advert)=>FeedbackUtils.convertApiFeedback(advert)),
+        })
+      })
+    }
     handleInputSubmitted(data){
-      var feedback = FeedbackUtils.toFeedback(data);
-      feedback.dateTime= new Date().toLocaleString();
-      this.state.feedbacks.push(feedback);
-      this.forceUpdate();
+      this.updateFeedbackList()
     }
     reverse(arr) {
         var result = [];

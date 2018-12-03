@@ -77,5 +77,9 @@ class FeedbackUtils {
                 .replace('m', month[date.getMonth()]);
 
   }
+  convertApiFeedback(feedback){
+    alert(JSON.stringify(feedback));
+    return FeedbackUtils.getEmptyFeedback();
+  }
 }
 export default FeedbackUtils;

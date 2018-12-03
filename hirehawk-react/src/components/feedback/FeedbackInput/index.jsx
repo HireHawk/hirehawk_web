@@ -100,12 +100,7 @@ const styles = {
         comment:evt.target.innerText,
       })
     }
-    sendToServer(data){
-
-    }
     handleSubmit(evt){
-      alert(Date.now().toLocaleString());
-      this.state.authorName=KeycloakUtils.getUserInfo(this.props.keycloak).name;
       this.props.keycloak.updateToken(30).then(()=>{
         this.setState({
           processing:true,

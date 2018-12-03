@@ -14,9 +14,9 @@
   "feedbackapi":{
     "uri":"176.37.65.30:8205",
     "endPoints":{
-      "getForUser":"get_feedbacks",
-      "getForAdvert":"get_feedbacks_by_advert",
-      "post":"create_feedback"
+      "getForUser":"manageFeedbacks/get_feedbacks",
+      "getForAdvert":"manageFeedbacks/get_feedbacks_by_advert",
+      "post":"manageFeedbacks/create_feedback"
     }
   },
   "advertapi":{
