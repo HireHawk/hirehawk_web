@@ -102,7 +102,7 @@ const styles = {
                 avatar={
                    <Media query="(min-width: 721px)">
                      <Avatar aria-label="Recipe" className={classes.avatar}>
-                       {this.props.data.author[0]}
+                       {this.props.data.authorName[0]}
                      </Avatar>
                    </Media>
                 }
@@ -113,7 +113,7 @@ const styles = {
                     </div>
                   </Media>
                 }
-                title={this.props.data.author}
+                title={this.props.data.authorName}
                 subheader=<div>
                   <Media query="(max-width: 350px)">
                     {stars}
@@ -148,7 +148,8 @@ const styles = {
     };
 /*
 this.props.data={
-  author:
+  authorName:
+  authorPhoto:
   comment:
   mark:
   dateTime:

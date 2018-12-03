@@ -20,7 +20,7 @@ class AdvertAPI {
                 console.log('getAllAdverts encountere error');
             })
             .then((res) => {
-              console.log('got JSON advert: ' + JSON.stringify(res.body));
+              /*console.log('got JSON advert: ' + JSON.stringify(res.body));*/
               return res.body;
             })
     };
@@ -31,7 +31,7 @@ class AdvertAPI {
                 console.log('getAdvertsByList encountered error');
             })
             .then((res) => {
-              console.log('got JSON advert: ' + JSON.stringify(res.body));
+            /*  console.log('got JSON advert: ' + JSON.stringify(res.body));*/
               return res.body;
             })
     };

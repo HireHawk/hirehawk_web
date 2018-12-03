@@ -6,7 +6,7 @@ class FeedbackUtils {
     let converted =
      {
        mark:(someClass.mark!==undefined)?someClass.mark:0,
-       author:someClass.author?someClass.author:'',
+       authorName:someClass.authorName?someClass.authorName:'',
        dateTime:someClass.dateTime?someClass.dateTime:'',
        comment:someClass.comment,
        rentedItem: someClass.rentedItem,
@@ -20,7 +20,7 @@ class FeedbackUtils {
   static getEmptyFeedback(){
     return {
         mark:0,
-        author:'',
+        authorName:'',
         dateTime:'',
         comment: '',
         rentedItem: '?',
@@ -34,18 +34,18 @@ class FeedbackUtils {
     return [
         {
           mark:1,
-          author:'Stan Doe',
+          authorName:'Stan Doe',
           dateTime:'October 2th, 2018',
           comment: 'I hate this hat! I hate this hatI hate this hatI hate this hatI hate this hatI hate this hatI hate this hat',
           rentedItem: 'Hat',
           rentedFrom: '10.9.18',
           rentedTo:   '15.9.18',
-          likes: 3,
-          isLiked:true
+          likes: 5,
+          isLiked:false
         },
         {
           mark:5,
-          author:'Super Ego',
+          authorName:'Super Ego',
           dateTime:'October 12th, 2018',
           comment: 'Nice hat!',
           rentedItem: 'Hat',
@@ -56,16 +56,26 @@ class FeedbackUtils {
         },
         {
           mark:3,
-          author:'John Sceptic',
+          authorName:'John Sceptic',
           dateTime:'October 21th, 2018',
           comment: 'worn out',
           rentedItem: 'Hat',
           rentedFrom: '12.10.18',
           rentedTo:   '21.10.18',
-          likes: 3,
+          likes: 4,
           isLiked:true
         }
       ];
+  }
+  static convertDate(date){
+    let month =new Array("Jan", "Feb", "Mar",
+    "Apr", "May", "Jun", "Jul", "Aug", "Sep",
+    "Oct", "Nov", "Dec");
+
+    return 'Y m d'.replace('Y', date.getFullYear())
+                .replace('d', date.getDate())
+                .replace('m', month[date.getMonth()]);
+
   }
 }
 export default FeedbackUtils;

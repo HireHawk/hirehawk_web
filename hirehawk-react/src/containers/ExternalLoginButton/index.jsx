@@ -2,7 +2,7 @@
 import React from 'react';
 import Keycloak from 'keycloak-js';
 import keycloakConfig from 'config/keycloak.json'
-
+import KeycloakUtils from 'classes/data/KeycloakUtils'
 import {connect} from 'react-redux'
 class ExternalLoginButton extends React.Component {
 
@@ -28,8 +28,6 @@ class ExternalLoginButton extends React.Component {
  getToken=()=>{
    //let Copied = this.props.keycloak.token.createTextRange();
    //Copied.execCommand("Copy");
-
-   alert(this.props.keycloak.token);
    this.setState({
      clickToken:this.props.keycloak.token
    })
@@ -38,17 +36,14 @@ class ExternalLoginButton extends React.Component {
   render() {
     if (this.props.keycloak) {
         if (this.props.kcAuthenticated){
-          if(!this.state.name){
-            this.props.keycloak.loadUserProfile().success(((profile)=>{
-                  this.setState.bind(this)({name:profile.firstName+' '+profile.lastName});
-                })).error((()=> {
-                  alert('Failed to load user profile');
-                  this.setState.bind(this)({name:undefined});
-                }));
-          }
+          let name = KeycloakUtils.getUserInfo(this.props.keycloak).name;
           return (
             <div>
-              <button style = {this.props.button.style}       className = {this.props.button.className} onClick={this.handleLogout.bind(this)}>Logout ({this.state.name})</button>
+              <button style = {this.props.button.style}
+                      className = {this.props.button.className}
+                      onClick={this.handleLogout.bind(this)}>
+                        Logout ({name})
+                      </button>
               <button style = {this.props.button.tokenStyle}  className = {this.props.button.tokenClassName} onClick={this.getToken.bind(this)}>Click to get token</button>
               {this.state.clickToken?<input type='text' style={{zIndex:100}} value={this.state.clickToken}/>:' '}
             </div>

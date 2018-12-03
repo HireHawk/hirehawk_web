@@ -22,6 +22,7 @@ class SearchAPI {
         console.log('added category to search: '+SearchUtils.categoryToString(params.category));
       }
       //if(params.info)req.set('info', params.query);
+      req.query({info:params.fullText});
       if(minPricePerDay)req.query({minPrice: minPricePerDay});
       if(maxPricePerDay)req.query({maxPrice:maxPricePerDay});
       if(num_of_hours)req.query({num_of_hours:num_of_hours});

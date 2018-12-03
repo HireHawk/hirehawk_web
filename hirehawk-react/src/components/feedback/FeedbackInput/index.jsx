@@ -1,21 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardHeader from '@material-ui/core/CardHeader';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Input from '@material-ui/core/Input';
 import StarRatingComponent from 'components/StarRatingComponent'
-import Media from 'react-media'
+/*import Media from 'react-media'*/
 import {connect} from 'react-redux'
+import KeycloakUtils from 'classes/data/KeycloakUtils'
+import FeedbackAPI from 'api/FeedbackAPI'
+import FeedbackUtils from 'classes/data/FeedbackUtils'
 const styles = {
     stars:{
       fontSize:'2.5em',
@@ -38,7 +30,6 @@ const styles = {
     },
     commentContainer:{
       position:'relative',
-      top:'0',
       display:'inline-block',
       paddingLeft:'20px',
       paddingTop:'3px',
@@ -89,6 +80,11 @@ const styles = {
         this.state={
           mark:3,
           comment:'someText',
+          userId:undefined,
+          username:undefined,
+          userphoto:undefined,
+
+          processing:false,
         }
       }
     handleStarsClicked(next, prev, name){
@@ -104,11 +100,35 @@ const styles = {
         comment:evt.target.innerText,
       })
     }
-    handleSubmit(evt){
+    sendToServer(data){
 
-      this.props.onSubmit(this.state);
+    }
+    handleSubmit(evt){
+      alert(Date.now().toLocaleString());
+      this.state.authorName=KeycloakUtils.getUserInfo(this.props.keycloak).name;
+      this.props.keycloak.updateToken(30).then(()=>{
+        this.setState({
+          processing:true,
+        },()=>FeedbackAPI.post(this.state.mark,
+                               this.state.comment,
+                               FeedbackUtils.convertDate(new Date()),
+                               this.props.userId,
+                               this.props.userRole,
+                               this.props.advertId,
+                               this.props.keycloak.token).then(
+              ()=>{
+                  this.setState({
+                    processing:false,
+                  })
+                  if(this.props.onSubmit)this.props.onSubmit(this.state);
+                }
+              )
+        )
+      });
+
     }
     render(){
+
       let stars = (
         <StarRatingComponent
           className={this.props.classes.stars}
@@ -121,6 +141,18 @@ const styles = {
           editing={true} /* is component available for editing, default `true` */
           />
       );
+      if(!KeycloakUtils.getUserInfo(this.props.keycloak).user_id)
+        return (
+            <div style={{height:"2em", textAlign:"center"}} className={this.props.classes.root}>
+              login to add a comment!
+            </div>
+        )
+      if(this.state.processing)
+        return (
+            <div style={{height:"2em", textAlign:"center"}} className={this.props.classes.root}>
+              Your comment is flying through the wires...
+            </div>
+        )
       return (
         <div className={this.props.classes.root}>
           <div style={{display:'inline-block',position:'static',width:'12em'}}>
@@ -136,20 +168,23 @@ const styles = {
                   contentEditable="true"
                   onInput={this.handleCommentChange.bind(this)}
                   ><br/></p>
+              </div>
+            </div>
+            <div className={this.props.classes.buttonContainer}>
+              <Button  onClick={this.handleSubmit.bind(this)}>
+                Submit!
+              </Button>
             </div>
           </div>
-          <div className={this.props.classes.buttonContainer}>
-            <Button  onClick={this.handleSubmit.bind(this)}>
-              Submit!
-            </Button>
-          </div>
-        </div>
       );
     }
   }
 
     FeedbackInput.propTypes = {
       classes: PropTypes.object.isRequired,
+      userId: PropTypes.string,
+      userRole: PropTypes.string,
+      advertId: PropTypes.string
     };
 /*
 this.props.data={

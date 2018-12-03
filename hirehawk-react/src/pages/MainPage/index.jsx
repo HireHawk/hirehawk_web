@@ -8,7 +8,6 @@ import BlockLink from 'components/BlockLink';
 import HireHawkLogo from 'components/HireHawkLogo';
 import ExternalLoginButton from 'containers/ExternalLoginButton';
 import AdvertSearch from 'containers/AdvertSearch';
-import keycloakAPI from 'api/KeycloakAPI'
 import AdvertAPI from 'api/AdvertAPI'
 // props and styles
 import './styles.css'

@@ -14,7 +14,7 @@ class DurationInput extends React.Component{
       ...this.props.value,
       weeks:this.getNumber(this.props.value.weeks),
       days:this.getNumber(this.props.value.days),
-      days:this.getNumber(this.props.value.hours),
+      hours:this.getNumber(this.props.value.hours),
     })
   }
   getNumber(string){

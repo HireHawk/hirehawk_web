@@ -78,6 +78,7 @@ const styles = {
       }
     render(){
       let contents = 'wait for it...';
+
       if(this.state.advert){
         contents = (
           <div className={this.props.classes.content}>
@@ -120,7 +121,10 @@ const styles = {
             <AdvertFeedback
                caption = 'feedback'
                className ={this.props.classes.advertFeedback}
-               listClassName={this.props.classes.advertFeedbackList}/>
+               listClassName={this.props.classes.advertFeedbackList}
+               advertId ={this.props.id}
+               userId = {this.state.author.keycloak?this.state.author.keycloak.id:undefined}
+               userRole = 'GIVER'/>
           </div>
         )
       }
@@ -138,9 +142,7 @@ const styles = {
       classes: PropTypes.object.isRequired,
     };
 /*
-this.props.data={
-  //this.props.advertId
-}
+this.props.id
 */
 
     export default withStyles(styles)(FullAdvert);

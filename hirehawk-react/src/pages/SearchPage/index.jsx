@@ -4,19 +4,16 @@
 import React from 'react'
 import qs from 'qs'
 //internal dependencies
-import AdvertSearch from 'containers/AdvertSearch';
 import './styles.css'
 import 'styles/positioning.css'
 // test data
 import AdvertList from 'containers/AdvertList'
-import Button from '@material-ui/core/Button';
 import DetailedSearch from 'containers/DetailedSearch'
-import {adverts} from 'test/data.jsx'
 import AdvertAPI from 'api/AdvertAPI'
 import SearchAPI from 'api/SearchAPI'
-import {connect} from 'react-redux'
 import SearchUtils from 'classes/data/SearchUtils'
 import Background from 'media/background.png'
+import Media from 'react-media'
 class SearchPage extends React.Component{
    constructor(props){
      super(props);
@@ -34,7 +31,8 @@ class SearchPage extends React.Component{
          this.state.adverts.push(result);
          this.forceUpdate();
        })
-     }/*
+     }
+     /*
      AdvertAPI.getAdvertsByIdList(ids).then(result =>{
                 this.setState({
                   adverts:result,
@@ -66,9 +64,35 @@ class SearchPage extends React.Component{
                       adverts={undefined}
                       history={this.props.history}
               />
-            <AdvertList className='searchPage-advertList'
-              adverts ={this.state.adverts}
-              history={this.props.history}></AdvertList>
+            <Media query="(min-width: 780px)">
+                {matches =>
+                  matches ? (
+                    <Media query="(min-width: 1300px)">
+                      {matches =>
+                        matches ? (
+                          <AdvertList className='searchPage-advertList'
+                            style={{width:'1250px'}}
+                            adverts ={this.state.adverts}
+                            history={this.props.history}
+                            rowCount={3} />
+                        ) : (
+                          <AdvertList className='searchPage-advertList'
+                            style={{width:'760px'}}
+                            adverts ={this.state.adverts}
+                            history={this.props.history}
+                            rowCount={2} />
+                        )
+                      }
+                    </Media>
+                  ) : (
+                    <AdvertList className='searchPage-advertList'
+                      style={{width:'400px'}}
+                      adverts ={this.state.adverts}
+                      history={this.props.history}
+                      rowCount={1} />
+                  )
+                }
+              </Media>
     </div>);
   }
 };

@@ -6,7 +6,6 @@ class SearchUtils {
     if(!someClass)someClass = {};
     let converted =
      {
-
        query:someClass.query,
        category:someClass.category?someClass.category:[],
        location:someClass.location,

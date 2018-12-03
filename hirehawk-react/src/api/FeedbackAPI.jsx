@@ -2,53 +2,47 @@ import Config from 'config/api.json'
 import request from 'superagent'
 
 class FeedbackAPI{
-    static getForUser(id) {
+    static getForUser(user, role, num) {
       return  request
-            .get('http://' + Config.advertapi.uri + '/' + Config.advertapi.endPoints.getAdvert + '/' + id)
+            .get('http://' + Config.feedbackapi.uri + '/' + Config.feedbackapi.endPoints.getForUser)
+            .query({user:user,role:role,num:num})
             .on('error', err => {
-                console.log('getAdvertById encountered error');
+                console.log('getting feedback for user encountered error');
             })
             .then((res) => {
               console.log('got JSON advert: ' + JSON.stringify(res.body));
               return res.body;
             })
     };
-    static getForAdvert(id) {
+    static getForAdvert(advertId, num) {
       return  request
-            .get('http://' + Config.advertapi.uri + '/' + Config.advertapi.endPoints.getAllAdverts + '/' + id)
+            .get('http://' + Config.feedbackapi.uri + '/' + Config.feedbackapi.endPoints.getForAdvert)
+            .query({advert_id:advertId,num:num})
             .on('error', err => {
-                console.log('getAllAdverts encountere error');
+                console.log('getting feedback for advert encounteree error');
             })
             .then((res) => {
-              console.log('got JSON advert: ' + JSON.stringify(res.body));
+              console.log('got Feedbacks for advert: ' + JSON.stringify(res.body));
               return res.body;
             })
     };
-    static postForAdvert(ids) {
+    static post(mark,comment,datetime,userAbout,userAboutRole,advert,token) {
+
       return  request
-            .get('http://' + Config.advertapi.uri + '/' + Config.advertapi.endPoints.getAdverts + '/' + ids.join(','))
+            .post('http://' + Config.feedbackapi.uri + '/' + Config.feedbackapi.endPoints.post)
+            .set('Authorization', 'Bearer '+token)
+            .query({mark:mark,comment:comment,datetime:datetime})
+            .query({userAbout:userAbout, userAboutRole:userAboutRole})
+            .query({advert})
             .on('error', err => {
-                console.log('getAdvertsByList encountered error');
+                console.log('posting an advert encountered error');
             })
             .then((res) => {
-              console.log('got JSON advert: ' + JSON.stringify(res.body));
+              console.log('posted feedback!: ' + JSON.stringify(res.body));
               return res.body;
             })
     };
 
-    static postForUser(advert,token) {
-        request
-            .post('http://' + Config.advertapi.uri + '/' + Config.advertapi.endPoints.createAdvert)
-            .set('Authorization', 'Bearer '+token)
-            .send(advert)
-            .set('Content-Type', 'application/json')
-            .on('error', err => {
-                console.log('createAdvert encountered error');
-            })
-            .then((res) => {
-                alert('got JSON advert: ' + JSON.stringify(res.body));
-            })
-    }
 }
 
 
