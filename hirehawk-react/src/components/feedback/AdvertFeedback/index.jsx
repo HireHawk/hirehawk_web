@@ -8,6 +8,7 @@ import FeedbackInput from 'components/feedback/FeedbackInput'
 import FeedbackUtils from 'classes/data/FeedbackUtils'
 import FeedbackAPI from 'api/FeedbackAPI'
 import 'styles/positioning.css'
+import UserAPI from 'api/UserAPI'
 const styles = {
     root:{
       height:'90%'
@@ -45,12 +46,30 @@ const styles = {
         }
         this.updateFeedbackList();
       }
+      getFeedbackAuthorInfo(feedback){
+        //authorInfo
+           UserAPI.getKeycloakUserInfo(feedback.userLeft).then(result =>{
+                let updatedFeedback = {...feedback,
+                                           userLeft:result,
+                                           }
+                if(feedback.userAbout)this.getFeedbackRecepientInfo(updatedFeedback);
+                else this.forceUpdate();
+           });
+      }
+      getFeedbackRecepientInfo(feedback){
+           UserAPI.getKeycloakUserInfo(feedback.userAbout).then(result =>{
+                this.state.feedbacks.push({...feedback,
+                                           userAbout:result,
+                                           })
+                this.forceUpdate();
+           });
+      }
     updateFeedbackList(){
       FeedbackAPI.getForAdvert(this.props.advertId, 10).then((adverts)=>{
-        this.setState({
-          feedbacks:adverts.map((advert)=>FeedbackUtils.convertApiFeedback(advert)),
-        })
-      })
+        this.state.feedbacks=[];
+        adverts.map(this.getFeedbackAuthorInfo.bind(this));
+      });
+
     }
     handleInputSubmitted(data){
       this.updateFeedbackList()

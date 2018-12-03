@@ -21,7 +21,7 @@ const styles = {
     },
     advertFeedback:{
       width:'80%',
-      background:'grey',
+      background:'lightgrey',
       /*border:'1px solid grey',*/
       /*boxShadow:'inset 0px 0px 3px 3px white'*/
       margin:'0 auto',
@@ -32,6 +32,7 @@ const styles = {
     },
     advertFeedbackList:{
       maxHeight:'500px',
+      paddingTop:'40px',
     },
     content:{
       padding:'10px',

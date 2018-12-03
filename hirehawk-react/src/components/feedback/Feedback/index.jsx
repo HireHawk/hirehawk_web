@@ -58,9 +58,9 @@ const styles = {
                   }
                 </span>):(
                 <span>
-                  {(this.props.data.recepient)?(
-                     <span>About <span style={{color:'green'}}> {this.props.data.rentedFrom}</span></span>):(
-                     <span>Lost Feeback!</span>)
+                  {(this.props.data.userAbout)?(
+                     <span>About <span style={{color:'green'}}> {this.props.data.userAbout.firstName+' '+this.props.data.userAbout.lastName}</span></span>):(
+                     <span>Lost Feedback!</span>)
                   }
                 </span>)
             }
@@ -102,7 +102,7 @@ const styles = {
                 avatar={
                    <Media query="(min-width: 721px)">
                      <Avatar aria-label="Recipe" className={classes.avatar}>
-                       {this.props.data.authorName[0]}
+                       {this.props.data.userLeft.firstName?this.props.data.userLeft.firstName[0]:' '}
                      </Avatar>
                    </Media>
                 }
@@ -113,7 +113,7 @@ const styles = {
                     </div>
                   </Media>
                 }
-                title={this.props.data.authorName}
+                title={this.props.data.userLeft?this.props.data.userLeft.firstName+' '+this.props.data.userLeft.lastName:'unknown user'}
                 subheader=<div>
                   <Media query="(max-width: 350px)">
                     {stars}
@@ -148,7 +148,7 @@ const styles = {
     };
 /*
 this.props.data={
-  authorName:
+  UserLeft:
   authorPhoto:
   comment:
   mark:
@@ -158,7 +158,7 @@ this.props.data={
   rentedTo:
   rentedItem:
 
-  recepient:
+  userAbout:
 
 }
 
