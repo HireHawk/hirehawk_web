@@ -60,5 +60,21 @@
         "setMessagesAsReaded": "setMessagesAsReaded"
       }
     }
+  },
+  "orderapi":{
+    "uri":"176.37.65.30:8207",
+    "endpoints":{
+      "getGiveOrders":"manageOrders/show_give",
+      "getRetrieveOrders": "manageOrders/show_get",
+      "getNotReturnedOrders":"manageOrders/show_not_isreturn",
+      "getGiveOrdersUntill":"manageOrders/show_depend_date_give",
+      "getRetrieveOrdersUntill": "manageOrders/show_depend_date_get",
+      "getPrice": "manageOrders/getprice",
+      "createOrder": "manageOrders/create_order",
+      "updateTransferStatus": "manageOrders/update_istransfer",
+      "removeByID": "manageOrders/del",
+      "updatePayment": "manageOrders/updatepayment"
+    }
+
   }
 }
