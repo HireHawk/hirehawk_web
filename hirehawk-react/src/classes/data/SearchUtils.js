@@ -28,6 +28,9 @@ class SearchUtils {
     };
     return converted;
   }
+  static toUserSearchParams(someClass){
+    return {query:someClass.query};
+  }
   static getHoursDuration(someClass){
     if((!someClass)||(!someClass.minDuration))return undefined;
     let timePeriod = someClass.minDuration;

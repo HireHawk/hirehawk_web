@@ -8,26 +8,26 @@ import './styles.css'
 import 'styles/positioning.css'
 // test data
 import AdvertList from 'containers/AdvertList'
-import DetailedAdvertSearch from 'containers/search/DetailedAdvertSearch'
-import AdvertAPI from 'api/AdvertAPI'
+import DetailedUserSearch from 'containers/search/DetailedUserSearch'
+import UserAPI from 'api/UserAPI'
 import SearchAPI from 'api/SearchAPI'
 import SearchUtils from 'classes/data/SearchUtils'
 import Background from 'media/background.png'
 import Media from 'react-media'
-class SearchPage extends React.Component{
+class UserSearchPage extends React.Component{
    constructor(props){
      super(props);
      let link = qs.parse(this.props.location.search, { ignoreQueryPrefix: true });
      this.state={
-       searchParams:SearchUtils.toSearchParams(link),
+       searchParams:SearchUtils.toUserSearchParams(link),
        advertIDs:[],
        adverts:[],
      };
      this.handleSearch(this.state.searchParams);
    }
-   getAdvertsByIDs(ids){
+   getClientsByIDs(ids){
      for(let id of ids){
-       AdvertAPI.getAdvertById(id).then(result =>{
+       UserAPI.getKeycloakUserInfo(id).then(result =>{
          this.state.adverts.push(result);
          this.forceUpdate();
        })
@@ -41,12 +41,12 @@ class SearchPage extends React.Component{
    }
    handleSearch(searchParams){
      //getLinks (search API);
-     SearchAPI.searchAdverts(this.state.searchParams).then((ids)=>{
+     SearchAPI.searchUsers(this.state.searchParams.query).then((ids)=>{
        this.setState({
          advertIDs:ids,
          adverts:[]
        });
-    this.getAdvertsByIDs(ids);
+    this.getClientsByIDs(ids);
     });
    }
    handleSearchParamsChange(searchParams){
@@ -57,7 +57,7 @@ class SearchPage extends React.Component{
    render(){
     return (
     <div className='overflowXHidden searchPage' style={{background:`url(${Background})`}}>
-      <DetailedAdvertSearch onSearch={this.handleSearch.bind(this)}
+      <DetailedUserSearch onSearch={this.handleSearch.bind(this)}
                       onChange={this.handleSearchParamsChange.bind(this)}
                       searchParams={this.state.searchParams}
                       className='searchPage-detailedSearch'
@@ -96,4 +96,4 @@ class SearchPage extends React.Component{
     </div>);
   }
 };
-export default SearchPage;
+export default UserSearchPage;

@@ -3,7 +3,7 @@ import React from 'react'
 
 import './styles.css'
 import 'styles/positioning.css'
-import SearchBar from './main/SearchBar'
+import SearchBar from 'containers/search/SearchBar'
 import CategoryRow from './main/CategoryRow'
 import RentPriceInput from 'components/RentPriceInput'
 import DurationInput from 'components/DurationInput'
@@ -91,7 +91,8 @@ class AdvertSearch extends React.Component{
           <SearchBar className='detailedSearch-SearchBar'
                      inputClassName='detailedSearch-SearchBarInput'
                      value={this.props.searchParams.query}
-                     onChange={this.onQueryUpdate.bind(this)}/>
+                     onChange={this.onQueryUpdate.bind(this)}
+                     history={this.props.history}/>
 
         </div>
         <div className ='detailedSearch-part' id ='detailedSearch-location'>
@@ -119,9 +120,6 @@ class AdvertSearch extends React.Component{
         </div>
       </div>
       <div className ='detailedSearch-part' id ='detailedSearch-categorySpecific'>
-      </div>
-      <div className ='detailedSearch-part' >
-        <button className='detailedSearch-SearchButton' onClick={this.onSearchClicked.bind(this)}>Search!</button>
       </div>
     </div>);
   }

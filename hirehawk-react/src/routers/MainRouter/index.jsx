@@ -4,6 +4,7 @@ import React from 'react'
 import MainPage from 'pages/MainPage'
 import LoginPage from 'pages/authorization/LoginPage'
 import SearchPage from 'pages/SearchPage'
+import UserSearchPage from 'pages/UserSearchPage'
 import RegisterPage from 'pages/authorization/RegisterPage'
 import CreateAdvert from 'pages/Adverts/CreateAdvert'
 import {Route, Switch, BrowserRouter } from 'react-router-dom' //use Link to create links
@@ -23,6 +24,7 @@ class MainRouter extends React.Component{
             <Route path="/createAdvert" component={CreateAdvert}/>
             <Route path="/advert" component={ViewAdvert}/>
             <Route path='/search'  component={SearchPage}/>
+            <Route path='/userSearch'  component={UserSearchPage}/>
             <Route path="/tests"   component={TestRouter}/>
             <Route path="/chat" component={ChatPage}/>
             <Route path="/chatlist" component={ChatListPage}/>

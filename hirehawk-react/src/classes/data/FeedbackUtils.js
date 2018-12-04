@@ -78,7 +78,7 @@ class FeedbackUtils {
 
   }
   static convertApiFeedback(stateRef, feedback){
-    
+
     return FeedbackUtils.getEmptyFeedback();
   }
 }

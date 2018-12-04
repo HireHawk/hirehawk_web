@@ -35,6 +35,23 @@ class SearchAPI {
             })
       return req;
     };
+    static searchUsers(query) {
+      let req = request
+                  .get('http://' + Config.searchapi.uri + '/' + Config.searchapi.endPoints.findAdverts)
+                  .set('Authorization','Basic '+'YXBpOlZhYw==');//btoa(Config.searchapi.auth.username+":"+Config.searchapi.auth.password));
+
+      //searchValue(String, optional), category(String, optional), info(boolean, option$
+        req.query({searchValue:query});
+
+      req = req.on('error', err => {
+                console.log('error obtaining user search results');
+            })
+            .then((res) => {
+              console.log('got user Search results: ' + JSON.stringify(res.body));
+              return res.body;
+            })
+      return req;
+    };
 }
 
 
