@@ -4,6 +4,7 @@ import SearchUtils from 'classes/data/SearchUtils'
 
 class SearchAPI {
     static searchAdverts(params) {
+
       let newParams={};
       let req = request
                   .get('http://' + Config.searchapi.uri + '/' + Config.searchapi.endPoints.findAdverts)
@@ -16,6 +17,10 @@ class SearchAPI {
       if(params.query){
         req.query({searchValue:params.query});
         console.log('added query to search: '+params.query);
+      }
+      if(params.location){
+        req.query({location:params.location});
+        console.log('added location to search: '+params.location);
       }
       if(params.category.length){
         req.query({category:SearchUtils.categoryToString(params.category)});

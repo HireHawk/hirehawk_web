@@ -44,7 +44,7 @@ class RentPriceInput extends React.Component{
     if(this.state.showDetails)
       details =(
       <span>
-        <SimpleDropdown options={['uah','usd','rub']} className='rentPrice-periodInput' styleButton={{paddingLeft:0,paddingRight:0}} value={this.props.value.currency} onChange={this.onCurrencyChanged.bind(this)}/>/
+        <SimpleDropdown options={['acp','uah','usd','rub']} className='rentPrice-periodInput' styleButton={{paddingLeft:0,paddingRight:0}} value={this.props.value.currency} onChange={this.onCurrencyChanged.bind(this)}/>/
         <SimpleDropdown options={['hour','day','week']} className='rentPrice-periodInput' styleButton={{paddingLeft:0,paddingRight:0}} value={this.props.value.period} onChange={this.onPeriodChanged.bind(this)}/>
       </span>);
     else details=this.props.value.currency+'/'+this.props.value.period;

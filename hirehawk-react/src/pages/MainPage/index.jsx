@@ -23,7 +23,14 @@ class MainPage extends React.Component{
      this.state={};
    }
    handleGiveThingsClick(){
-
+     this.props.history.push({
+       pathname: '/createAdvert'
+     });
+   }
+   handleTakeThingsClick(){
+     this.props.history.push({
+       pathname: '/search'
+     });
    }
    handleLoginPopup(){
      alert('aa');
@@ -41,16 +48,16 @@ class MainPage extends React.Component{
 
    }
    render(){
+  /*   <Button onClick={this.TEST_handleGetAdverts.bind(this)}>AdvertButton</Button>
+     <Button onClick={this.TEST_handleCreateAdvertPage.bind(this)}>Create advert page!</Button>*/
     return (
     <div className='fullScreen'>
-      <Button onClick={this.TEST_handleGetAdverts.bind(this)}>AdvertButton</Button>
-      <Button onClick={this.TEST_handleCreateAdvertPage.bind(this)}>Create advert page!</Button>
       <HireHawkLogo image={HireHawkLogoImage} className='mainPage-mainLogo'/>
       <ExternalLoginButton button={{style:{}, className:'mainPage-loginButton'}} style={{zIndex:100}} tokenStyle={{zIndex:100}}/>
       <AdvertSearch className='mainPage-advertSearch' history={this.props.history} > </AdvertSearch>
       <div className='mainPage-imageLinkContainer'>
         <BlockLink name='Give things!' className='mainPage-imageLink' onClick={this.handleGiveThingsClick} backgroundImage={Bike}/>
-        <BlockLink name='Take things!' className='mainPage-imageLink' onClick={this.handleGiveThingsClick} backgroundImage={Hat}/>
+        <BlockLink name='Take things!' className='mainPage-imageLink' onClick={this.handleTakeThingsClick} backgroundImage={Hat}/>
       </div>
         {/*temporary elements (design/etc)*/}
       {/*<div style = {{position:'absolute', top:'60%', left:0, width:'100%', background:'black', height:'40%', zIndex:-1}}/>

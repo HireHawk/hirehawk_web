@@ -35,13 +35,16 @@ const styles = {
     }
     render(){
       var {classes} = this.props;
+      var photo =undefined;
+      if(this.props.data.photo) photo= this.props.data.photo;
+      else if(this.props.data.mainLink)photo = this.props.data.mainLink;
       if(this.props.data.photo==null)this.props.data.photo=undefined
       return (
         <Card className={classes.card} style={{...{margin:'15px'}, ...this.props.style}}>
-          <CardActionArea>
+          <CardActionArea style={{width:'100%'}}>
             <CardMedia
-              className={classes.media+' '+(this.props.data.photo?classes.mediaExists:'')}
-              image={this.props.data.photo}
+              className={classes.media+' '+(photo?classes.mediaExists:'')}
+              image={photo}
               title={this.props.data.info}
               />
             <CardContent>
@@ -50,6 +53,16 @@ const styles = {
               </Typography>
               <Typography component="p">
                 {this.props.data.info}
+              </Typography>
+              <Typography style={{color:'grey'}} component="p">
+                {'published '+new Date(this.props.data.date).toLocaleString()}
+              </Typography>
+              <Typography style={{color:'blue'}} component="p">
+                {this.props.data.numb_of_hours?('min. renting period: '+Math.floor(this.props.data.numb_of_hours/24)+' days '+this.props.data.numb_of_hours%24+' hours.'):''}
+              </Typography>
+
+              <Typography style={{color:'red',float:'right'}} component="p">
+                {(this.props.data.location?this.props.data.location:'location unknown')}
               </Typography>
             </CardContent>
           </CardActionArea>
@@ -61,7 +74,7 @@ const styles = {
               Details
             </Button>
             <Button size="small" variant="outlined" className={classes.button}>
-              {this.props.data.price}/{this.props.data.timePeriod}
+              {this.props.data.price?(this.props.data.price+' '+(this.props.data.currency?this.props.data.currency:'acp')+'/'+(this.props.data.timePeriod?this.props.data.timePeriod:'day')):''}
             </Button>
           </CardActions>
         </Card>
