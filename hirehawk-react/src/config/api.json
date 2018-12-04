@@ -73,7 +73,10 @@
       "createOrder": "manageOrders/create_order",
       "updateTransferStatus": "manageOrders/update_istransfer",
       "removeByID": "manageOrders/del",
-      "updatePayment": "manageOrders/updatepayment"
+      "updatePayment": "manageOrders/updatepayment",
+      "updateIsTransfer": "manageOrders/update_istransfer",
+      "updateIsReturn": "manageOrders/update_isreturn",
+      "updateGiveAgree": "manageOrders/update_giveagree"
     }
 
   }
