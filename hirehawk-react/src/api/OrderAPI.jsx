@@ -92,6 +92,65 @@ class OrderAPI{
                 return res.body;
               })
       }
+
+      static createOrder(advert, mdate, mstart, mfinish, price, userWhoGet){
+        return  request
+        .post('http://' + Config.orderapi.uri + '/' + Config.orderapi.endPoints.updatePayment + '/' + advert)
+        .query({'mdate': mdate})
+        .query({'mstart': mstart})
+        .query({'mfinish': mfinish})
+        .query({'price': price})
+        .query({'userWhoGet': userWhoGet})
+        .on('error', err => {
+            console.log('create encountered error');
+        })
+        .then((res) => {
+          console.log('got JSON orders: ' + JSON.stringify(res.body));
+          return res.body;
+        })
+      }
+
+      static updateIsTransfer(id, istnew, userWhoGet){
+        return  request
+              .post('http://' + Config.orderapi.uri + '/' + Config.orderapi.endPoints.updatePayment + '/' + id)
+              .query({'istnew': istnew})
+              .query({'userwhoGet': userWhoGet})
+              .on('error', err => {
+                  console.log('update is transfer encountered error');
+              })
+              .then((res) => {
+                console.log('got JSON orders: ' + JSON.stringify(res.body));
+                return res.body;
+              })
+      }
+
+      static updateIsReturn(id, isrnew, userWhoGive){
+        return  request
+              .post('http://' + Config.orderapi.uri + '/' + Config.orderapi.endPoints.updatePayment + '/' + id)
+              .query({'isrnew': isrnew})
+              .query({'userwhoGive': userWhoGive})
+              .on('error', err => {
+                  console.log('update is return encountered error');
+              })
+              .then((res) => {
+                console.log('got JSON orders: ' + JSON.stringify(res.body));
+                return res.body;
+              })
+      }
+
+      static updateIsGiveAgree(id, newgiveagree, userWhoGive){
+        return  request
+              .post('http://' + Config.orderapi.uri + '/' + Config.orderapi.endPoints.updatePayment + '/' + id)
+              .query({'newgiveagree': newgiveagree})
+              .query({'userwhoGive': userWhoGive})
+              .on('error', err => {
+                  console.log('update is agree encountered error');
+              })
+              .then((res) => {
+                console.log('got JSON orders: ' + JSON.stringify(res.body));
+                return res.body;
+              })
+      }
 }
 
 export default OrderAPI;
