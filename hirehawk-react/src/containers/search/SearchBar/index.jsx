@@ -30,8 +30,10 @@ class SearchBar extends React.Component{
   }
   handleSearch(){
    let params=qs.stringify({query:this.inputRef.current.value})
+   let pathname = '/search';
+   if(this.props.usersearch)pathname ='/usersearch';
     this.props.history.push({
-      pathname: '/search',
+      pathname: pathname,
       search: params,
       state: { detail:'somedetail'}
     });

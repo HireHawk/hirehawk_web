@@ -12,6 +12,7 @@ import DetailedUserSearch from 'containers/search/DetailedUserSearch'
 import UserAPI from 'api/UserAPI'
 import SearchAPI from 'api/SearchAPI'
 import SearchUtils from 'classes/data/SearchUtils'
+import AdvertUtils from 'classes/data/AdvertUtils'
 import Background from 'media/background.png'
 import Media from 'react-media'
 class UserSearchPage extends React.Component{
@@ -28,8 +29,10 @@ class UserSearchPage extends React.Component{
    getClientsByIDs(ids){
      for(let id of ids){
        UserAPI.getKeycloakUserInfo(id).then(result =>{
-         this.state.adverts.push(result);
-         this.forceUpdate();
+         UserAPI.getAdditionalUserInfo(id).then(adResult =>{
+           this.state.adverts.push(AdvertUtils.horribleUserToAdvertConvert(result,adResult));
+           this.forceUpdate();
+         });
        })
      }
      /*

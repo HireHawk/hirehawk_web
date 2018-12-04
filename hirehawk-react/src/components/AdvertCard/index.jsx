@@ -10,15 +10,19 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import './styles.css'
+import USERADVERT from 'media/useradvert.png'
 import qs from 'qs'
 
 const styles = {
   card: {
-    maxWidth: 345,
+    maxWidth:'345px',
   },
   media: {
       height: '100%',
     },
+  mediaExists: {
+        minHeight:'100px',
+      },
   };
   class AdvertCard extends React.Component{
     handleAdvertDetailsClicked(evt){
@@ -31,12 +35,13 @@ const styles = {
     }
     render(){
       var {classes} = this.props;
+      if(this.props.data.photo==null)this.props.data.photo=undefined
       return (
         <Card className={classes.card} style={{...{margin:'15px'}, ...this.props.style}}>
           <CardActionArea>
             <CardMedia
-              className={classes.media}
-              image={this.props.data.picture}
+              className={classes.media+' '+(this.props.data.photo?classes.mediaExists:'')}
+              image={this.props.data.photo}
               title={this.props.data.info}
               />
             <CardContent>

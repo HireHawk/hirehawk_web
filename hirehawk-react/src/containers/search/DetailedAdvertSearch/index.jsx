@@ -121,6 +121,9 @@ class AdvertSearch extends React.Component{
       </div>
       <div className ='detailedSearch-part' id ='detailedSearch-categorySpecific'>
       </div>
+      <div className ='detailedSearch-part' >
+        <button className='detailedSearch-SearchButton' onClick={this.onSearchClicked.bind(this)}>Search!</button>
+      </div>
     </div>);
   }
 

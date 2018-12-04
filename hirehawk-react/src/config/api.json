@@ -35,7 +35,8 @@
       "password":"Vac"
     },
     "endPoints":{
-      "findAdverts":"advertSearch/findAdvert"
+      "findAdverts":"advertSearch/findAdvert",
+      "findUsers":"userSearch/findUser"
     }
   },
   "chatapi":{
@@ -78,6 +79,5 @@
       "updateIsReturn": "manageOrders/update_isreturn",
       "updateGiveAgree": "manageOrders/update_giveagree"
     }
-
   }
 }

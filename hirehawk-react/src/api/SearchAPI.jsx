@@ -37,7 +37,7 @@ class SearchAPI {
     };
     static searchUsers(query) {
       let req = request
-                  .get('http://' + Config.searchapi.uri + '/' + Config.searchapi.endPoints.findAdverts)
+                  .get('http://' + Config.searchapi.uri + '/' + Config.searchapi.endPoints.findUsers)
                   .set('Authorization','Basic '+'YXBpOlZhYw==');//btoa(Config.searchapi.auth.username+":"+Config.searchapi.auth.password));
 
       //searchValue(String, optional), category(String, optional), info(boolean, option$

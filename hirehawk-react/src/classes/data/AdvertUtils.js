@@ -4,14 +4,17 @@ class AdvertUtils {
     //to be implemented
     return undefined;
   }
-  static horribleUserToAdvertConvert(user){
+  static horribleUserToAdvertConvert(user, additionalUser){
+    if(additionalUser!=undefined)
+      user={...user,...additionalUser};
     let frank = {
       id:user.id,
-      name: user.firstName + user.lastName,
+      name: user.firstName +' '+ user.lastName,
       category: 'user',
-      info: 'this is a user',
+      info: user.email,
       photo: user.photo,
     }
     return frank;
   }
 }
+export default AdvertUtils;
