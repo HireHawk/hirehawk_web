@@ -7,13 +7,15 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import DurationInput from '../../../components/DurationInput'
+import ImageLoader from '../../../components/ImageLoader'
 import {connect} from 'react-redux'
 
+import './styles.css'
 import 'styles/positioning.css'
 import AdvertAPI from "../../../api/AdvertAPI";
+import RentPriceInput from "../../../components/RentPriceInput";
 
 const styles = theme => ({
     root: {
@@ -43,6 +45,9 @@ const styles = theme => ({
         marginRight: theme.spacing.unit,
         borderRadius: 0,
         color: 'red',
+        width: '45%'
+    },
+    info:{
         width: '100%'
     },
     textfield: {
@@ -79,26 +84,63 @@ const styles = theme => ({
 
 class CreateAdvert extends React.Component{
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             name: '',
             min_duration: {},
             category: '',
             info: '',
             location: '',
-            price: '',
+            price:{
+                price:undefined,
+                period:'day',
+                currency:'acp',
+            },
             numb_of_hours: '',
+            imageLinks:[],
+            mainLink:'',
             errors: []
         }
+        //if(this.props.keycloak.adapter)this.props.keycloak.login();
     }
+
+    handleCheckLogin=()=>{
+        if(this.props.kcInitialized)this.props.keycloak.login({});
+    }
+
+    /**Images**/
+    handleAddImageLink(link){
+
+        this.setState({
+            imageLinks:this.state.imageLinks.concat([link]),
+            mainLink:(this.state.mainLink===undefined?link:this.state.mainLink),
+        });
+    }
+    handleChooseMainImageLink(link){
+        this.setState({
+            mainLink:link
+        });
+    }
+    handleRemoveImageLink(link){
+        var index = this.state.imageLinks.indexOf(link);
+        if (index !== -1){
+            this.state.imageLinks.splice(index, 1);
+            if(link===this.state.mainLink){
+                this.state.mainLink=this.state.imageLinks.length>0?this.state.imageLinks[0]:undefined;
+            }
+        }
+        this.forceUpdate();
+    }
+
+    /**Duration input**/
     handleMinDurationChange(minTime){
         this.setState(
           {
             min_duration: minTime,
             numb_of_hours:this.toHours(minTime)
-          },
-          ()=>alert(JSON.stringify(this.state.numb_of_hours)));
+          })
+          //,()=>alert(JSON.stringify(this.state.numb_of_hours)));
 
 
     }
@@ -109,36 +151,41 @@ class CreateAdvert extends React.Component{
             (timePeriod.hours ? timePeriod.hours : 0)       ;
     }
 
+    /**Price input**/
+    handlePriceChange(new_price) {
+        this.setState({
+            price: new_price,
+        });
+    }
+    /**Name input**/
     handleNameChange(event) {
         this.setState({
             name: event.target.value,
         });
     }
+
+    /**Category input**/
     handleCategoryChange(event) {
         this.setState({
             category: event.target.value,
         });
     }
+
+    /**Info input**/
     handleInfoChange(event) {
         this.setState({
             info: event.target.value,
         });
     }
+
+    /**Location input**/
     handleLocationChange(event) {
         this.setState({
             location: event.target.value,
         });
     }
-    handlePriceChange(event) {
-        this.setState({
-            price: event.target.value,
-        });
-    }
-    handleNumbOfHoursChange(event) {
-        this.setState({
-            numb_of_hours: event.target.value,
-        });
-    }
+
+
 
     isEmpty(value) {
         return !value.trim();
@@ -183,26 +230,26 @@ class CreateAdvert extends React.Component{
                         onChange={this.handleLocationChange.bind(this)}
 
                     />
-                    <TextField
-                        required
-                        id="standard-number"
-                        label="Price"
-                        value={this.state.price}
-                        onChange={this.handlePriceChange.bind(this)}
-                        type="number"
-                        className={this.props.classes.textField}
-                        margin="normal"
-                    />
+                    <RentPriceInput name='Price' onChange={this.handlePriceChange.bind(this)} value={this.state.price}/>
                     <TextField
                         label="Info"
                         margin="normal"
                         value={this.state.info}
-                        className={this.props.classes.textField}
+                        className={this.props.classes.info}
                         onChange={this.handleInfoChange.bind(this)}
                         multiline
                         rowsMax="4"
                     />
-                    <DurationInput value={this.state.min_duration} onChange={this.handleMinDurationChange.bind(this)}/>
+                    <DurationInput name='Minimum duration rent' value={this.state.min_duration} onChange={this.handleMinDurationChange.bind(this)}/>
+                    <ImageLoader classNameClosed='pictureUploadTest-imageLoaderСlosed'
+                                 classNameOpened='pictureUploadTest-imageLoaderOpened'
+                                 className='pictureUploadTest-imageLoader'
+                                 imageLinks={this.state.imageLinks}
+                                 chosenLink={this.state.mainLink}
+                                 onUploaded={this.handleAddImageLink.bind(this)}
+                                 onRemoved={this.handleRemoveImageLink.bind(this)}
+                                 onChosen={this.handleChooseMainImageLink.bind(this)}>
+                    </ImageLoader>
                     {this.state.errors.map((error, i) => {
                         return (<div className="error">{error}</div>);
                     })}
