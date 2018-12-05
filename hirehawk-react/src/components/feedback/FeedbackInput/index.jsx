@@ -122,6 +122,9 @@ const styles = {
       });
 
     }
+    handleLogin(){
+      this.props.keycloak.login();
+    }
     render(){
 
       let stars = (
@@ -138,7 +141,7 @@ const styles = {
       );
       if(!KeycloakUtils.getUserInfo(this.props.keycloak).user_id)
         return (
-            <div style={{height:"2em", textAlign:"center"}} className={this.props.classes.root}>
+            <div style={{height:"2em", textAlign:"center"}} onClick={this.handleLogin.bind(this)} className={this.props.classes.root}>
               login to add a comment!
             </div>
         )

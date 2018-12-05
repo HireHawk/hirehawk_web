@@ -56,8 +56,8 @@ class MainPage extends React.Component{
       <ExternalLoginButton button={{style:{}, className:'mainPage-loginButton'}} style={{zIndex:100}} tokenStyle={{zIndex:100}}/>
       <AdvertSearch className='mainPage-advertSearch' history={this.props.history} > </AdvertSearch>
       <div className='mainPage-imageLinkContainer'>
-        <BlockLink name='Give things!' className='mainPage-imageLink' onClick={this.handleGiveThingsClick} backgroundImage={Bike}/>
-        <BlockLink name='Take things!' className='mainPage-imageLink' onClick={this.handleTakeThingsClick} backgroundImage={Hat}/>
+        <BlockLink name='Give things!' className='mainPage-imageLink' onClick={this.handleGiveThingsClick.bind(this)} backgroundImage={Bike}/>
+        <BlockLink name='Take things!' className='mainPage-imageLink' onClick={this.handleTakeThingsClick.bind(this)} backgroundImage={Hat}/>
       </div>
         {/*temporary elements (design/etc)*/}
       {/*<div style = {{position:'absolute', top:'60%', left:0, width:'100%', background:'black', height:'40%', zIndex:-1}}/>

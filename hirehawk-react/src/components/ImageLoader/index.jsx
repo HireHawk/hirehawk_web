@@ -79,11 +79,14 @@ class ImageLoader extends React.Component{
         imageLink={i}
         onRemoved={this.handleRemove.bind(this)}
         onChosen={this.props.onChosen}
-        chosen={this.props.chosenLink===i?true:false}/> )
+        chosen={this.props.chosenLink===i?true:false}
+        viewOnly={this.props.readOnly}/> )
     }
-    if(contents.length === 0)
-         contents.push(<p key='addFirst'>Click or drop files here!</p>)
-    else contents.push(<AddImage className={this.props.classes.image} onDrop={this.handleDrop.bind(this)}></AddImage>);
+    if(!this.props.readOnly){
+      if(contents.length === 0)
+           contents.push(<p key='addFirst'>Click or drop files here!</p>)
+      else contents.push(<AddImage className={this.props.classes.image} onDrop={this.handleDrop.bind(this)}></AddImage>);
+    }
 
     return (
       <div className={[this.props.className,((this.props.imageLinks.length>0)?this.props.classNameOpened:this.props.classNameClosed)].join(' ')}>
@@ -106,6 +109,8 @@ class ImageLoader extends React.Component{
 
 ImageLoader.propTypes = {
   classes: PropTypes.object.isRequired,
+  imageLinks: PropTypes.array,
+  readOnly:PropTypes.boolean
 };
 
 export default withStyles(styles)(ImageLoader);

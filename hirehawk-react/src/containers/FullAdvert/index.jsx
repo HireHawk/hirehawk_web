@@ -11,7 +11,8 @@ import StarRatingComponent from 'components/StarRatingComponent'
 import Media from 'react-media'
 import FeedbackUtils from 'classes/data/FeedbackUtils'
 import AdvertFeedback from 'components/feedback/AdvertFeedback'
-
+import ImageLoader from 'components/ImageLoader'
+import ImageLoaderImage from 'components/ImageLoader/Image'
 import 'styles/positioning.css'
 import AdvertAPI from 'api/AdvertAPI'
 import UserAPI from 'api/UserAPI'
@@ -36,7 +37,18 @@ const styles = {
     },
     content:{
       padding:'10px',
-    }
+    },
+    imageLinks:{
+      height:'200px'
+    },
+    authorPhoto:{
+      height:'200px',
+      display:'inline-block',
+    },
+    info:{
+      marginBottom:'20px',
+      marginTop:'10px'
+    },
   };
 
   class FullAdvert extends React.Component{
@@ -83,42 +95,47 @@ const styles = {
       if(this.state.advert){
         contents = (
           <div className={this.props.classes.content}>
-            <h2 style={{padding:'30px'}}>Demo Advert</h2>
+            <h2 style={{padding:'30px'}}>{this.state.advert.name}</h2>
             <div>
-              Name: {this.state.advert.name}
+              <span className={this.props.classes.info} style={{color:'grey'}}>Info:</span> {this.state.advert.info}
             </div>
             <div>
-              Info: {this.state.advert.info}
+              {this.state.advert.imageLinks?<span style={{color:'grey'}}>Photos:</span>:''}
+              {this.state.advert.imageLinks?<ImageLoader readOnly={true} imageLinks={this.state.advert.imageLinks} className={this.props.classes.imageLinks}/>:''}
             </div>
-            <div>
-              Photos: {this.state.advert.photo}
-              <p style={{color:'red',backgrondColor:'black'}}>Use my component to add photos as strings and join them to one</p>
-            </div>
-            <div style={{color:'blue'}}>
-              Author (user_s_Id, really?): {this.state.author.keycloak?(this.state.author.keycloak.firstName+' '+this.state.author.keycloak.lastName):'loading'}
+            {/*
               <div>
-                photo url: {this.state.author.additional?(this.state.author.additional.photo):'loading...'}
+                <span style={{color:'grey'}}>Main Photo:</span> {this.state.advert.mainLink}
               </div>
+            */}
+            <div style={{color:'blue'}}>
+              <div>
+               <br/> {this.state.author.additional?this.state.author.additional.photo?(
+                <ImageLoaderImage className ={this.props.classes.authorPhoto} viewOnly={true} imageLink={[this.state.author.additional.photo]}/>
+              ):'':''}
+              </div>
+              <span style={{color:'grey'}}>Author:</span> {this.state.author.keycloak?(this.state.author.keycloak.firstName+' '+this.state.author.keycloak.lastName):'loading'}
+
             </div>
             <div>
-              Category: {this.state.advert.category}
+              <span style={{color:'grey'}}>Category:</span> {this.state.advert.category?this.state.advert.category:'-'}
             </div>
             <div>
-              Location: {this.state.advert.location}
+              <span style={{color:'grey'}}>Location:</span> {this.state.advert.location?this.state.advert.location:'-'}
             </div>
             <div>
-              Price : {this.state.advert.price}/hour
+              <span style={{color:'grey'}}>Price:</span> {this.state.advert.price+' '+ (this.state.advert.currency?this.state.advert.currency:'acp')}/day
               <br/>
-              <span style={{color:'red'}}>need to add currency (12uah for ex) </span>
             </div>
 
             <div>
-              minimum renting time: {this.state.advert.num_of_hours}
+               <span style={{color:'grey'}}>Minimum renting time:</span>  {((this.state.advert.numb_of_hours>=24)?Math.floor(this.state.advert.numb_of_hours/24)+((this.state.advert.numb_of_hours>=48)?' days ':' day '):'')+(this.state.advert.numb_of_hours%24?this.state.advert.numb_of_hours%24+' hours.':'')}
+
             </div>
             <div>
-              creation date: {(new Date(this.state.advert.date)).toLocaleString()}
+              <span style={{color:'grey'}}>Creation date: </span> {(new Date(this.state.advert.date)).toLocaleString()}
             </div>
-            <p style={{color:'red',backgrondColor:'black'}}>Also advert creation date is somehow null</p>
+          <br/>
             <AdvertFeedback
                caption = 'feedback'
                className ={this.props.classes.advertFeedback}

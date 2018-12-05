@@ -105,8 +105,8 @@ class Image extends React.Component{
     }else if (this.props.imageLink){
      contents = <div className={this.props.classes.imageContainer} styles={{display:'inlineBlock'}}>
      <img alt={this.props.imageLink} src={this.props.imageLink} className={this.props.classes.image} onClick={()=>this.setState({fsEnabled:true})}/>
-     <input type='button' className={this.props.classes.delete} value='Delete!' onClick={()=>this.props.onRemoved(this.props.imageLink)}/>
-     <input type='button' className={[this.props.classes.makePrimary,(this.props.chosen?this.props.classes.makePrimaryChosen:this.props.classes.makePrimaryNotChosen)].join(' ')} value='' onClick={()=>this.props.onChosen(this.props.imageLink)}/>
+     {this.props.viewOnly?'':<input key= 'del' type='button' className={this.props.classes.delete} value='Delete!' onClick={()=>this.props.onRemoved(this.props.imageLink)}/>}
+     {this.props.viewOnly?'':<input key= 'sel' type='button' className={[this.props.classes.makePrimary,(this.props.chosen?this.props.classes.makePrimaryChosen:this.props.classes.makePrimaryNotChosen)].join(' ')} value='' onClick={()=>this.props.onChosen(this.props.imageLink)}/>}
      </div>
     }else{
        contents = <p>Loading...</p>;
