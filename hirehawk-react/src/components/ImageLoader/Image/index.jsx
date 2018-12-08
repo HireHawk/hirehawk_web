@@ -13,6 +13,9 @@ const styles = theme => ({
   },
   image:{
     height:'100%',
+    padding:0,
+    margin:0,
+    width:'100%'
   },
   imageContainer:{
     position:'relative',
@@ -65,7 +68,7 @@ const styles = theme => ({
   },
   fullscreen:{
     textAlign:'center',
-    zIndex:'10',
+    zIndex:'100',
     position:'fixed',
     top:'0',
     left:'0',
@@ -75,10 +78,13 @@ const styles = theme => ({
     verticalAlign:'middle',
   },
   fullscreenImage:{
-    position:'absolute',
+    position:'fixed',
     maxWidth:'90vw',
     maxHeight:'90vh',
+
     borderRadius:'10px',
+    margin:'0 auto',
+
     top: '50vh',
     left: '50vw',
     transform: 'translate(-50%, -50%)',
@@ -93,7 +99,7 @@ class Image extends React.Component{
       fsEnabled:false
     }
     this.fsImage=<div className={this.props.classes.fullscreen} onClick={(()=>this.setState({fsEnabled:false})).bind(this)}>
-                  <img alt={this.props.imageLink} src={this.props.imageLink} className={this.props.classes.fullscreenImage} />
+                    <img alt={this.props.imageLink} src={this.props.imageLink} className={this.props.classes.fullscreenImage} />
                 </div>
   }
 
@@ -103,7 +109,8 @@ class Image extends React.Component{
     if (this.props.error){
      contents = <p> {this.props.error}</p>;
     }else if (this.props.imageLink){
-     contents = <div className={this.props.classes.imageContainer} styles={{display:'inlineBlock'}}>
+     contents = <div className={this.props.classes.imageContainer +' '+(this.props.imageClassName?this.props.imageClassName:'')}
+       style={{display:'inline-block'}}>
      <img alt={this.props.imageLink} src={this.props.imageLink} className={this.props.classes.image} onClick={()=>this.setState({fsEnabled:true})}/>
      {this.props.viewOnly?'':<input key= 'del' type='button' className={this.props.classes.delete} value='Delete!' onClick={()=>this.props.onRemoved(this.props.imageLink)}/>}
      {this.props.viewOnly?'':<input key= 'sel' type='button' className={[this.props.classes.makePrimary,(this.props.chosen?this.props.classes.makePrimaryChosen:this.props.classes.makePrimaryNotChosen)].join(' ')} value='' onClick={()=>this.props.onChosen(this.props.imageLink)}/>}

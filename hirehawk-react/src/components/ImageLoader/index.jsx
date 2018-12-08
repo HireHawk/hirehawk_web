@@ -25,7 +25,7 @@ const styles = theme => ({
     width:'calc(100% - 4px)',
   },
   image:{
-    height:'100%',
+    height:'96%',
     display:'inline-block',
   },
   addimage:{
@@ -75,7 +75,9 @@ class ImageLoader extends React.Component{
   render(){
     let contents = [];
     for(let i of this.props.imageLinks){
-      contents.push(<Image key={i} className={this.props.classes.image}
+      contents.push(<Image key={i}
+        className={this.props.classes.image +' '+this.props.imageClassName}
+        imageClassName={this.props.classes.image +' '+this.props.imageClassName}
         imageLink={i}
         onRemoved={this.handleRemove.bind(this)}
         onChosen={this.props.onChosen}
@@ -94,9 +96,11 @@ class ImageLoader extends React.Component{
           disableClick = {this.props.imageLinks.length>0}
           accept="image/*"
           onDrop={this.handleDrop.bind(this)}
-          className={this.props.classes.imageLoader}
+          className={(!this.props.dropzoneClassName)?this.props.classes.imageLoader:
+                      (this.props.classes.imageLoader+' '+this.props.dropzoneClassName)}
           >
-          <div className={this.props.classes.container}>
+          <div className={(!this.props.containerClassName)?this.props.classes.container:
+                      (this.props.classes.container+' '+this.props.containerClassName)}>
             {contents}
           </div>
         </Dropzone>
