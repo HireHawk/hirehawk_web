@@ -23,7 +23,7 @@ class ViewAdvert extends React.Component{
    render(){
     return (
     <div className='overflowXHidden viewAdvert' style={{background:`url(${Background})`}}>
-      <FullAdvert className= 'viewAdvert-fullAdvert' id={this.state.advertId}/>
+      <FullAdvert className= 'viewAdvert-fullAdvert' id={this.state.advertId} history={this.props.history}/>
     </div>);
   }
 };
