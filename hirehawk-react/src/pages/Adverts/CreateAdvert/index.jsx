@@ -195,7 +195,8 @@ class CreateAdvert extends React.Component{
         console.log("SEND ", this.state);
         if(this.props.keycloak.authenticated)
           this.props.keycloak.updateToken(30).success((()=>{
-              AdvertAPI.createAdvert(this.state,this.props.keycloak.token);
+              let customState = {...this.state, price:this.state.price.price}
+              AdvertAPI.createAdvert(customState,this.props.keycloak.token);
             })).error(function() {
               alert('Failed to refresh token');
             }
@@ -272,7 +273,7 @@ class CreateAdvert extends React.Component{
 
         if (this.isEmpty(this.state.name) ||
             this.isEmpty(this.state.location) ||
-            this.isEmpty(this.state.price)) {
+            this.state.price.price === undefined) {
             errorsContainer.push("Some fields are empty");
         }
 
