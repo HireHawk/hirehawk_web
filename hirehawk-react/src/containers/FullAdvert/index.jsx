@@ -216,7 +216,7 @@ const styles = {
                 <div style={{display:'inline-block'}}>
                   <span style={{color:'grey'}}>Author:</span> {this.state.author.keycloak?(this.state.author.keycloak.firstName+' '+this.state.author.keycloak.lastName):'loading'}
                    <br/>
-                  <span style={{color:'grey'}}>Average Rating:</span> {this.state.author.keycloak?(this.state.author.keycloak.firstName+' '+this.state.author.keycloak.lastName):'loading'}
+                  {/*<span style={{color:'grey'}}>Average Rating:</span> {this.state.author.keycloak?(this.state.author.keycloak.firstName+' '+this.state.author.keycloak.lastName):'loading'}  */}
                 </div>
               </div>
               <div>

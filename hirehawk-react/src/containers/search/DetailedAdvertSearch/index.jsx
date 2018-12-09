@@ -4,7 +4,7 @@ import React from 'react'
 import './styles.css'
 import 'styles/positioning.css'
 import SearchBar from 'containers/search/SearchBar'
-import CategoryRow from './main/CategoryRow'
+import CategoryRow from 'containers/CategoryRow'
 import RentPriceInput from 'components/RentPriceInput'
 import DurationInput from 'components/DurationInput'
 import Button from '@material-ui/core/Button';

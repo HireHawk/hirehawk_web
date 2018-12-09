@@ -16,6 +16,7 @@ import './styles.css'
 import 'styles/positioning.css'
 import AdvertAPI from "../../../api/AdvertAPI";
 import RentPriceInput from "../../../components/RentPriceInput";
+import CategoryRow from 'containers/CategoryRow'
 
 const styles = theme => ({
     root: {
@@ -184,7 +185,11 @@ class CreateAdvert extends React.Component{
             location: event.target.value,
         });
     }
-
+    onCategoryUpdate(newCategory){
+      this.setState({
+        category:newCategory,
+      })
+    }
 
 
     isEmpty(value) {
@@ -195,7 +200,11 @@ class CreateAdvert extends React.Component{
         console.log("SEND ", this.state);
         if(this.props.keycloak.authenticated)
           this.props.keycloak.updateToken(30).success((()=>{
-              let customState = {...this.state, price:this.state.price.price}
+              let customState = {
+                ...this.state,
+                price:this.state.price.price,
+                category:this.state.category?this.state.category[0]?this.state.category[0]:'':'',
+                subcategory:this.state.category?this.state.category[1]?this.state.category[1]:'':''}
               AdvertAPI.createAdvert(customState,this.props.keycloak.token);
             })).error(function() {
               alert('Failed to refresh token');
@@ -254,7 +263,9 @@ class CreateAdvert extends React.Component{
                     {this.state.errors.map((error, i) => {
                         return (<div className="error">{error}</div>);
                     })}
-
+                    <CategoryRow value = {this.state.category}
+                                   onCategoryUpdate={this.onCategoryUpdate.bind(this)}
+                                   className='createAdvert-categoryRow'/>
                     <div style={{ height: '2em' }} />{ /*used for scaling,for textBoxes not to take */}
                     <Button variant="contained"
                             className={[this.props.classes.button, 'centered'].join(' ')}

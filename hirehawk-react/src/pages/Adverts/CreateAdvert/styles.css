@@ -41,7 +41,9 @@
   left:20%;
   top:calc(20% + 200px);
 }
-
+.createAdvert-categoryRow{
+  z-index: 200;
+}
 .advertCreation-locationInput{
 
   width: 50%;

@@ -2,6 +2,17 @@ import Config from 'config/api.json'
 import request from 'superagent'
 
 class AdvertAPI {
+  static getCategories() {
+    return  request
+          .get('http://' + Config.advertapi.uri + '/' + Config.advertapi.endPoints.getCategories)
+          .on('error', err => {
+              console.log('getCategories (AdvertAPI) encountered error');
+          })
+          .then((res) => {
+            console.log('got JSON for categories: ' + JSON.stringify(res.body));
+            return res.body;
+          })
+  };
     static getAdvertById(id) {
       return  request
             .get('http://' + Config.advertapi.uri + '/' + Config.advertapi.endPoints.getAdvert + '/' + id)

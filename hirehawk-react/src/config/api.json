@@ -25,7 +25,8 @@
       "getAdvert":"manageAdverts/get",
       "getAdverts":"manageAdverts/getChosen",
       "getAllAdverts":"manageAdverts/getAll",
-      "createAdvert":"manageAdverts/create"
+      "createAdvert":"manageAdverts/create",
+      "getCategories":"manageCategories/getAllCategories"
     }
   },
   "searchapi":{

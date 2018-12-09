@@ -141,7 +141,7 @@ class NestedDropdown extends React.Component {
     //
     return (
       <div
-        className='nestedDropdown'
+        className={'nestedDropdown '+(this.props.className?this.props.className:'')}
         onClick={ this.handleDropdownToggle }
       >
         {this.props.name?this.props.name+':':''}

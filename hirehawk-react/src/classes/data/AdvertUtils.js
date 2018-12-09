@@ -16,5 +16,23 @@ class AdvertUtils {
     }
     return frank;
   }
+  static restructureSimpleCategories(categories){
+    var res =[];
+     for(let category of categories){
+       res.push({
+         id:category.category,
+         message:category.category,
+       });
+       res[res.length-1].options=[]
+       for(let sub of category.subcategories){
+         res[res.length-1].options.push({
+           id:sub,
+           message:sub,
+           options:[],
+         })
+       }
+     }
+     return res;
+   }
 }
 export default AdvertUtils;
