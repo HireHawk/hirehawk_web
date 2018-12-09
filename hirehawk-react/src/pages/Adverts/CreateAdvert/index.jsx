@@ -6,8 +6,6 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import Visibility from '@material-ui/icons/Visibility';
 import DurationInput from '../../../components/DurationInput'
 import ImageLoader from '../../../components/ImageLoader'
 import {connect} from 'react-redux'
@@ -49,7 +47,7 @@ const styles = theme => ({
         width: '45%'
     },
     info:{
-        width: '100%'
+        width: '60%'
     },
     textfield: {
         color: 'red'
@@ -240,7 +238,11 @@ class CreateAdvert extends React.Component{
                         onChange={this.handleLocationChange.bind(this)}
 
                     />
-                    <RentPriceInput name='Price' onChange={this.handlePriceChange.bind(this)} value={this.state.price}/>
+                    <DurationInput name='Minimum duration rent' value={this.state.min_duration} onChange={this.handleMinDurationChange.bind(this)}/>
+                    <RentPriceInput name='Price' className='createAdvert-price' onChange={this.handlePriceChange.bind(this)} value={this.state.price}/>
+                    <CategoryRow value = {this.state.category}
+                                 onCategoryUpdate={this.onCategoryUpdate.bind(this)}
+                                 className='createAdvert-categoryRow'/>
                     <TextField
                         label="Info"
                         margin="normal"
@@ -248,9 +250,8 @@ class CreateAdvert extends React.Component{
                         className={this.props.classes.info}
                         onChange={this.handleInfoChange.bind(this)}
                         multiline
-                        rowsMax="4"
+                        rowsMax="6"
                     />
-                    <DurationInput name='Minimum duration rent' value={this.state.min_duration} onChange={this.handleMinDurationChange.bind(this)}/>
                     <ImageLoader classNameClosed='pictureUploadTest-imageLoaderСlosed'
                                  classNameOpened='pictureUploadTest-imageLoaderOpened'
                                  className='pictureUploadTest-imageLoader'
@@ -263,9 +264,7 @@ class CreateAdvert extends React.Component{
                     {this.state.errors.map((error, i) => {
                         return (<div className="error">{error}</div>);
                     })}
-                    <CategoryRow value = {this.state.category}
-                                   onCategoryUpdate={this.onCategoryUpdate.bind(this)}
-                                   className='createAdvert-categoryRow'/>
+
                     <div style={{ height: '2em' }} />{ /*used for scaling,for textBoxes not to take */}
                     <Button variant="contained"
                             className={[this.props.classes.button, 'centered'].join(' ')}
