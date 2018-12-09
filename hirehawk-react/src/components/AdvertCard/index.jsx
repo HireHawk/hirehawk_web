@@ -41,7 +41,7 @@ const styles = {
       if(this.props.data.photo==null)this.props.data.photo=undefined
       return (
         <Card className={classes.card} style={{...{margin:'15px'}, ...this.props.style}}>
-          <CardActionArea style={{width:'100%'}}>
+          <CardActionArea style={{width:'100%'}} onClick = {this.handleAdvertDetailsClicked.bind(this)} >
             <CardMedia
               className={classes.media+' '+(photo?classes.mediaExists:'')}
               image={photo}
